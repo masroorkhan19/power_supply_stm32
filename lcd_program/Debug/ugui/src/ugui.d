@@ -1,6 +1,6 @@
 ugui/src/ugui.o: ../ugui/src/ugui.c \
- C:/Users/Syed\ Mir\ Hamza/STM32CubeIDE/workspace_1.10.1/lcd_program/lcd_program/ugui/inc/ugui.h \
- C:/Users/Syed\ Mir\ Hamza/STM32CubeIDE/workspace_1.10.1/lcd_program/lcd_program/ugui/inc/ugui_config.h \
+ /home/mkhan/git/power_supply_stm32/lcd_program/ugui/inc/ugui.h \
+ /home/mkhan/git/power_supply_stm32/lcd_program/ugui/inc/ugui_config.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
  ../Core/Inc/stm32f1xx_hal_conf.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h \
@@ -26,8 +26,8 @@ ugui/src/ugui.o: ../ugui/src/ugui.c \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
-C:/Users/Syed\ Mir\ Hamza/STM32CubeIDE/workspace_1.10.1/lcd_program/lcd_program/ugui/inc/ugui.h:
-C:/Users/Syed\ Mir\ Hamza/STM32CubeIDE/workspace_1.10.1/lcd_program/lcd_program/ugui/inc/ugui_config.h:
+/home/mkhan/git/power_supply_stm32/lcd_program/ugui/inc/ugui.h:
+/home/mkhan/git/power_supply_stm32/lcd_program/ugui/inc/ugui_config.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
 ../Core/Inc/stm32f1xx_hal_conf.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h:

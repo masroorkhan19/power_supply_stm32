@@ -25,7 +25,7 @@
 #include "ugui.h"
 #include "ugui_ST7789.h"
 #include "SW3516.h"
-
+#include "stdbool.h"
 
 /* USER CODE END Includes */
 
@@ -62,9 +62,11 @@ static void MX_I2C1_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-uint8_t page_counter = 0;
-uint8_t state = 1;
-uint8_t page_load = 1;
+//uint8_t page_counter = 0;
+//uint8_t state = 1;
+//uint8_t page_load = 1;
+
+bool read_sw3516_flag;
 /* USER CODE END 0 */
 
 /**
@@ -117,6 +119,15 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+
+	  if(read_sw3516_flag){
+
+		  previous= current;
+		  convert_ADC(&current.currentA, &current.currentC, &current.voltagein, &current.voltageout, &current.temperature);
+		  read_sw3516_flag=0;
+	  }
+
+
 //	  Page_logo();
 //
 
@@ -349,34 +360,20 @@ static void MX_GPIO_Init(void)
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
 
-	if(GPIO_Pin == ENC_push_button_Pin){
-		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-		HAL_TIM_Base_Start_IT(&htim2);
-		state = 0;
-
-	}
+//	if(GPIO_Pin == ENC_push_button_Pin){
+//		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+//		HAL_TIM_Base_Start_IT(&htim2);
+//		state = 0;
+//
+//	}
 }
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
 
-//	if(HAL_GPIO_ReadPin(ENC_push_button_GPIO_Port, ENC_push_button_Pin) == GPIO_PIN_RESET){
-//
-//						if(page_counter == 0 && state == 0){
-//							page_counter = 1;
-//							state = 1;
-//							page_load = 1;
-//						}
-//						else if(page_counter == 1 && state == 0){
-//							page_counter = 0;
-//							state = 1;
-//							page_load = 1;
-//						}
-//
-//					}
-//	HAL_TIM_Base_Stop_IT(&htim2);
 
-	 convert_ADC(&current.currentA, &current.currentC, &current.voltagein, &current.voltageout, &current.temperature);
+     read_sw3516_flag=1;
+	 //convert_ADC(&current.currentA, &current.currentC, &current.voltagein, &current.voltageout, &current.temperature);
 }
 
 
