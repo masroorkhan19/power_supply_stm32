@@ -1,0 +1,14 @@
+../ugui/src/ugui_ST7789.c:19:6:parallelWriteDC0	24	static
+../ugui/src/ugui_ST7789.c:46:6:opt_delay	16	static
+../ugui/src/ugui_ST7789.c:50:6:parallelWriteDC1	24	static
+../ugui/src/ugui_ST7789.c:78:6:parallelMultiWriteDC1	24	static
+../ugui/src/ugui_ST7789.c:85:7:Display_WriteCommand	16	static
+../ugui/src/ugui_ST7789.c:90:7:Display_WriteData	16	static
+../ugui/src/ugui_ST7789.c:95:7:Display_WriteMultiData	16	static
+../ugui/src/ugui_ST7789.c:101:7:Display_Reset	8	static
+../ugui/src/ugui_ST7789.c:107:6:Display_Init	8	static
+../ugui/src/ugui_ST7789.c:227:6:Display_WindowSet	32	static
+../ugui/src/ugui_ST7789.c:248:6:Display_PSet	24	static
+../ugui/src/ugui_ST7789.c:279:11:HW_FillFrame	32	static
+../ugui/src/ugui_ST7789.c:319:11:HW_DrawLine	32	static
+../ugui/src/ugui_ST7789.c:335:11:HW_DrawImage	64	dynamic

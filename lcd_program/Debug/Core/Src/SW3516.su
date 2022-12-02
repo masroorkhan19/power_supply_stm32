@@ -1,0 +1,5 @@
+../Core/Src/SW3516.c:27:6:write_to_reg	32	static
+../Core/Src/SW3516.c:33:6:read_from_register	32	static
+../Core/Src/SW3516.c:38:6:SW3516_init	24	static
+../Core/Src/SW3516.c:43:6:read_ADC_DATA_BUFFER	32	static
+../Core/Src/SW3516.c:53:6:convert_ADC	40	static
