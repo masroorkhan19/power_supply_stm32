@@ -28,7 +28,9 @@ Core/Src/lcd_progm.o: ../Core/Src/lcd_progm.c ../Core/Inc/lcd_progm.h \
  /home/mkhan/git/power_supply_stm32/lcd_program/ugui/inc/ugui.h \
  /home/mkhan/git/power_supply_stm32/lcd_program/ugui/inc/ugui_config.h \
  ../Core/Inc/main.h \
- /home/mkhan/git/power_supply_stm32/lcd_program/ugui/inc/ugui.h
+ /home/mkhan/git/power_supply_stm32/lcd_program/ugui/inc/ugui.h \
+ ../Core/Inc/page_3_callback_imp.h ../Core/Inc/lcd_progm.h \
+ ../Core/Inc/SW3516.h ../Core/Inc/buck_convertor.h
 ../Core/Inc/lcd_progm.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
@@ -61,3 +63,7 @@ Core/Src/lcd_progm.o: ../Core/Src/lcd_progm.c ../Core/Inc/lcd_progm.h \
 /home/mkhan/git/power_supply_stm32/lcd_program/ugui/inc/ugui_config.h:
 ../Core/Inc/main.h:
 /home/mkhan/git/power_supply_stm32/lcd_program/ugui/inc/ugui.h:
+../Core/Inc/page_3_callback_imp.h:
+../Core/Inc/lcd_progm.h:
+../Core/Inc/SW3516.h:
+../Core/Inc/buck_convertor.h:

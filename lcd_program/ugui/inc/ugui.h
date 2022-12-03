@@ -152,7 +152,12 @@ typedef UG_U16                                        UG_COLOR;
 #define OBJ_ID_17                                     17
 #define OBJ_ID_18                                     18
 #define OBJ_ID_19                                     19
-
+#define OBJ_ID_20                                     20
+#define OBJ_ID_21                                     21
+#define OBJ_ID_22                                     22
+#define OBJ_ID_23                                     23
+#define OBJ_ID_24                                     24
+#define OBJ_ID_25                                     25
 /* -------------------------------------------------------------------------------- */
 /* -- FUNCTION RESULTS                                                           -- */
 /* -------------------------------------------------------------------------------- */
@@ -217,6 +222,7 @@ typedef struct
    UG_U8 id;
    UG_U8 sub_id;
    UG_U8 event;
+
    void* src;
 } UG_MESSAGE;
 
@@ -502,7 +508,12 @@ typedef struct
 #define TXB_ID_17                                     OBJ_ID_17
 #define TXB_ID_18                                     OBJ_ID_18
 #define TXB_ID_19                                     OBJ_ID_19
-
+#define TXB_ID_20                                     OBJ_ID_20
+#define TXB_ID_21                                     OBJ_ID_21
+#define TXB_ID_22                                     OBJ_ID_22
+#define TXB_ID_23                                     OBJ_ID_23
+#define TXB_ID_24                                     OBJ_ID_24
+#define TXB_ID_25                                     OBJ_ID_25
 /* -------------------------------------------------------------------------------- */
 /* -- IMAGE OBJECT                                                               -- */
 /* -------------------------------------------------------------------------------- */

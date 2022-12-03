@@ -7,10 +7,13 @@
 #include "lcd_progm.h"
 #include "ugui_ST7789.h"
 #include "stm32f1xx_hal.h"
-
+#include "stdio.h"
+#include "buck_convertor.h"
 
 UG_COLOR color[3]= {C_RED, C_GREEN, C_BLUE};
 char bufferOut[BuffOUT];
+char char_buffer[16];
+
 
 UG_OBJECT obj_buff_wnd_1[MAX_OBJECTS];
 UG_WINDOW window_1;
@@ -66,32 +69,70 @@ UG_TEXTBOX dummy_text_11;
 
  UG_OBJECT obj_buff_window_page_1[MAX_OBJECTS_WIN_GRAPH];
 
- UG_WINDOW window_graph;
+
+ //page 0
+ UG_WINDOW window_page_0;
  UG_TEXTBOX OK_graphic;
  UG_TEXTBOX CV_graphic;
  UG_TEXTBOX CC_graphic;
+ UG_OBJECT obj_buff_window_page_0[MAX_OBJECTS_WIN_GRAPH];
 
 
- UG_OBJECT obj_buff_window_graph[MAX_OBJECTS_WIN_GRAPH];
 
+//page logo
  UG_WINDOW LOGO;
  UG_OBJECT obj_buff_window_logo[MAX_OBJECTS_WIN_GRAPH];
  UG_IMAGE image_1;
 
+//
+ //page 3
+ UG_WINDOW window_page_3;
+ UG_OBJECT obj_buff_window_page_3[MAX_OBJECTS_WIN_PAGE_3];
+ UG_TEXTBOX textbox_pe;
+ UG_TEXTBOX textbox_temp;
+ UG_TEXTBOX textbox_temp_value;
+ UG_TEXTBOX textbox_temp_symbol;
+ UG_TEXTBOX textbox_usbc;
+ UG_TEXTBOX textbox_usba;
+
+ UG_TEXTBOX textbox_page3_usbc_voltage_value;
+ UG_TEXTBOX textbox_page3_usbc_current_value;
+ UG_TEXTBOX textbox_page3_usbc_watt_value;
+
+ UG_TEXTBOX textbox_page3_usbc_voltage_symbol;
+ UG_TEXTBOX textbox_page3_usbc_current_symbol;
+ UG_TEXTBOX textbox_page3_usbc_watt_symbol;
+
+
+ UG_TEXTBOX textbox_page3_usba_voltage_value;
+ UG_TEXTBOX textbox_page3_usba_current_value;
+ UG_TEXTBOX textbox_page3_usba_watt_value;
+
+ UG_TEXTBOX textbox_page3_usba_voltage_symbol;
+ UG_TEXTBOX textbox_page3_usba_current_symbol;
+ UG_TEXTBOX textbox_page3_usba_watt_symbol;
+
+ UG_TEXTBOX textbox_page3_ok_symbol;
+ UG_TEXTBOX textbox_page3_cv_symbol;
+ UG_TEXTBOX textbox_page3_cc_symbol;
+
+ UG_TEXTBOX textbox_page3_output_voltage_value;
+ UG_TEXTBOX textbox_page3_output_current_value;
+ UG_TEXTBOX textbox_page3_output_voltage_symbol;
+ UG_TEXTBOX textbox_page3_output_current_symbol;
 
 
 
 
 
-
- void Page_1(void){
+ void Page_0(void){
 
 
 //	    	UG_WindowHide(&LOGO);
 //	 	    UG_Update();
 
 
-	 	    UG_WindowShow(&window_graph);
+	 	    UG_WindowShow(&window_page_0);
 	 	    UG_Update();
 	 //UG_DrawFrame(0, 0, DISPLAY_WIDTH-1, DISPLAY_HEIGHT-1, C_LIGHT_GRAY);     // Draw a Frame
 	 //	    HAL_Delay(10);
@@ -187,7 +228,7 @@ UG_TEXTBOX dummy_text_11;
 
  }
 
- void Page_2(){
+ void Page_1(){
 	 	 	 	///////////////////graph window
 
 //	 	 	 	UG_WindowHide(&window_graph);
@@ -202,7 +243,7 @@ UG_TEXTBOX dummy_text_11;
  }
 
 
- void Page_3(void){
+ void Page_2(void){
 
  //				UG_WindowHide(&);
  //		 	    UG_Update();
@@ -218,6 +259,16 @@ UG_TEXTBOX dummy_text_11;
 
  }
 
+ void Page_3(){
+
+	 UG_WindowShow(&window_page_3);
+	 		 		UG_Update();
+	 		     //  UG_DrawLine(215, 0, 215, 239, C_WHITE);
+	 		 	 	   	UG_DrawLine(0, 32, 319, 32, C_WHITE);
+	 		 	 	 	UG_DrawLine(160, 32, 160, 196, C_WHITE);
+	 		 	 	   	UG_DrawLine(0, 196, 319, 196, C_WHITE);
+
+ }
 
 
 void Page_logo(void){
@@ -233,89 +284,89 @@ void Page_logo(void){
 
 
 void begin(void){
-	//Page 1
-				UG_WindowCreate(&window_graph, obj_buff_window_graph, MAX_OBJECTS_WIN_GRAPH, window_graph_callback);
-		 	    UG_WindowSetStyle(&window_graph, WND_STYLE_2D | WND_STYLE_HIDE_TITLE);
-		 	    UG_WindowSetBackColor(&window_graph, C_BLACK);
+	//Page 0
+				UG_WindowCreate(&window_page_0, obj_buff_window_page_0, MAX_OBJECTS_WIN_GRAPH, window_page_0_callback);
+		 	    UG_WindowSetStyle(&window_page_0, WND_STYLE_2D | WND_STYLE_HIDE_TITLE);
+		 	    UG_WindowSetBackColor(&window_page_0, C_BLACK);
 
 		 	    /////////////ok //
-		 	    UG_TextboxCreate(&window_graph, &OK_graphic, TXB_ID_0, 0, 5, 70, 35);
-		 	    UG_TextboxSetFont(&window_graph, TXB_ID_0, &FONT_12X20);
-		 	    UG_TextboxSetAlignment(&window_graph, TXB_ID_0, ALIGN_CENTER);
-		 	    UG_TextboxSetBackColor(&window_graph, TXB_ID_0, C_GREEN);
-		 	    UG_TextboxSetForeColor(&window_graph, TXB_ID_0, C_BLACK);
-		 	    UG_TextboxSetText(&window_graph, TXB_ID_0, "OK");
-		 	    UG_TextboxShow(&window_graph, TXB_ID_0);
+		 	    UG_TextboxCreate(&window_page_0, &OK_graphic, TXB_ID_0, 0, 5, 70, 35);
+		 	    UG_TextboxSetFont(&window_page_0, TXB_ID_0, &FONT_12X20);
+		 	    UG_TextboxSetAlignment(&window_page_0, TXB_ID_0, ALIGN_CENTER);
+		 	    UG_TextboxSetBackColor(&window_page_0, TXB_ID_0, C_GREEN);
+		 	    UG_TextboxSetForeColor(&window_page_0, TXB_ID_0, C_BLACK);
+		 	    UG_TextboxSetText(&window_page_0, TXB_ID_0, "OK");
+		 	    UG_TextboxShow(&window_page_0, TXB_ID_0);
 
 		 	    ////////////CV//
-		 	    UG_TextboxCreate(&window_graph, &CV_graphic, TXB_ID_1, 75, 5, 105, 35);
-		 	    UG_TextboxSetFont(&window_graph, TXB_ID_1, &FONT_12X20);
-		 	    UG_TextboxSetAlignment(&window_graph, TXB_ID_1, ALIGN_CENTER);
-		 	    UG_TextboxSetBackColor(&window_graph, TXB_ID_1, C_YELLOW);
-		 	    UG_TextboxSetForeColor(&window_graph, TXB_ID_1, C_BLACK);
-		 	    UG_TextboxSetText(&window_graph, TXB_ID_1, "CV");
-		 	    UG_TextboxShow(&window_graph, TXB_ID_1);
+		 	    UG_TextboxCreate(&window_page_0, &CV_graphic, TXB_ID_1, 75, 5, 105, 35);
+		 	    UG_TextboxSetFont(&window_page_0, TXB_ID_1, &FONT_12X20);
+		 	    UG_TextboxSetAlignment(&window_page_0, TXB_ID_1, ALIGN_CENTER);
+		 	    UG_TextboxSetBackColor(&window_page_0, TXB_ID_1, C_YELLOW);
+		 	    UG_TextboxSetForeColor(&window_page_0, TXB_ID_1, C_BLACK);
+		 	    UG_TextboxSetText(&window_page_0, TXB_ID_1, "CV");
+		 	    UG_TextboxShow(&window_page_0, TXB_ID_1);
 		 	    ////////////CC//
-		 	    UG_TextboxCreate(&window_graph, &CC_graphic, TXB_ID_2, 110, 5, 140, 35);
-		 	    UG_TextboxSetFont(&window_graph, TXB_ID_2, &FONT_12X20);
-		 	    UG_TextboxSetAlignment(&window_graph, TXB_ID_2, ALIGN_CENTER);
-		 	    UG_TextboxSetBackColor(&window_graph, TXB_ID_2, 	C_DIM_GRAY);
-		 	    UG_TextboxSetForeColor(&window_graph, TXB_ID_2, C_BLACK);
-		 	    UG_TextboxSetText(&window_graph, TXB_ID_2, "CC");
-		 	    UG_TextboxShow(&window_graph, TXB_ID_2);
+		 	    UG_TextboxCreate(&window_page_0, &CC_graphic, TXB_ID_2, 110, 5, 140, 35);
+		 	    UG_TextboxSetFont(&window_page_0, TXB_ID_2, &FONT_12X20);
+		 	    UG_TextboxSetAlignment(&window_page_0, TXB_ID_2, ALIGN_CENTER);
+		 	    UG_TextboxSetBackColor(&window_page_0, TXB_ID_2, 	C_DIM_GRAY);
+		 	    UG_TextboxSetForeColor(&window_page_0, TXB_ID_2, C_BLACK);
+		 	    UG_TextboxSetText(&window_page_0, TXB_ID_2, "CC");
+		 	    UG_TextboxShow(&window_page_0, TXB_ID_2);
 
 
 
-		 	    UG_ImageCreate(&window_graph, &image_1, IMG_ID_1,145, 8, 160,32);
-		 	   	UG_ImageSetBMP(&window_graph, IMG_ID_1, &logo_FNIRSI);
+		 	    UG_ImageCreate(&window_page_0, &image_1, IMG_ID_1,145, 8, 160,32);
+		 	   	UG_ImageSetBMP(&window_page_0, IMG_ID_1, &logo_FNIRSI);
 
-		 	    UG_TextboxCreate(&window_graph, &current_V_graphic_page_1, TXB_ID_3, 1, 40, 73,60);
-		 	    UG_TextboxSetFont(&window_graph, TXB_ID_3, &FONT_12X20);
-		 	    UG_TextboxSetAlignment(&window_graph, TXB_ID_3, ALIGN_CENTER);
-		 	    UG_TextboxSetBackColor(&window_graph, TXB_ID_3, 	C_YELLOW);
-		 	    UG_TextboxSetForeColor(&window_graph, TXB_ID_3, C_BLACK);
-		 	    UG_TextboxSetText(&window_graph, TXB_ID_3, "12.10V");
-		 	    UG_TextboxShow(&window_graph, TXB_ID_3);
+		 	    UG_TextboxCreate(&window_page_0, &current_V_graphic_page_1, TXB_ID_3, 1, 40, 73,60);
+		 	    UG_TextboxSetFont(&window_page_0, TXB_ID_3, &FONT_12X20);
+		 	    UG_TextboxSetAlignment(&window_page_0, TXB_ID_3, ALIGN_CENTER);
+		 	    UG_TextboxSetBackColor(&window_page_0, TXB_ID_3, 	C_YELLOW);
+		 	    UG_TextboxSetForeColor(&window_page_0, TXB_ID_3, C_BLACK);
+		 	    UG_TextboxSetText(&window_page_0, TXB_ID_3, "12.10V");
+		 	    UG_TextboxShow(&window_page_0, TXB_ID_3);
 
-		 	    UG_TextboxCreate(&window_graph, &current_I_graphic_page_1, TXB_ID_10, 1, 63, 73,83);
-		 	    UG_TextboxSetFont(&window_graph, TXB_ID_4, &FONT_12X20);
-		 	    UG_TextboxSetAlignment(&window_graph, TXB_ID_4, ALIGN_CENTER);
-		 	    UG_TextboxSetBackColor(&window_graph, TXB_ID_4, 	C_GREEN);
-		 	    UG_TextboxSetForeColor(&window_graph, TXB_ID_4, C_BLACK);
-		 	    UG_TextboxSetText(&window_graph, TXB_ID_4, "0.000A");
-		 	    UG_TextboxShow(&window_graph, TXB_ID_4);
+		 	    UG_TextboxCreate(&window_page_0, &current_I_graphic_page_1, TXB_ID_4, 1, 63, 73,83);
+		 	    UG_TextboxSetFont(&window_page_0, TXB_ID_4, &FONT_12X20);
+		 	    UG_TextboxSetAlignment(&window_page_0, TXB_ID_4, ALIGN_CENTER);
+		 	    UG_TextboxSetBackColor(&window_page_0, TXB_ID_4, 	C_GREEN);
+		 	    UG_TextboxSetForeColor(&window_page_0, TXB_ID_4, C_BLACK);
+		 	    UG_TextboxSetText(&window_page_0, TXB_ID_4, "0.000A");
+		 	    UG_TextboxShow(&window_page_0, TXB_ID_4);
 
-		 	    UG_TextboxCreate(&window_graph, &set_V_graphic_page_1, TXB_ID_5, 0, 218, 76, 238);
-		 	    UG_TextboxSetFont(&window_graph, TXB_ID_5, &FONT_12X20);
-		 	    UG_TextboxSetAlignment(&window_graph, TXB_ID_5, ALIGN_CENTER);
-		 	    UG_TextboxSetBackColor(&window_graph, TXB_ID_5, 	C_BLACK);
-		 	    UG_TextboxSetForeColor(&window_graph, TXB_ID_5, C_WHITE);
-		 	    UG_TextboxSetText(&window_graph, TXB_ID_5, "SET V:");
-		 	    UG_TextboxShow(&window_graph, TXB_ID_5);
+		 	    UG_TextboxCreate(&window_page_0, &set_V_graphic_page_1, TXB_ID_5, 0, 218, 76, 238);
+		 	    UG_TextboxSetFont(&window_page_0, TXB_ID_5, &FONT_12X20);
+		 	    UG_TextboxSetAlignment(&window_page_0, TXB_ID_5, ALIGN_CENTER);
+		 	    UG_TextboxSetBackColor(&window_page_0, TXB_ID_5, 	C_BLACK);
+		 	    UG_TextboxSetForeColor(&window_page_0, TXB_ID_5, C_WHITE);
+		 	    UG_TextboxSetText(&window_page_0, TXB_ID_5, "SET V:");
+		 	    UG_TextboxShow(&window_page_0, TXB_ID_5);
 
-		 	    UG_TextboxCreate(&window_graph, &set_V_graphic_value_page_1, TXB_ID_6, 80, 218, 156, 238);
-		 	    UG_TextboxSetFont(&window_graph, TXB_ID_6, &FONT_12X20);
-		 	    UG_TextboxSetAlignment(&window_graph, TXB_ID_6, ALIGN_CENTER);
-		 	    UG_TextboxSetBackColor(&window_graph, TXB_ID_6, 	C_YELLOW);
-		 	    UG_TextboxSetForeColor(&window_graph, TXB_ID_6, C_BLACK);
-		 	    UG_TextboxSetText(&window_graph, TXB_ID_6, "00.00V");
-		 	    UG_TextboxShow(&window_graph, TXB_ID_6);
+		 	    UG_TextboxCreate(&window_page_0, &set_V_graphic_value_page_1, TXB_ID_6, 80, 218, 156, 238);
+		 	    UG_TextboxSetFont(&window_page_0, TXB_ID_6, &FONT_12X20);
+		 	    UG_TextboxSetAlignment(&window_page_0, TXB_ID_6, ALIGN_CENTER);
+		 	    UG_TextboxSetBackColor(&window_page_0, TXB_ID_6, 	C_YELLOW);
+		 	    UG_TextboxSetForeColor(&window_page_0, TXB_ID_6, C_BLACK);
+		 	    UG_TextboxSetText(&window_page_0, TXB_ID_6, "00.00V");
+		 	    UG_TextboxShow(&window_page_0, TXB_ID_6);
 
-		 	    UG_TextboxCreate(&window_graph, &set_I_graphic_page_1, TXB_ID_7, 162, 218, 238, 238);
-		 	    UG_TextboxSetFont(&window_graph, TXB_ID_7, &FONT_12X20);
-		 	    UG_TextboxSetAlignment(&window_graph, TXB_ID_7, ALIGN_CENTER);
-		 	    UG_TextboxSetBackColor(&window_graph, TXB_ID_7, 	C_BLACK);
-		 	    UG_TextboxSetForeColor(&window_graph, TXB_ID_7, C_WHITE);
-		 	    UG_TextboxSetText(&window_graph, TXB_ID_7, "SET I:");
-		 	    UG_TextboxShow(&window_graph, TXB_ID_7);
+		 	    UG_TextboxCreate(&window_page_0, &set_I_graphic_page_1, TXB_ID_7, 162, 218, 238, 238);
+		 	    UG_TextboxSetFont(&window_page_0, TXB_ID_7, &FONT_12X20);
+		 	    UG_TextboxSetAlignment(&window_page_0, TXB_ID_7, ALIGN_CENTER);
+		 	    UG_TextboxSetBackColor(&window_page_0, TXB_ID_7, 	C_BLACK);
+		 	    UG_TextboxSetForeColor(&window_page_0, TXB_ID_7, C_WHITE);
+		 	    UG_TextboxSetText(&window_page_0, TXB_ID_7, "SET I:");
+		 	    UG_TextboxShow(&window_page_0, TXB_ID_7);
 
-		 	    UG_TextboxCreate(&window_graph, &set_I_graphic_value_page_1, TXB_ID_8, 242, 218, 318, 238);
-		 	    UG_TextboxSetFont(&window_graph, TXB_ID_8, &FONT_12X20);
-		 	    UG_TextboxSetAlignment(&window_graph, TXB_ID_8, ALIGN_CENTER);
-		 	    UG_TextboxSetBackColor(&window_graph, TXB_ID_8, 	C_YELLOW);
-		 	    UG_TextboxSetForeColor(&window_graph, TXB_ID_8, C_BLACK);
-		 	    UG_TextboxSetText(&window_graph, TXB_ID_8, "0.000A");
-		 	    UG_TextboxShow(&window_graph, TXB_ID_8);
+		 	    UG_TextboxCreate(&window_page_0, &set_I_graphic_value_page_1, TXB_ID_8, 242, 218, 318, 238);
+		 	    UG_TextboxSetFont(&window_page_0, TXB_ID_8, &FONT_12X20);
+		 	    UG_TextboxSetAlignment(&window_page_0, TXB_ID_8, ALIGN_CENTER);
+		 	    UG_TextboxSetBackColor(&window_page_0, TXB_ID_8, 	C_YELLOW);
+		 	    UG_TextboxSetForeColor(&window_page_0, TXB_ID_8, C_BLACK);
+		 	    UG_TextboxSetText(&window_page_0, TXB_ID_8, "0.000A");
+		 	    UG_TextboxShow(&window_page_0, TXB_ID_8);
 
 		 	   //	 	 	    UG_FontSelect(&FONT_12X20);
  		 	   //	 	 	    UG_SetBackcolor(C_YELLOW);
@@ -341,7 +392,7 @@ void begin(void){
 		 	   //	 	   	    UG_SetBackcolor(C_GREEN);
 		 	   //	 	   	    UG_SetForecolor(C_BLACK);
 		 	   //	 	   	    UG_PutString(242 , 219 , "00.00A");
-	//Page 2
+	//Page 1
 	 	 	 	UG_WindowCreate(&window_page_1, obj_buff_window_page_1, MAX_OBJECTS_WIN_GRAPH, window_page_1_callback);
 		 	    UG_WindowSetStyle(&window_page_1, WND_STYLE_2D | WND_STYLE_HIDE_TITLE);
 		 	    UG_WindowSetBackColor(&window_page_1, C_BLACK);
@@ -489,7 +540,7 @@ void begin(void){
 		 	    UG_TextboxSetText(&window_page_1, TXB_ID_19, "0.000");
 		 	  	UG_TextboxShow(&window_page_1, TXB_ID_19);
 
-	//Page 3
+	//Page 2
 		 		UG_WindowCreate(&window_page_2, obj_buff_window_page_2, MAX_OBJECTS_WIN_GRAPH, window_page_2_callback);
 				UG_WindowSetStyle(&window_page_2, WND_STYLE_2D | WND_STYLE_SHOW_TITLE);
 				UG_WindowSetBackColor(&window_page_2, C_BLACK);
@@ -644,6 +695,251 @@ void begin(void){
 				UG_TextboxSetForeColor(&LOGO, TXB_ID_1, C_BLACK);
 				UG_TextboxSetText(&LOGO, TXB_ID_1, "WD-02");
 				UG_TextboxShow(&LOGO, TXB_ID_1);
+///////////////////////page 3
+
+					 //page 3
+								UG_WindowCreate(&window_page_3, obj_buff_window_page_3, MAX_OBJECTS_WIN_PAGE_3, window_page_3_callback);
+								UG_WindowSetStyle(&window_page_3, WND_STYLE_2D | WND_STYLE_HIDE_TITLE);
+								UG_WindowSetBackColor(&window_page_3, C_BLACK);
+								/////////////power mode //
+								UG_TextboxCreate(&window_page_3, &textbox_pe, TXB_ID_0, 5, 5, 65, 27);
+								UG_TextboxSetFont(&window_page_3, TXB_ID_0, &FONT_10X16);
+								UG_TextboxSetAlignment(&window_page_3, TXB_ID_0, ALIGN_CENTER);
+								UG_TextboxSetBackColor(&window_page_3, TXB_ID_0, C_YELLOW);
+								UG_TextboxSetForeColor(&window_page_3, TXB_ID_0, C_BLACK);
+								UG_TextboxSetText(&window_page_3, TXB_ID_0, "PE2.0");
+								UG_TextboxShow(&window_page_3, TXB_ID_0);
+
+
+				            ///
+								UG_TextboxCreate(&window_page_3, &textbox_temp, TXB_ID_1, 180, 5, 225, 27);
+								UG_TextboxSetFont(&window_page_3, TXB_ID_1, &FONT_10X16);
+								UG_TextboxSetAlignment(&window_page_3, TXB_ID_1, ALIGN_CENTER);
+								UG_TextboxSetBackColor(&window_page_3, TXB_ID_1, C_YELLOW);
+								UG_TextboxSetForeColor(&window_page_3, TXB_ID_1, C_BLACK);
+								UG_TextboxSetText(&window_page_3, TXB_ID_1, "TEMP");
+								UG_TextboxShow(&window_page_3, TXB_ID_1);
+
+								// temp value
+								UG_TextboxCreate(&window_page_3, &textbox_temp_value, TXB_ID_2, 230, 5, 290, 27);
+								UG_TextboxSetFont(&window_page_3, TXB_ID_2, &FONT_10X16);
+								UG_TextboxSetAlignment(&window_page_3, TXB_ID_2, ALIGN_CENTER);
+								UG_TextboxSetBackColor(&window_page_3, TXB_ID_2, C_BLACK);
+								UG_TextboxSetForeColor(&window_page_3, TXB_ID_2, C_YELLOW);
+
+								UG_TextboxShow(&window_page_3, TXB_ID_2);
+
+								// temp symbol
+								UG_TextboxCreate(&window_page_3, &textbox_temp_symbol, TXB_ID_3, 295, 5, 310, 27);
+								UG_TextboxSetFont(&window_page_3, TXB_ID_3, &FONT_10X16);
+								UG_TextboxSetAlignment(&window_page_3, TXB_ID_3, ALIGN_CENTER);
+								UG_TextboxSetBackColor(&window_page_3, TXB_ID_3, C_BLACK);
+								UG_TextboxSetForeColor(&window_page_3, TXB_ID_3, C_YELLOW);
+								UG_TextboxSetText(&window_page_3, TXB_ID_3, "C");
+								UG_TextboxShow(&window_page_3, TXB_ID_3);
+
+								//usbc symbol
+								UG_TextboxCreate(&window_page_3, &textbox_usbc, TXB_ID_4, 5, 32, 65, 59);
+								UG_TextboxSetFont(&window_page_3, TXB_ID_4, &FONT_10X16);
+								UG_TextboxSetAlignment(&window_page_3, TXB_ID_4, ALIGN_CENTER);
+
+								UG_TextboxSetForeColor(&window_page_3, TXB_ID_4, C_BLACK);
+
+								UG_TextboxSetText(&window_page_3, TXB_ID_4, "USB C");
+								UG_TextboxShow(&window_page_3, TXB_ID_4);
+
+								//usba symbol
+								UG_TextboxCreate(&window_page_3, &textbox_usba, TXB_ID_5, 175, 32, 235, 59);
+								UG_TextboxSetFont(&window_page_3, TXB_ID_5, &FONT_10X16);
+								UG_TextboxSetAlignment(&window_page_3, TXB_ID_5, ALIGN_CENTER);
+
+
+								UG_TextboxSetForeColor(&window_page_3, TXB_ID_5, C_BLACK);
+								UG_TextboxSetText(&window_page_3, TXB_ID_5, "USB A");
+								UG_TextboxShow(&window_page_3, TXB_ID_5);
+
+
+								//usbc voltage value
+								UG_TextboxCreate(&window_page_3, &textbox_page3_usbc_voltage_value, TXB_ID_6, 5, 64, 130, 104);
+								UG_TextboxSetFont(&window_page_3, TXB_ID_6, &FONT_24X40);
+								UG_TextboxSetAlignment(&window_page_3, TXB_ID_6, ALIGN_CENTER);
+								UG_TextboxSetBackColor(&window_page_3, TXB_ID_6, C_YELLOW_GREEN);
+								UG_TextboxSetForeColor(&window_page_3, TXB_ID_6, C_WHITE);
+
+								UG_TextboxShow(&window_page_3, TXB_ID_6);
+
+								//usbc voltage symbol
+								UG_TextboxCreate(&window_page_3, &textbox_page3_usbc_voltage_symbol, TXB_ID_7, 130, 64, 140, 104);
+								UG_TextboxSetFont(&window_page_3, TXB_ID_7, &FONT_10X16);
+								UG_TextboxSetAlignment(&window_page_3, TXB_ID_7, ALIGN_V_BOTTOM);
+								UG_TextboxSetBackColor(&window_page_3, TXB_ID_7, C_YELLOW_GREEN);
+								UG_TextboxSetForeColor(&window_page_3, TXB_ID_7, C_WHITE);
+								UG_TextboxSetText(&window_page_3, TXB_ID_7, "V");
+								UG_TextboxShow(&window_page_3, TXB_ID_7);
+
+
+								//usba voltage value
+								UG_TextboxCreate(&window_page_3, &textbox_page3_usba_voltage_value, TXB_ID_8, 175, 64, 300, 104);
+								UG_TextboxSetFont(&window_page_3, TXB_ID_8, &FONT_24X40);
+								UG_TextboxSetAlignment(&window_page_3, TXB_ID_8, ALIGN_CENTER);
+								UG_TextboxSetBackColor(&window_page_3, TXB_ID_8, C_YELLOW_GREEN);
+								UG_TextboxSetForeColor(&window_page_3, TXB_ID_8, C_WHITE);
+
+
+
+								UG_TextboxShow(&window_page_3, TXB_ID_8);
+
+								//usba voltage symbol
+								UG_TextboxCreate(&window_page_3, &textbox_page3_usba_voltage_symbol, TXB_ID_9, 300, 64, 310, 104);
+								UG_TextboxSetFont(&window_page_3, TXB_ID_9, &FONT_10X16);
+								UG_TextboxSetAlignment(&window_page_3, TXB_ID_9, ALIGN_V_BOTTOM);
+								UG_TextboxSetBackColor(&window_page_3, TXB_ID_9, C_YELLOW_GREEN);
+								UG_TextboxSetForeColor(&window_page_3, TXB_ID_9, C_WHITE);
+								UG_TextboxSetText(&window_page_3, TXB_ID_9, "V");
+								UG_TextboxShow(&window_page_3, TXB_ID_9);
+
+
+								//usbc current value
+								UG_TextboxCreate(&window_page_3, &textbox_page3_usbc_current_value, TXB_ID_10, 5, 109, 130, 149);
+								UG_TextboxSetFont(&window_page_3, TXB_ID_10, &FONT_24X40);
+								UG_TextboxSetAlignment(&window_page_3, TXB_ID_10, ALIGN_CENTER);
+								UG_TextboxSetBackColor(&window_page_3, TXB_ID_10, C_BROWN);
+								UG_TextboxSetForeColor(&window_page_3, TXB_ID_10, C_WHITE);
+
+
+								UG_TextboxShow(&window_page_3, TXB_ID_10);
+
+								//usbc current symbol
+								UG_TextboxCreate(&window_page_3, &textbox_page3_usbc_current_symbol, TXB_ID_11, 130, 109, 140, 149);
+								UG_TextboxSetFont(&window_page_3, TXB_ID_11, &FONT_10X16);
+								UG_TextboxSetAlignment(&window_page_3, TXB_ID_11, ALIGN_V_BOTTOM);
+								UG_TextboxSetBackColor(&window_page_3, TXB_ID_11, C_BROWN);
+								UG_TextboxSetForeColor(&window_page_3, TXB_ID_11, C_WHITE);
+								UG_TextboxSetText(&window_page_3, TXB_ID_11, "A");
+								UG_TextboxShow(&window_page_3, TXB_ID_11);
+
+
+								//usba current value
+								UG_TextboxCreate(&window_page_3, &textbox_page3_usba_current_value, TXB_ID_12, 175, 109, 300, 149);
+								UG_TextboxSetFont(&window_page_3, TXB_ID_12, &FONT_24X40);
+								UG_TextboxSetAlignment(&window_page_3, TXB_ID_12, ALIGN_CENTER);
+								UG_TextboxSetBackColor(&window_page_3, TXB_ID_12, C_BROWN);
+								UG_TextboxSetForeColor(&window_page_3, TXB_ID_12, C_WHITE);
+
+								UG_TextboxShow(&window_page_3, TXB_ID_12);
+
+								//usba current symbol
+								UG_TextboxCreate(&window_page_3, &textbox_page3_usba_current_symbol, TXB_ID_13, 300, 109, 310, 149);
+								UG_TextboxSetFont(&window_page_3, TXB_ID_13, &FONT_10X16);
+								UG_TextboxSetAlignment(&window_page_3, TXB_ID_13, ALIGN_V_BOTTOM);
+								UG_TextboxSetBackColor(&window_page_3, TXB_ID_13, C_BROWN);
+								UG_TextboxSetForeColor(&window_page_3, TXB_ID_13, C_WHITE);
+								UG_TextboxSetText(&window_page_3, TXB_ID_13, "A");
+								UG_TextboxShow(&window_page_3, TXB_ID_13);
+
+
+								//usbc watt value
+								UG_TextboxCreate(&window_page_3, &textbox_page3_usbc_watt_value, TXB_ID_14, 5, 154, 130, 194);
+								UG_TextboxSetFont(&window_page_3, TXB_ID_14, &FONT_24X40);
+								UG_TextboxSetAlignment(&window_page_3, TXB_ID_14, ALIGN_CENTER);
+								UG_TextboxSetBackColor(&window_page_3, TXB_ID_14, C_INDIGO);
+								UG_TextboxSetForeColor(&window_page_3, TXB_ID_14, C_WHITE);
+
+								UG_TextboxShow(&window_page_3, TXB_ID_14);
+
+								//usbc watt symbol
+								UG_TextboxCreate(&window_page_3, &textbox_page3_usbc_watt_symbol, TXB_ID_15, 130, 154, 140, 194);
+								UG_TextboxSetFont(&window_page_3, TXB_ID_15, &FONT_10X16);
+								UG_TextboxSetAlignment(&window_page_3, TXB_ID_15, ALIGN_V_BOTTOM);
+								UG_TextboxSetBackColor(&window_page_3, TXB_ID_15, C_INDIGO);
+								UG_TextboxSetForeColor(&window_page_3, TXB_ID_15, C_WHITE);
+								UG_TextboxSetText(&window_page_3, TXB_ID_15, "W");
+								UG_TextboxShow(&window_page_3, TXB_ID_15);
+
+
+								//usba watt value
+								UG_TextboxCreate(&window_page_3, &textbox_page3_usba_watt_value, TXB_ID_16, 175, 154, 300, 194);
+								UG_TextboxSetFont(&window_page_3, TXB_ID_16, &FONT_24X40);
+								UG_TextboxSetAlignment(&window_page_3, TXB_ID_16, ALIGN_CENTER);
+								UG_TextboxSetBackColor(&window_page_3, TXB_ID_16, C_INDIGO);
+								UG_TextboxSetForeColor(&window_page_3, TXB_ID_16, C_WHITE);
+
+
+								UG_TextboxShow(&window_page_3, TXB_ID_16);
+
+								//usba watt symbol
+								UG_TextboxCreate(&window_page_3, &textbox_page3_usba_watt_symbol, TXB_ID_17, 300, 154, 310, 194);
+								UG_TextboxSetFont(&window_page_3, TXB_ID_17, &FONT_10X16);
+								UG_TextboxSetAlignment(&window_page_3, TXB_ID_17, ALIGN_V_BOTTOM);
+								UG_TextboxSetBackColor(&window_page_3, TXB_ID_17, C_INDIGO);
+								UG_TextboxSetForeColor(&window_page_3, TXB_ID_17, C_WHITE);
+								UG_TextboxSetText(&window_page_3, TXB_ID_17, "W");
+								UG_TextboxShow(&window_page_3, TXB_ID_17);
+
+								// ok
+								UG_TextboxCreate(&window_page_3, &textbox_page3_ok_symbol, TXB_ID_18, 15, 200, 65, 235);
+								UG_TextboxSetFont(&window_page_3, TXB_ID_18, &FONT_10X16);
+								UG_TextboxSetAlignment(&window_page_3, TXB_ID_18, ALIGN_CENTER);
+
+								UG_TextboxSetForeColor(&window_page_3, TXB_ID_18, C_BLACK);
+
+								UG_TextboxSetText(&window_page_3, TXB_ID_18, "OK");
+								UG_TextboxShow(&window_page_3, TXB_ID_18);
+
+								// cv
+								UG_TextboxCreate(&window_page_3, &textbox_page3_cv_symbol, TXB_ID_19, 70, 200, 95, 235);
+								UG_TextboxSetFont(&window_page_3, TXB_ID_19, &FONT_10X16);
+								UG_TextboxSetAlignment(&window_page_3, TXB_ID_19, ALIGN_CENTER);
+
+
+								UG_TextboxSetForeColor(&window_page_3, TXB_ID_19, C_BLACK);
+								UG_TextboxSetText(&window_page_3, TXB_ID_19, "CV");
+								UG_TextboxShow(&window_page_3, TXB_ID_19);
+								// cc
+								UG_TextboxCreate(&window_page_3, &textbox_page3_cc_symbol, TXB_ID_20, 100, 200, 125, 235);
+								UG_TextboxSetFont(&window_page_3, TXB_ID_20, &FONT_10X16);
+								UG_TextboxSetAlignment(&window_page_3, TXB_ID_20, ALIGN_CENTER);
+
+								UG_TextboxSetForeColor(&window_page_3, TXB_ID_20, C_BLACK);
+								UG_TextboxSetText(&window_page_3, TXB_ID_20, "CC");
+								UG_TextboxShow(&window_page_3, TXB_ID_20);
+
+								// output voltage
+								UG_TextboxCreate(&window_page_3, &textbox_page3_output_voltage_value, TXB_ID_21, 130, 200, 190, 235);
+								UG_TextboxSetFont(&window_page_3, TXB_ID_21, &FONT_10X16);
+								UG_TextboxSetAlignment(&window_page_3, TXB_ID_21, ALIGN_CENTER);
+								UG_TextboxSetBackColor(&window_page_3, TXB_ID_21, C_BLACK);
+								UG_TextboxSetForeColor(&window_page_3, TXB_ID_21, C_WHITE);
+
+
+								UG_TextboxShow(&window_page_3, TXB_ID_21);
+								// output voltage symbol
+								UG_TextboxCreate(&window_page_3, &textbox_page3_output_voltage_symbol, TXB_ID_22, 200, 200, 216, 235);
+								UG_TextboxSetFont(&window_page_3, TXB_ID_22, &FONT_10X16);
+								UG_TextboxSetAlignment(&window_page_3, TXB_ID_22, ALIGN_CENTER);
+								UG_TextboxSetBackColor(&window_page_3, TXB_ID_22, C_BLACK);
+								UG_TextboxSetForeColor(&window_page_3, TXB_ID_22, C_WHITE);
+								UG_TextboxSetText(&window_page_3, TXB_ID_22, "V");
+								UG_TextboxShow(&window_page_3, TXB_ID_22);
+
+
+								// output current
+								UG_TextboxCreate(&window_page_3, &textbox_page3_output_current_value, TXB_ID_23, 226, 200, 286, 235);
+								UG_TextboxSetFont(&window_page_3, TXB_ID_23, &FONT_10X16);
+								UG_TextboxSetAlignment(&window_page_3, TXB_ID_23, ALIGN_CENTER);
+								UG_TextboxSetBackColor(&window_page_3, TXB_ID_23, C_BLACK);
+								UG_TextboxSetForeColor(&window_page_3, TXB_ID_23, C_WHITE);
+
+								UG_TextboxShow(&window_page_3, TXB_ID_23);
+								// output current symbol
+								UG_TextboxCreate(&window_page_3, &textbox_page3_output_current_symbol, TXB_ID_24, 286, 200, 302, 235);
+								UG_TextboxSetFont(&window_page_3, TXB_ID_24, &FONT_10X16);
+								UG_TextboxSetAlignment(&window_page_3, TXB_ID_24, ALIGN_CENTER);
+								UG_TextboxSetBackColor(&window_page_3, TXB_ID_24, C_BLACK);
+								UG_TextboxSetForeColor(&window_page_3, TXB_ID_24, C_WHITE);
+								UG_TextboxSetText(&window_page_3, TXB_ID_24, "A");
+								UG_TextboxShow(&window_page_3, TXB_ID_24);
+
 
 
 
@@ -656,11 +952,13 @@ void begin(void){
 void window_page_1_callback(UG_MESSAGE *msg){
 
 }
-void window_graph_callback(UG_MESSAGE *msg){}
+void window_page_0_callback(UG_MESSAGE *msg){}
 
 void window_logo_callback(UG_MESSAGE *msg){}
 
 void window_page_2_callback(UG_MESSAGE *msg){}
+
+
 
 
 

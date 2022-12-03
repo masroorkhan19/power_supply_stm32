@@ -59,15 +59,15 @@ struct SW3516_converted_values {
 
 };
 
-extern  struct SW3516_ADC_data previous_ADC, current_ADC;
-extern struct SW3516_converted_values previous, current;
+extern  struct SW3516_ADC_data sw3516_current_ADC;
+extern struct SW3516_converted_values sw3516_previous, sw3516_current;
 
 void write_to_reg(uint8_t reg_address, uint8_t value_to_write);
 void read_from_register(uint8_t reg_address, uint8_t value);
 void SW3516_init();
 void read_ADC_DATA_BUFFER(uint8_t value, uint16_t* structure_member, uint8_t data_to_put_in_buff);
 void convert_ADC(float* current1, float* current2, float* voltagein, float* voltageout, float* temperature);
-
+void  sw3516_read(void );
 
 
 

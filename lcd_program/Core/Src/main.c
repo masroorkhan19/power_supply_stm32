@@ -26,6 +26,7 @@
 #include "ugui_ST7789.h"
 #include "SW3516.h"
 #include "stdbool.h"
+#include "lcd_callback.h"
 
 /* USER CODE END Includes */
 
@@ -101,14 +102,21 @@ int main(void)
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
   SW3516_init();
+
+
+  sw3516_read();
+
+
+
   Display_Init();
   begin();
 
+
   Page_logo();
+  Page_0();
   Page_1();
   Page_2();
   Page_3();
-
   HAL_TIM_Base_Start_IT(&htim2);
   /* USER CODE END 2 */
 
@@ -122,8 +130,10 @@ int main(void)
 
 	  if(read_sw3516_flag){
 
-		  previous= current;
-		  convert_ADC(&current.currentA, &current.currentC, &current.voltagein, &current.voltageout, &current.temperature);
+		  sw3516_previous= sw3516_current;
+		  sw3516_read();
+
+		  usb_charging_page_msg();
 		  read_sw3516_flag=0;
 	  }
 

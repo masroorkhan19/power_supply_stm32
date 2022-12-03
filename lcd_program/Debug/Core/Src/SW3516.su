@@ -3,3 +3,4 @@
 ../Core/Src/SW3516.c:38:6:SW3516_init	24	static
 ../Core/Src/SW3516.c:43:6:read_ADC_DATA_BUFFER	32	static
 ../Core/Src/SW3516.c:53:6:convert_ADC	40	static
+../Core/Src/SW3516.c:72:6:sw3516_read	16	static
