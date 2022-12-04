@@ -112,7 +112,12 @@ int main(void)
   begin();
 
 
+HAL_Delay(500);
 //  Page_logo();
+
+
+
+
 //  Page_0();
 //  Page_1();
 //  Page_2();
