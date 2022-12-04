@@ -15,7 +15,7 @@
 #define MAX_OBJECTS 10
 #define MAX_OBJECTS_WIN_GRAPH 20
 #define MAX_OBJECTS_WIN_PAGE_1 20
-#define MAX_OBJECTS_WIN_PAGE_3 25
+#define MAX_OBJECTS_WIN_PAGE_3 26
 
 #define BuffOUT     40
 
@@ -108,8 +108,10 @@ extern UG_TEXTBOX textbox_temp;
 extern UG_TEXTBOX textbox_temp_value;
 extern UG_TEXTBOX textbox_temp_symbol;
 extern UG_TEXTBOX textbox_usbc;
-extern UG_TEXTBOX textbox_usba;
+extern UG_TEXTBOX textbox_usbc_timer;
 
+extern UG_TEXTBOX textbox_usba;
+extern UG_TEXTBOX textbox_usba_timer;
 extern UG_TEXTBOX textbox_page3_usbc_voltage_value;
 extern UG_TEXTBOX textbox_page3_usbc_current_value;
 extern UG_TEXTBOX textbox_page3_usbc_watt_value;

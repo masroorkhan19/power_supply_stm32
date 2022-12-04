@@ -7,6 +7,10 @@
 #include "page_3_callback_imp.h"
 #include "buck_convertor.h"
 #include "stdio.h"
+
+
+int hour_value,mint,sec=0;
+
 void window_page_3_callback(UG_MESSAGE *msg){
 
 
@@ -185,9 +189,30 @@ void window_page_3_callback(UG_MESSAGE *msg){
 					break;
 
 				}
+		case 25:{
+				hour_value=(int)(sw3516_current.time_in_secs_C)/3600;
 
+				mint=(int)((sw3516_current.time_in_secs_C%3600)/60);
+				sec=(sw3516_current.time_in_secs_C)%60;
+
+				sprintf(char_buffer,"%02d:%02d:%02d",hour_value,mint,sec);
+			UG_TextboxSetText(&window_page_3, TXB_ID_25, char_buffer);
+			break;
+		}
+
+		case 26:{
+			hour_value=(int)(sw3516_current.time_in_secs_A)/3600;
+			mint=(int)((sw3516_current.time_in_secs_A%3600)/60);
+			sec=(sw3516_current.time_in_secs_A)%60;
+			sprintf(char_buffer,"%02d:%02d:%02d",hour_value,mint,sec);
+			UG_TextboxSetText(&window_page_3, TXB_ID_26, char_buffer);
+			break;
 
 		}
+		}
+
+
+
 
 
 		}

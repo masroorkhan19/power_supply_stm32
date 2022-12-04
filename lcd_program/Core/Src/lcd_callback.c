@@ -36,12 +36,13 @@ if(guiST7735.active_window == &window_page_3){
 		 		 window_page_3_callback(&page_msg);
 
 	        }
-	if(sw3516_current.time_in_secs!=sw3516_previous.time_in_secs){
-		 page_msg.event =2;
-			 		page_msg.sub_id=23;
-			 		 window_page_3_callback(&page_msg);
+		if(sw3516_current.time_in_secs_C!=sw3516_previous.time_in_secs_C){
+			 page_msg.event =2;
+				 		page_msg.sub_id=25;
+				 		 window_page_3_callback(&page_msg);
 
-	          }
+		          }
+
 
     if(sw3516_current.status_USBA!=sw3516_previous.status_USBA){
 		 page_msg.event =2;
@@ -49,6 +50,14 @@ if(guiST7735.active_window == &window_page_3){
 			 		 window_page_3_callback(&page_msg);
 
       }
+
+    if(sw3516_current.time_in_secs_A!=sw3516_previous.time_in_secs_A){
+    		 page_msg.event =2;
+    			 		page_msg.sub_id=26;
+    			 		 window_page_3_callback(&page_msg);
+
+    	          }
+
     if(sw3516_current.voltageout!=sw3516_previous.voltageout){
 		 page_msg.event =2;
 			 		page_msg.sub_id=6;
@@ -137,3 +146,10 @@ if(guiST7735.active_window == &window_page_3){
 
 
 }
+
+
+
+
+
+
+

@@ -55,7 +55,8 @@ struct SW3516_converted_values {
 			float temperature;
 			bool status_USBA;
 			bool status_USBC;
-			unsigned long time_in_secs;
+			unsigned long time_in_secs_A;
+			unsigned long time_in_secs_C;
 
 };
 

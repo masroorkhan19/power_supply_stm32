@@ -93,8 +93,9 @@ UG_TEXTBOX dummy_text_11;
  UG_TEXTBOX textbox_temp_value;
  UG_TEXTBOX textbox_temp_symbol;
  UG_TEXTBOX textbox_usbc;
+ UG_TEXTBOX textbox_usbc_timer;
  UG_TEXTBOX textbox_usba;
-
+ UG_TEXTBOX textbox_usba_timer;
  UG_TEXTBOX textbox_page3_usbc_voltage_value;
  UG_TEXTBOX textbox_page3_usbc_current_value;
  UG_TEXTBOX textbox_page3_usbc_watt_value;
@@ -739,24 +740,48 @@ void begin(void){
 								UG_TextboxShow(&window_page_3, TXB_ID_3);
 
 								//usbc symbol
-								UG_TextboxCreate(&window_page_3, &textbox_usbc, TXB_ID_4, 5, 32, 65, 59);
+								UG_TextboxCreate(&window_page_3, &textbox_usbc, TXB_ID_4, 5, 32, 50, 59);
 								UG_TextboxSetFont(&window_page_3, TXB_ID_4, &FONT_10X16);
 								UG_TextboxSetAlignment(&window_page_3, TXB_ID_4, ALIGN_CENTER);
 
 								UG_TextboxSetForeColor(&window_page_3, TXB_ID_4, C_BLACK);
 
-								UG_TextboxSetText(&window_page_3, TXB_ID_4, "USB C");
+								UG_TextboxSetText(&window_page_3, TXB_ID_4, "USBC");
 								UG_TextboxShow(&window_page_3, TXB_ID_4);
 
+								// usbc timer
+								UG_TextboxCreate(&window_page_3, &textbox_usbc_timer, TXB_ID_25, 55, 32, 145, 59);
+								UG_TextboxSetFont(&window_page_3, TXB_ID_25, &FONT_10X16);
+								UG_TextboxSetAlignment(&window_page_3, TXB_ID_25, ALIGN_CENTER);
+								UG_TextboxSetBackColor(&window_page_3, TXB_ID_25, C_LIGHT_SLATE_GRAY);
+								UG_TextboxSetForeColor(&window_page_3, TXB_ID_25, C_WHITE_SMOKE);
+
+
+								UG_TextboxShow(&window_page_3, TXB_ID_25);
+
+
 								//usba symbol
-								UG_TextboxCreate(&window_page_3, &textbox_usba, TXB_ID_5, 175, 32, 235, 59);
+								UG_TextboxCreate(&window_page_3, &textbox_usba, TXB_ID_5, 175, 32, 215, 59);
 								UG_TextboxSetFont(&window_page_3, TXB_ID_5, &FONT_10X16);
 								UG_TextboxSetAlignment(&window_page_3, TXB_ID_5, ALIGN_CENTER);
 
 
 								UG_TextboxSetForeColor(&window_page_3, TXB_ID_5, C_BLACK);
-								UG_TextboxSetText(&window_page_3, TXB_ID_5, "USB A");
+								UG_TextboxSetText(&window_page_3, TXB_ID_5, "USBA");
 								UG_TextboxShow(&window_page_3, TXB_ID_5);
+
+								// usba timer
+								UG_TextboxCreate(&window_page_3, &textbox_usba_timer, TXB_ID_26, 220, 32, 310, 59);
+								UG_TextboxSetFont(&window_page_3, TXB_ID_26, &FONT_10X16);
+								UG_TextboxSetAlignment(&window_page_3, TXB_ID_26, ALIGN_CENTER);
+								UG_TextboxSetBackColor(&window_page_3, TXB_ID_26, C_LIGHT_SLATE_GRAY);
+								UG_TextboxSetForeColor(&window_page_3, TXB_ID_26, C_WHITE_SMOKE);
+
+
+								UG_TextboxShow(&window_page_3, TXB_ID_26);
+
+
+
 
 
 								//usbc voltage value
@@ -769,7 +794,7 @@ void begin(void){
 								UG_TextboxShow(&window_page_3, TXB_ID_6);
 
 								//usbc voltage symbol
-								UG_TextboxCreate(&window_page_3, &textbox_page3_usbc_voltage_symbol, TXB_ID_7, 130, 64, 140, 104);
+								UG_TextboxCreate(&window_page_3, &textbox_page3_usbc_voltage_symbol, TXB_ID_7, 130, 64, 145, 104);
 								UG_TextboxSetFont(&window_page_3, TXB_ID_7, &FONT_10X16);
 								UG_TextboxSetAlignment(&window_page_3, TXB_ID_7, ALIGN_V_BOTTOM);
 								UG_TextboxSetBackColor(&window_page_3, TXB_ID_7, C_YELLOW_GREEN);
@@ -810,7 +835,7 @@ void begin(void){
 								UG_TextboxShow(&window_page_3, TXB_ID_10);
 
 								//usbc current symbol
-								UG_TextboxCreate(&window_page_3, &textbox_page3_usbc_current_symbol, TXB_ID_11, 130, 109, 140, 149);
+								UG_TextboxCreate(&window_page_3, &textbox_page3_usbc_current_symbol, TXB_ID_11, 130, 109, 145, 149);
 								UG_TextboxSetFont(&window_page_3, TXB_ID_11, &FONT_10X16);
 								UG_TextboxSetAlignment(&window_page_3, TXB_ID_11, ALIGN_V_BOTTOM);
 								UG_TextboxSetBackColor(&window_page_3, TXB_ID_11, C_BROWN);
@@ -848,7 +873,7 @@ void begin(void){
 								UG_TextboxShow(&window_page_3, TXB_ID_14);
 
 								//usbc watt symbol
-								UG_TextboxCreate(&window_page_3, &textbox_page3_usbc_watt_symbol, TXB_ID_15, 130, 154, 140, 194);
+								UG_TextboxCreate(&window_page_3, &textbox_page3_usbc_watt_symbol, TXB_ID_15, 130, 154, 145, 194);
 								UG_TextboxSetFont(&window_page_3, TXB_ID_15, &FONT_10X16);
 								UG_TextboxSetAlignment(&window_page_3, TXB_ID_15, ALIGN_V_BOTTOM);
 								UG_TextboxSetBackColor(&window_page_3, TXB_ID_15, C_INDIGO);
