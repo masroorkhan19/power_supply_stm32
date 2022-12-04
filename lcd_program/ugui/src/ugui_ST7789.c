@@ -16,12 +16,15 @@
 #define HDP (DISPLAY_WIDTH - 1)
 #define VDP (DISPLAY_HEIGHT - 1)
  UG_GUI guiST7735;
+ uint8_t ivert_eightbit;
 void parallelWriteDC0(uint8_t eightbit){
 //	printf("GPIO_pin: com  ");
 //	HAL_GPIO_WritePin(LCD_CS_GPIO_Port, LCD_CS_Pin, GPIO_PIN_RESET);
 //HAL_GPIO_WritePin(LCD_WR_GPIO_Port, LCD_WR_Pin, GPIO_PIN_SET); // idle = high
 //HAL_GPIO_WritePin(LCD_RD_GPIO_Port, LCD_RD_Pin, GPIO_PIN_SET); // idle = high
-HAL_GPIO_WritePin(LCD_DC_GPIO_Port, LCD_DC_Pin, GPIO_PIN_RESET); // low = command
+//HAL_GPIO_WritePin(LCD_DC_GPIO_Port, LCD_DC_Pin, GPIO_PIN_RESET); // low = command
+//GPIOA->BSRR &=	0xFFFFF7FF;
+GPIOA->BSRR |= 0x08000000;
 
 //HAL_GPIO_WritePin(LCD_D0_GPIO_Port, LCD_D0_Pin, (eightbit & 1) == 0 ? GPIO_PIN_RESET : GPIO_PIN_SET);
 //HAL_GPIO_WritePin(LCD_D1_GPIO_Port, LCD_D1_Pin, (eightbit & 2) == 0 ? GPIO_PIN_RESET : GPIO_PIN_SET);
@@ -32,15 +35,20 @@ HAL_GPIO_WritePin(LCD_DC_GPIO_Port, LCD_DC_Pin, GPIO_PIN_RESET); // low = comman
 //HAL_GPIO_WritePin(LCD_D6_GPIO_Port, LCD_D6_Pin, (eightbit & 64) == 0 ? GPIO_PIN_RESET : GPIO_PIN_SET);
 //HAL_GPIO_WritePin(LCD_D7_GPIO_Port, LCD_D7_Pin, (eightbit & 128) == 0 ? GPIO_PIN_RESET : GPIO_PIN_SET);
 
-uint8_t ivert_eightbit = ~(eightbit);
+ ivert_eightbit = ~(eightbit);
 
 GPIOB->BSRR = (uint32_t)ivert_eightbit << 24u;
 GPIOB->BSRR =(uint32_t)eightbit << 8u;
-//    printf ("eightbit: %X\n",eightbit);
-HAL_GPIO_WritePin(LCD_WR_GPIO_Port, LCD_WR_Pin, GPIO_PIN_RESET);
+
+
+//GPIOA->BSRR &=	0xFFFFFEFF;
+GPIOA->BSRR |= 0x01000000;
+//GPIOA->BSRR &=	0xFEFFFFFF;
+GPIOA->BSRR |= 0x00000100;
+//HAL_GPIO_WritePin(LCD_WR_GPIO_Port, LCD_WR_Pin, GPIO_PIN_RESET);
 //HAL_Delay(1);
 //opt_delay(1);
-HAL_GPIO_WritePin(LCD_WR_GPIO_Port, LCD_WR_Pin, GPIO_PIN_SET); // raising edge
+//HAL_GPIO_WritePin(LCD_WR_GPIO_Port, LCD_WR_Pin, GPIO_PIN_SET); // raising edge
 //HAL_GPIO_WritePin(LCD_CS_GPIO_Port, LCD_CS_Pin, GPIO_PIN_SET);
 }
 void opt_delay(uint16_t i)
@@ -52,8 +60,8 @@ void parallelWriteDC1(uint8_t eightbit){
 //	HAL_GPIO_WritePin(LCD_CS_GPIO_Port, LCD_CS_Pin, GPIO_PIN_RESET);
 //HAL_GPIO_WritePin(LCD_WR_GPIO_Port, LCD_WR_Pin, GPIO_PIN_SET); // idle = high
 //HAL_GPIO_WritePin(LCD_RD_GPIO_Port, LCD_RD_Pin, GPIO_PIN_SET); // idle = high
-HAL_GPIO_WritePin(LCD_DC_GPIO_Port, LCD_DC_Pin, GPIO_PIN_SET); // high = data
-
+//HAL_GPIO_WritePin(LCD_DC_GPIO_Port, LCD_DC_Pin, GPIO_PIN_SET); // high = data
+	GPIOA->BSRR |= 0x00000800;
 //HAL_GPIO_WritePin(LCD_D0_GPIO_Port, LCD_D0_Pin, (eightbit & 1) == 0 ? GPIO_PIN_RESET : GPIO_PIN_SET);
 //HAL_GPIO_WritePin(LCD_D1_GPIO_Port, LCD_D1_Pin, (eightbit & 2) == 0 ? GPIO_PIN_RESET : GPIO_PIN_SET);
 //HAL_GPIO_WritePin(LCD_D2_GPIO_Port, LCD_D2_Pin, (eightbit & 4) == 0 ? GPIO_PIN_RESET : GPIO_PIN_SET);
@@ -64,14 +72,19 @@ HAL_GPIO_WritePin(LCD_DC_GPIO_Port, LCD_DC_Pin, GPIO_PIN_SET); // high = data
 //HAL_GPIO_WritePin(LCD_D7_GPIO_Port, LCD_D7_Pin, (eightbit & 128) == 0 ? GPIO_PIN_RESET : GPIO_PIN_SET);
 //     printf ("eightbit: %X\n",eightbit);
 
-uint8_t ivert_eightbit = ~(eightbit);
+ ivert_eightbit = ~(eightbit);
 
 GPIOB->BSRR = (uint32_t)ivert_eightbit << 24u;
 GPIOB->BSRR =(uint32_t)eightbit << 8u;
-HAL_GPIO_WritePin(LCD_WR_GPIO_Port, LCD_WR_Pin, GPIO_PIN_RESET);
+
+GPIOA->BSRR |= 0x01000000;
+//GPIOA->BSRR &=	0xFEFFFFFF;
+GPIOA->BSRR |= 0x00000100;
+
+//HAL_GPIO_WritePin(LCD_WR_GPIO_Port, LCD_WR_Pin, GPIO_PIN_RESET);
 //HAL_Delay(1);
 //opt_delay(1);
-HAL_GPIO_WritePin(LCD_WR_GPIO_Port, LCD_WR_Pin, GPIO_PIN_SET); // raising edge
+//HAL_GPIO_WritePin(LCD_WR_GPIO_Port, LCD_WR_Pin, GPIO_PIN_SET); // raising edge
 //HAL_GPIO_WritePin(LCD_CS_GPIO_Port, LCD_CS_Pin, GPIO_PIN_SET);
 }
 
