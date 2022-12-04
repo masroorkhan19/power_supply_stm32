@@ -119,6 +119,8 @@ int main(void)
 //  Page_1();
 //  Page_2();
   Page_3();
+
+  HAL_Delay(5000);
   HAL_TIM_Base_Start_IT(&htim2);
   /* USER CODE END 2 */
 
