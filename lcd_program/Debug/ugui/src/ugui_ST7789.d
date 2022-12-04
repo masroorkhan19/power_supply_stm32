@@ -1,7 +1,7 @@
 ugui/src/ugui_ST7789.o: ../ugui/src/ugui_ST7789.c \
- /home/mkhan/git/power_supply_stm32/lcd_program/ugui/inc/ugui_ST7789.h \
- /home/mkhan/git/power_supply_stm32/lcd_program/ugui/inc/ugui.h \
- /home/mkhan/git/power_supply_stm32/lcd_program/ugui/inc/ugui_config.h \
+ C:/Users/Syed\ Mir\ Hamza/git/power_supply_stm32/lcd_program/ugui/inc/ugui_ST7789.h \
+ C:/Users/Syed\ Mir\ Hamza/git/power_supply_stm32/lcd_program/ugui/inc/ugui.h \
+ C:/Users/Syed\ Mir\ Hamza/git/power_supply_stm32/lcd_program/ugui/inc/ugui_config.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
  ../Core/Inc/stm32f1xx_hal_conf.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h \
@@ -28,10 +28,10 @@ ugui/src/ugui_ST7789.o: ../ugui/src/ugui_ST7789.c \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
  ../Core/Inc/main.h \
- /home/mkhan/git/power_supply_stm32/lcd_program/ugui/inc/ugui.h
-/home/mkhan/git/power_supply_stm32/lcd_program/ugui/inc/ugui_ST7789.h:
-/home/mkhan/git/power_supply_stm32/lcd_program/ugui/inc/ugui.h:
-/home/mkhan/git/power_supply_stm32/lcd_program/ugui/inc/ugui_config.h:
+ C:/Users/Syed\ Mir\ Hamza/git/power_supply_stm32/lcd_program/ugui/inc/ugui.h
+C:/Users/Syed\ Mir\ Hamza/git/power_supply_stm32/lcd_program/ugui/inc/ugui_ST7789.h:
+C:/Users/Syed\ Mir\ Hamza/git/power_supply_stm32/lcd_program/ugui/inc/ugui.h:
+C:/Users/Syed\ Mir\ Hamza/git/power_supply_stm32/lcd_program/ugui/inc/ugui_config.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
 ../Core/Inc/stm32f1xx_hal_conf.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h:
@@ -58,4 +58,4 @@ ugui/src/ugui_ST7789.o: ../ugui/src/ugui_ST7789.c \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h:
 ../Core/Inc/main.h:
-/home/mkhan/git/power_supply_stm32/lcd_program/ugui/inc/ugui.h:
+C:/Users/Syed\ Mir\ Hamza/git/power_supply_stm32/lcd_program/ugui/inc/ugui.h:

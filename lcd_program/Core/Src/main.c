@@ -113,8 +113,8 @@ int main(void)
 
 
 
-HAL_Delay(500);
- // Page_logo();
+HAL_Delay(1000);
+ //Page_logo();
 //  Page_0();
 //  Page_1();
 //  Page_2();
