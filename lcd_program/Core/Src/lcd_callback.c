@@ -28,7 +28,7 @@ if(guiST7735.active_window == &window_page_3){
 		 UG_Update();
 		 page_msg.event =3;
 		 window_page_3_callback(&page_msg);
-		 UG_Update();
+		 _UG_TextboxUpdate(guiST7735.active_window, &obj_buff_window_page_3);
 
 	    }
 	 if(sw3516_current.status_USBC!=sw3516_previous.status_USBC){

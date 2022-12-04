@@ -112,10 +112,10 @@ int main(void)
   begin();
 
 
-  Page_logo();
-  Page_0();
-  Page_1();
-  Page_2();
+//  Page_logo();
+//  Page_0();
+//  Page_1();
+//  Page_2();
   Page_3();
   HAL_TIM_Base_Start_IT(&htim2);
   /* USER CODE END 2 */
