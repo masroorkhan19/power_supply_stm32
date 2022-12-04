@@ -930,7 +930,7 @@ void begin(void){
 								UG_TextboxShow(&window_page_3, TXB_ID_20);
 
 								// output voltage
-								UG_TextboxCreate(&window_page_3, &textbox_page3_output_voltage_value, TXB_ID_21, 130, 200, 190, 235);
+								UG_TextboxCreate(&window_page_3, &textbox_page3_output_voltage_value, TXB_ID_21, 130, 200, 185, 235);
 								UG_TextboxSetFont(&window_page_3, TXB_ID_21, &FONT_10X16);
 								UG_TextboxSetAlignment(&window_page_3, TXB_ID_21, ALIGN_CENTER);
 								UG_TextboxSetBackColor(&window_page_3, TXB_ID_21, C_BLACK);
@@ -939,7 +939,7 @@ void begin(void){
 
 								UG_TextboxShow(&window_page_3, TXB_ID_21);
 								// output voltage symbol
-								UG_TextboxCreate(&window_page_3, &textbox_page3_output_voltage_symbol, TXB_ID_22, 200, 200, 216, 235);
+								UG_TextboxCreate(&window_page_3, &textbox_page3_output_voltage_symbol, TXB_ID_22, 190, 200, 205, 235);
 								UG_TextboxSetFont(&window_page_3, TXB_ID_22, &FONT_10X16);
 								UG_TextboxSetAlignment(&window_page_3, TXB_ID_22, ALIGN_CENTER);
 								UG_TextboxSetBackColor(&window_page_3, TXB_ID_22, C_BLACK);
@@ -949,15 +949,15 @@ void begin(void){
 
 
 								// output current
-								UG_TextboxCreate(&window_page_3, &textbox_page3_output_current_value, TXB_ID_23, 226, 200, 286, 235);
+								UG_TextboxCreate(&window_page_3, &textbox_page3_output_current_value, TXB_ID_23, 210, 200, 265, 235);
 								UG_TextboxSetFont(&window_page_3, TXB_ID_23, &FONT_10X16);
 								UG_TextboxSetAlignment(&window_page_3, TXB_ID_23, ALIGN_CENTER);
-								UG_TextboxSetBackColor(&window_page_3, TXB_ID_23, C_BLACK);
+								UG_TextboxSetBackColor(&window_page_3, TXB_ID_23, C_RED);
 								UG_TextboxSetForeColor(&window_page_3, TXB_ID_23, C_WHITE);
 
 								UG_TextboxShow(&window_page_3, TXB_ID_23);
 								// output current symbol
-								UG_TextboxCreate(&window_page_3, &textbox_page3_output_current_symbol, TXB_ID_24, 286, 200, 302, 235);
+								UG_TextboxCreate(&window_page_3, &textbox_page3_output_current_symbol, TXB_ID_24, 270, 200, 285, 235);
 								UG_TextboxSetFont(&window_page_3, TXB_ID_24, &FONT_10X16);
 								UG_TextboxSetAlignment(&window_page_3, TXB_ID_24, ALIGN_CENTER);
 								UG_TextboxSetBackColor(&window_page_3, TXB_ID_24, C_BLACK);

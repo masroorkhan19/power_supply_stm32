@@ -186,6 +186,7 @@ void window_page_3_callback(UG_MESSAGE *msg){
 					{
 						UG_TextboxSetText(&window_page_3, TXB_ID_23, "00.00");
 					}
+
 					break;
 
 				}
