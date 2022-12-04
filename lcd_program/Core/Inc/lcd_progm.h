@@ -15,7 +15,7 @@
 #define MAX_OBJECTS 10
 #define MAX_OBJECTS_WIN_GRAPH 20
 #define MAX_OBJECTS_WIN_PAGE_1 20
-#define MAX_OBJECTS_WIN_PAGE_3 26
+#define MAX_OBJECTS_WIN_PAGE_3 27
 
 #define BuffOUT     40
 

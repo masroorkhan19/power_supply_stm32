@@ -94,7 +94,7 @@ if(guiST7735.active_window == &window_page_3){
     	UG_Update();
 
     }
-    if(sw3516_current.currentA!=sw3516_previous.currentA){
+    if(sw3516_current.currentA!=sw3516_previous.currentA & sw3516_current.status_USBA){
    	 page_msg.event =2;
    	page_msg.sub_id=12;
    	window_page_3_callback(&page_msg);
