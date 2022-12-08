@@ -19,8 +19,53 @@ void window_page_3_callback(UG_MESSAGE *msg){
 
 		if(msg->id==OBJ_TYPE_TEXTBOX){
 		switch (msg->sub_id){
-		case 0:           //charging type
+		case 0:           //charging protocol
 		{
+			if (sw3516_current.charging_protocol == 0x00){
+							sprintf(char_buffer,"Basic");
+							UG_TextboxSetText(&window_page_3, TXB_ID_0, char_buffer);
+			}
+			else if(sw3516_current.charging_protocol == 0x1){
+							sprintf(char_buffer,"QC2.0");
+							UG_TextboxSetText(&window_page_3, TXB_ID_0, char_buffer);
+			}
+			else if (sw3516_current.charging_protocol == 0x2){
+							sprintf(char_buffer,"QC3.0");
+							UG_TextboxSetText(&window_page_3, TXB_ID_0, char_buffer);
+			}
+			else if (sw3516_current.charging_protocol == 0x3){
+							sprintf(char_buffer,"FCP");
+							UG_TextboxSetText(&window_page_3, TXB_ID_0, char_buffer);
+			}
+			else if (sw3516_current.charging_protocol == 0x4){
+							sprintf(char_buffer,"SCP");
+							UG_TextboxSetText(&window_page_3, TXB_ID_0, char_buffer);
+			}
+			else if (sw3516_current.charging_protocol == 0x5){
+							sprintf(char_buffer,"PD FIX");
+							UG_TextboxSetText(&window_page_3, TXB_ID_0, char_buffer);
+			}
+			else if (sw3516_current.charging_protocol == 0x6){
+							sprintf(char_buffer,"PD PPS");
+							UG_TextboxSetText(&window_page_3, TXB_ID_0, char_buffer);
+			}
+			else if (sw3516_current.charging_protocol == 0x7){
+							sprintf(char_buffer,"PE1.1");
+							UG_TextboxSetText(&window_page_3, TXB_ID_0, char_buffer);
+			}
+			else if (sw3516_current.charging_protocol == 0x8){
+							sprintf(char_buffer,"PE2.0");
+							UG_TextboxSetText(&window_page_3, TXB_ID_0, char_buffer);
+			}
+			else if (sw3516_current.charging_protocol == 0x9){
+							sprintf(char_buffer,"VOOC");
+							UG_TextboxSetText(&window_page_3, TXB_ID_0, char_buffer);
+			}
+			else if (sw3516_current.charging_protocol == 0xA){
+							sprintf(char_buffer,"SFCP");
+							UG_TextboxSetText(&window_page_3, TXB_ID_0, char_buffer);
+			}
+
 			break;
 		}
 		case 2:           //temperature value

@@ -20,15 +20,17 @@ void usb_charging_page_msg( ){
 
 if(guiST7735.active_window == &window_page_3){
 
-
+	if(sw3516_current.charging_protocol != sw3516_previous.charging_protocol){
+			page_msg.event =2;
+			page_msg.sub_id=0;
+			 window_page_3_callback(&page_msg);
+			 UG_Update();
+		    }
 	if(sw3516_current.temperature!=sw3516_previous.temperature){
 		page_msg.event =2;
 		page_msg.sub_id=2;
 		 window_page_3_callback(&page_msg);
 		 UG_Update();
-
-
-
 	    }
 	 if(sw3516_current.status_USBC!=sw3516_previous.status_USBC){
 		 page_msg.event =2;
@@ -42,7 +44,6 @@ if(guiST7735.active_window == &window_page_3){
 				 		page_msg.sub_id=25;
 				 		 window_page_3_callback(&page_msg);
 				 		 UG_Update();
-
 		          }
 
 
@@ -59,7 +60,6 @@ if(guiST7735.active_window == &window_page_3){
     			 		page_msg.sub_id=26;
     			 		 window_page_3_callback(&page_msg);
     			 		 UG_Update();
-
     	          }
 
     if(sw3516_current.voltageout!=sw3516_previous.voltageout){
@@ -78,15 +78,11 @@ if(guiST7735.active_window == &window_page_3){
 
 		UG_Update();
     	}
-
-
-
-
              }
 
 
 
-    if(sw3516_current.currentC!=sw3516_previous.currentC & sw3516_current.status_USBC){
+    if(sw3516_current.currentC!=sw3516_previous.currentC && sw3516_current.status_USBC){
 
     	 page_msg.event =2;
     	page_msg.sub_id=10;
@@ -94,21 +90,21 @@ if(guiST7735.active_window == &window_page_3){
     	UG_Update();
 
     }
-    if(sw3516_current.currentA!=sw3516_previous.currentA & sw3516_current.status_USBA){
+    if(sw3516_current.currentA!=sw3516_previous.currentA && sw3516_current.status_USBA){
    	 page_msg.event =2;
    	page_msg.sub_id=12;
    	window_page_3_callback(&page_msg);
   	UG_Update();
         }
 
-    if((sw3516_current.voltageout!=sw3516_previous.voltageout | sw3516_current.currentC!=sw3516_previous.currentC) & sw3516_current.status_USBC){
+    if((sw3516_current.voltageout!=sw3516_previous.voltageout || sw3516_current.currentC!=sw3516_previous.currentC) && sw3516_current.status_USBC){
 
 		page_msg.event =2;
 		page_msg.sub_id=14;
 		window_page_3_callback(&page_msg);
 		UG_Update();
     }
-    if((sw3516_current.voltageout!=sw3516_previous.voltageout | sw3516_current.currentA!=sw3516_previous.currentA) & sw3516_current.status_USBA){
+    if((sw3516_current.voltageout!=sw3516_previous.voltageout || sw3516_current.currentA!=sw3516_previous.currentA) && sw3516_current.status_USBA){
 
 		page_msg.event =2;
 		page_msg.sub_id=16;

@@ -1,5 +1,5 @@
-Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
- ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
+Core/Src/Encoder.o: ../Core/Src/Encoder.c ../Core/Inc/Encoder.h \
+ ../Core/Inc/main.h ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
  ../Core/Inc/stm32f1xx_hal_conf.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h \
@@ -24,14 +24,14 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
- ../Core/Inc/lcd_progm.h ../Core/Inc/main.h \
+ ../Core/Inc/lcd_progm.h \
  C:/Users/Syed\ Mir\ Hamza/git/power_supply_stm32/lcd_program/ugui/inc/ugui_ST7789.h \
  C:/Users/Syed\ Mir\ Hamza/git/power_supply_stm32/lcd_program/ugui/inc/ugui.h \
  C:/Users/Syed\ Mir\ Hamza/git/power_supply_stm32/lcd_program/ugui/inc/ugui_config.h \
+ ../Core/Inc/main.h \
  C:/Users/Syed\ Mir\ Hamza/git/power_supply_stm32/lcd_program/ugui/inc/ugui.h \
- ../Core/Inc/page_3_callback_imp.h ../Core/Inc/lcd_progm.h \
- ../Core/Inc/SW3516.h ../Core/Inc/SW3516.h ../Core/Inc/lcd_callback.h \
- ../Core/Inc/Encoder.h
+ ../Core/Inc/page_3_callback_imp.h ../Core/Inc/SW3516.h
+../Core/Inc/Encoder.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
 ../Core/Inc/stm32f1xx_hal_conf.h:
@@ -59,14 +59,10 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h:
 ../Core/Inc/lcd_progm.h:
-../Core/Inc/main.h:
 C:/Users/Syed\ Mir\ Hamza/git/power_supply_stm32/lcd_program/ugui/inc/ugui_ST7789.h:
 C:/Users/Syed\ Mir\ Hamza/git/power_supply_stm32/lcd_program/ugui/inc/ugui.h:
 C:/Users/Syed\ Mir\ Hamza/git/power_supply_stm32/lcd_program/ugui/inc/ugui_config.h:
+../Core/Inc/main.h:
 C:/Users/Syed\ Mir\ Hamza/git/power_supply_stm32/lcd_program/ugui/inc/ugui.h:
 ../Core/Inc/page_3_callback_imp.h:
-../Core/Inc/lcd_progm.h:
 ../Core/Inc/SW3516.h:
-../Core/Inc/SW3516.h:
-../Core/Inc/lcd_callback.h:
-../Core/Inc/Encoder.h:

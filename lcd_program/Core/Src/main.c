@@ -27,6 +27,7 @@
 #include "SW3516.h"
 #include "stdbool.h"
 #include "lcd_callback.h"
+#include "Encoder.h"
 
 /* USER CODE END Includes */
 
@@ -50,6 +51,11 @@ I2C_HandleTypeDef hi2c1;
 TIM_HandleTypeDef htim2;
 
 /* USER CODE BEGIN PV */
+uint8_t page_counter = 1;
+
+
+
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -114,14 +120,13 @@ int main(void)
 
 
 HAL_Delay(1000);
- //Page_logo();
+// Page_logo();
 //  Page_0();
-//  Page_1();
+  //Page_1();
 //  Page_2();
   Page_3();
 
-
-  HAL_TIM_Base_Start_IT(&htim2);
+HAL_TIM_Encoder_Start(&htim2, TIM_CHANNEL_ALL);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -132,15 +137,18 @@ HAL_Delay(1000);
 
     /* USER CODE BEGIN 3 */
 
-	  if(read_sw3516_flag){
+	  Encoder_Ticks();
+
+
+
+//	  if(read_sw3516_flag){
 
 		  sw3516_previous= sw3516_current;
 		  sw3516_read();
 
-		  usb_charging_page_msg();
-		  read_sw3516_flag=0;
-	  }
-
+		 usb_charging_page_msg();
+//		  read_sw3516_flag=0;
+//	  }
 
 //	  Page_logo();
 //
@@ -270,24 +278,28 @@ static void MX_TIM2_Init(void)
 
   /* USER CODE END TIM2_Init 0 */
 
-  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_Encoder_InitTypeDef sConfig = {0};
   TIM_MasterConfigTypeDef sMasterConfig = {0};
 
   /* USER CODE BEGIN TIM2_Init 1 */
 
   /* USER CODE END TIM2_Init 1 */
   htim2.Instance = TIM2;
-  htim2.Init.Prescaler = 10000;
+  htim2.Init.Prescaler = 0;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 7200;
+  htim2.Init.Period = 65535;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_ENABLE;
-  if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-  if (HAL_TIM_ConfigClockSource(&htim2, &sClockSourceConfig) != HAL_OK)
+  sConfig.EncoderMode = TIM_ENCODERMODE_TI12;
+  sConfig.IC1Polarity = TIM_ICPOLARITY_RISING;
+  sConfig.IC1Selection = TIM_ICSELECTION_DIRECTTI;
+  sConfig.IC1Prescaler = TIM_ICPSC_DIV1;
+  sConfig.IC1Filter = 10;
+  sConfig.IC2Polarity = TIM_ICPOLARITY_RISING;
+  sConfig.IC2Selection = TIM_ICSELECTION_DIRECTTI;
+  sConfig.IC2Prescaler = TIM_ICPSC_DIV1;
+  sConfig.IC2Filter = 0;
+  if (HAL_TIM_Encoder_Init(&htim2, &sConfig) != HAL_OK)
   {
     Error_Handler();
   }
@@ -326,11 +338,11 @@ static void MX_GPIO_Init(void)
                           |LCD_D4_Pin|LCD_D5_Pin|LCD_D6_Pin|LCD_D7_Pin
                           |LCD_D0_Pin|LCD_D1_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : ENC_push_button_Pin */
-  GPIO_InitStruct.Pin = ENC_push_button_Pin;
+  /*Configure GPIO pins : KEY3_Pin KEY2_Pin KEY1_Pin */
+  GPIO_InitStruct.Pin = KEY3_Pin|KEY2_Pin|KEY1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
-  HAL_GPIO_Init(ENC_push_button_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /*Configure GPIO pin : PA5 */
   GPIO_InitStruct.Pin = GPIO_PIN_5;
@@ -364,6 +376,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
+  /*Configure GPIO pins : KEY6_Pin KEY5_Pin KEY4_Pin */
+  GPIO_InitStruct.Pin = KEY6_Pin|KEY5_Pin|KEY4_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
   /* EXTI interrupt init*/
   HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
@@ -371,24 +389,15 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
-{
 
-//	if(GPIO_Pin == ENC_push_button_Pin){
-//		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-//		HAL_TIM_Base_Start_IT(&htim2);
-//		state = 0;
+
+//void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+//{
 //
-//	}
-}
-
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
-{
-
-
-     read_sw3516_flag=1;
-	 //convert_ADC(&current.currentA, &current.currentC, &current.voltagein, &current.voltageout, &current.temperature);
-}
+//
+//     read_sw3516_flag=1;
+//	 //convert_ADC(&current.currentA, &current.currentC, &current.voltagein, &current.voltageout, &current.temperature);
+//}
 
 
 /* USER CODE END 4 */

@@ -5,6 +5,8 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../Core/Src/Encoder.c \
+../Core/Src/KEYS.c \
 ../Core/Src/SW3516.c \
 ../Core/Src/buck_convertor.c \
 ../Core/Src/lcd_callback.c \
@@ -18,6 +20,8 @@ C_SRCS += \
 ../Core/Src/system_stm32f1xx.c 
 
 OBJS += \
+./Core/Src/Encoder.o \
+./Core/Src/KEYS.o \
 ./Core/Src/SW3516.o \
 ./Core/Src/buck_convertor.o \
 ./Core/Src/lcd_callback.o \
@@ -31,6 +35,8 @@ OBJS += \
 ./Core/Src/system_stm32f1xx.o 
 
 C_DEPS += \
+./Core/Src/Encoder.d \
+./Core/Src/KEYS.d \
 ./Core/Src/SW3516.d \
 ./Core/Src/buck_convertor.d \
 ./Core/Src/lcd_callback.d \
@@ -51,7 +57,7 @@ Core/Src/%.o Core/Src/%.su: ../Core/Src/%.c Core/Src/subdir.mk
 clean: clean-Core-2f-Src
 
 clean-Core-2f-Src:
-	-$(RM) ./Core/Src/SW3516.d ./Core/Src/SW3516.o ./Core/Src/SW3516.su ./Core/Src/buck_convertor.d ./Core/Src/buck_convertor.o ./Core/Src/buck_convertor.su ./Core/Src/lcd_callback.d ./Core/Src/lcd_callback.o ./Core/Src/lcd_callback.su ./Core/Src/lcd_progm.d ./Core/Src/lcd_progm.o ./Core/Src/lcd_progm.su ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/page_3_callback_imp.d ./Core/Src/page_3_callback_imp.o ./Core/Src/page_3_callback_imp.su ./Core/Src/stm32f1xx_hal_msp.d ./Core/Src/stm32f1xx_hal_msp.o ./Core/Src/stm32f1xx_hal_msp.su ./Core/Src/stm32f1xx_it.d ./Core/Src/stm32f1xx_it.o ./Core/Src/stm32f1xx_it.su ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32f1xx.d ./Core/Src/system_stm32f1xx.o ./Core/Src/system_stm32f1xx.su
+	-$(RM) ./Core/Src/Encoder.d ./Core/Src/Encoder.o ./Core/Src/Encoder.su ./Core/Src/KEYS.d ./Core/Src/KEYS.o ./Core/Src/KEYS.su ./Core/Src/SW3516.d ./Core/Src/SW3516.o ./Core/Src/SW3516.su ./Core/Src/buck_convertor.d ./Core/Src/buck_convertor.o ./Core/Src/buck_convertor.su ./Core/Src/lcd_callback.d ./Core/Src/lcd_callback.o ./Core/Src/lcd_callback.su ./Core/Src/lcd_progm.d ./Core/Src/lcd_progm.o ./Core/Src/lcd_progm.su ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/page_3_callback_imp.d ./Core/Src/page_3_callback_imp.o ./Core/Src/page_3_callback_imp.su ./Core/Src/stm32f1xx_hal_msp.d ./Core/Src/stm32f1xx_hal_msp.o ./Core/Src/stm32f1xx_hal_msp.su ./Core/Src/stm32f1xx_it.d ./Core/Src/stm32f1xx_it.o ./Core/Src/stm32f1xx_it.su ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32f1xx.d ./Core/Src/system_stm32f1xx.o ./Core/Src/system_stm32f1xx.su
 
 .PHONY: clean-Core-2f-Src
 
