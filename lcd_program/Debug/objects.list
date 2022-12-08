@@ -1,3 +1,5 @@
+"./Core/Src/Encoder.o"
+"./Core/Src/KEYS.o"
 "./Core/Src/SW3516.o"
 "./Core/Src/buck_convertor.o"
 "./Core/Src/lcd_callback.o"
