@@ -18,17 +18,19 @@ Core/Src/lcd_progm.o: ../Core/Src/lcd_progm.c ../Core/Inc/lcd_progm.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h \
+ ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc.h \
+ ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
- C:/Users/Syed\ Mir\ Hamza/git/power_supply_stm32/lcd_program/ugui/inc/ugui_ST7789.h \
- C:/Users/Syed\ Mir\ Hamza/git/power_supply_stm32/lcd_program/ugui/inc/ugui.h \
- C:/Users/Syed\ Mir\ Hamza/git/power_supply_stm32/lcd_program/ugui/inc/ugui_config.h \
+ /home/mkhan/git/power_supply_stm32/lcd_program/ugui/inc/ugui_ST7789.h \
+ /home/mkhan/git/power_supply_stm32/lcd_program/ugui/inc/ugui.h \
+ /home/mkhan/git/power_supply_stm32/lcd_program/ugui/inc/ugui_config.h \
  ../Core/Inc/main.h \
- C:/Users/Syed\ Mir\ Hamza/git/power_supply_stm32/lcd_program/ugui/inc/ugui.h \
+ /home/mkhan/git/power_supply_stm32/lcd_program/ugui/inc/ugui.h \
  ../Core/Inc/page_3_callback_imp.h ../Core/Inc/lcd_progm.h \
  ../Core/Inc/SW3516.h ../Core/Inc/buck_convertor.h
 ../Core/Inc/lcd_progm.h:
@@ -52,17 +54,19 @@ Core/Src/lcd_progm.o: ../Core/Src/lcd_progm.c ../Core/Inc/lcd_progm.h \
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h:
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc.h:
+../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc_ex.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h:
-C:/Users/Syed\ Mir\ Hamza/git/power_supply_stm32/lcd_program/ugui/inc/ugui_ST7789.h:
-C:/Users/Syed\ Mir\ Hamza/git/power_supply_stm32/lcd_program/ugui/inc/ugui.h:
-C:/Users/Syed\ Mir\ Hamza/git/power_supply_stm32/lcd_program/ugui/inc/ugui_config.h:
+/home/mkhan/git/power_supply_stm32/lcd_program/ugui/inc/ugui_ST7789.h:
+/home/mkhan/git/power_supply_stm32/lcd_program/ugui/inc/ugui.h:
+/home/mkhan/git/power_supply_stm32/lcd_program/ugui/inc/ugui_config.h:
 ../Core/Inc/main.h:
-C:/Users/Syed\ Mir\ Hamza/git/power_supply_stm32/lcd_program/ugui/inc/ugui.h:
+/home/mkhan/git/power_supply_stm32/lcd_program/ugui/inc/ugui.h:
 ../Core/Inc/page_3_callback_imp.h:
 ../Core/Inc/lcd_progm.h:
 ../Core/Inc/SW3516.h:
