@@ -1,0 +1,9 @@
+../Core/Src/pid_with_adc_read.c:16:6:read_adc_value	32	static
+../Core/Src/pid_with_adc_read.c:47:6:ouput_current_callibration	8	static
+../Core/Src/pid_with_adc_read.c:56:6:ouput_voltage_callibration	8	static
+../Core/Src/pid_with_adc_read.c:63:6:buck_temperature_callibration	0	static
+../Core/Src/pid_with_adc_read.c:74:6:buck_current_adc	32	static
+../Core/Src/pid_with_adc_read.c:89:6:buck_voltage_adc	24	static
+../Core/Src/pid_with_adc_read.c:103:6:buck_temperature_adc	24	static
+../Core/Src/pid_with_adc_read.c:123:6:HAL_ADC_ConvCpltCallback	0	static
+../Core/Src/pid_with_adc_read.c:133:6:pid_intialize	56	static

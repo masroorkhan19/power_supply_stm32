@@ -1,10 +1,10 @@
-../Core/Src/lcd_progm.c:129:7:Page_0	40	static
+../Core/Src/lcd_progm.c:976:6:window_page_0_callback	0	static
+../Core/Src/lcd_progm.c:978:6:window_logo_callback	0	static
+../Core/Src/lcd_progm.c:980:6:window_page_2_callback	0	static
+../Core/Src/lcd_progm.c:973:6:window_page_1_callback	0	static
+../Core/Src/lcd_progm.c:129:7:Page_0	24	static
 ../Core/Src/lcd_progm.c:232:7:Page_1	16	static
 ../Core/Src/lcd_progm.c:247:7:Page_2	16	static
 ../Core/Src/lcd_progm.c:263:7:Page_3	16	static
 ../Core/Src/lcd_progm.c:275:6:Page_logo	16	static
-../Core/Src/lcd_progm.c:287:6:begin	24	static
-../Core/Src/lcd_progm.c:973:6:window_page_1_callback	16	static
-../Core/Src/lcd_progm.c:976:6:window_page_0_callback	16	static
-../Core/Src/lcd_progm.c:978:6:window_logo_callback	16	static
-../Core/Src/lcd_progm.c:980:6:window_page_2_callback	16	static
+../Core/Src/lcd_progm.c:287:6:begin	56	static

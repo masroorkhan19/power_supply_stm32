@@ -49,10 +49,15 @@ extern "C" {
 
 /* USER CODE END EM */
 
+void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
+
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
+
+
+
 
 /* USER CODE END EFP */
 
@@ -60,6 +65,16 @@ void Error_Handler(void);
 #define ENC_push_button_Pin GPIO_PIN_15
 #define ENC_push_button_GPIO_Port GPIOC
 #define ENC_push_button_EXTI_IRQn EXTI15_10_IRQn
+#define buck_current_sense_Pin GPIO_PIN_2
+#define buck_current_sense_GPIO_Port GPIOA
+#define buck_voltage_sensor_Pin GPIO_PIN_3
+#define buck_voltage_sensor_GPIO_Port GPIOA
+#define buck_temperature_Pin GPIO_PIN_4
+#define buck_temperature_GPIO_Port GPIOA
+#define pwm_1_Pin GPIO_PIN_6
+#define pwm_1_GPIO_Port GPIOA
+#define pwm_2_Pin GPIO_PIN_7
+#define pwm_2_GPIO_Port GPIOA
 #define LD2_Pin GPIO_PIN_0
 #define LD2_GPIO_Port GPIOB
 #define LCD_RD_Pin GPIO_PIN_1

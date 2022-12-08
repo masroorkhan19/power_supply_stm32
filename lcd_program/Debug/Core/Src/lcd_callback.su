@@ -1,1 +1,1 @@
-../Core/Src/lcd_callback.c:18:6:usb_charging_page_msg	24	static
+../Core/Src/lcd_callback.c:24:6:usb_charging_page_msg	32	static

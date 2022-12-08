@@ -84,7 +84,7 @@ void convert_ADC(float* current1, float* current2, float* voltagein, float* volt
 
 
 void sw3516_read(){
-
+	//sw3516_previous= sw3516_current;
 	convert_ADC(&sw3516_current.currentA, &sw3516_current.currentC, &sw3516_current.voltagein, &sw3516_current.voltageout, &sw3516_current.temperature);
 
 }
