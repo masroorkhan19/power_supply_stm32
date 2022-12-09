@@ -846,9 +846,7 @@ void begin(void){
 
 
 
-void window_page_1_callback(UG_MESSAGE *msg){
 
-}
 void window_page_0_callback(UG_MESSAGE *msg){}
 
 void window_logo_callback(UG_MESSAGE *msg){}
