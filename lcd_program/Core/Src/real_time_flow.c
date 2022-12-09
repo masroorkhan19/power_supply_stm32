@@ -75,4 +75,9 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	HAL_TIM_Base_Stop_IT(&htim1);
  }
 
+
+ if(htim->Instance==TIM4){
+	 button_debouncing_delay();
+ }
+
 }

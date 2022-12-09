@@ -31,13 +31,14 @@ void Encoder_Ticks(){
 			page_load = 1;
 		}
 
-	if (Encoder_Counter > 3){
-			Encoder_Counter = 1;
-		}
 
-	if (Encoder_Counter < 1 ){
-			Encoder_Counter = 3;
-		}
+//	if (Encoder_Counter > 3){
+//			Encoder_Counter = 1;
+//		}
+//
+//	if (Encoder_Counter < 1 ){
+//			Encoder_Counter = 3;
+//		}
 
 //	if(Encoder_Counter == 1 && page_load == 1){
 //		Page_1();
