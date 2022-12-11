@@ -1061,8 +1061,8 @@ void begin(void){
 }
 
 
-void window_page_logo_callback(UG_MESSAGE *msg){}
 
+void window_page_logo_callback(UG_MESSAGE *msg){}
 void window_page_2_callback(UG_MESSAGE *msg){}
 void window_page_4_callback(UG_MESSAGE *msg){}
 void window_page_4_tab_1_callback(UG_MESSAGE *msg){}

@@ -9,8 +9,9 @@
 #define INC_KEYS_H_
 #include "main.h"
 
-extern uint8_t page_load;
-
+extern uint8_t page_load,state, counter;
+extern TIM_HandleTypeDef htim4;
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin);
+extern void button_debouncing_delay();
 
 #endif /* INC_KEYS_H_ */

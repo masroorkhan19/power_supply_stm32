@@ -12,16 +12,17 @@
 
  struct  buck_struct{
 
-			float current_set;
-			float voltageout_set;
-			float current_output;
-			float voltageout_output;
-			float voltagein;
-			float temperature;
+			double current_set;
+			double voltageout_set;
+			double current_output;
+			double voltageout_output;
+			double voltagein;
+			double temperature;
 			bool status_cv;
 			bool status_cc;
 			uint8_t status_ok;
 			bool buck_on_off;
+			uint16_t pwm_out;
 
 
 };

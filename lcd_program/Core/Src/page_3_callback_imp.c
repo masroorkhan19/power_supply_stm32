@@ -254,17 +254,10 @@ void window_page_3_callback(UG_MESSAGE *msg){
 			UG_TextboxSetText(&window_page_3, TXB_ID_26, char_buffer);
 			break;
 
+		 }
 		}
-		}
-
-
-
-
-
-		}
-
-		//HAL_Delay(500);
 	}
+}
 
 
 

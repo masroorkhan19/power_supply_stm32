@@ -17,76 +17,63 @@
 #define VDP (DISPLAY_HEIGHT - 1)
  UG_GUI guiST7735;
  uint8_t ivert_eightbit;
+uint32_t send_data;
+ struct {
+	 uint8_t rdata[4];
+
+
+ }reg_data;
+
+
+// union     {
+//         uint32_t v32;
+//         uint8_t v8[4];
+//     }x ={.v8[0] = 0xff, .v8[1] = 0xff, .v8[2] = 0xff, .v8[3] = 0xff};
+
+union   {
+             uint16_t v32;
+             uint8_t v8[4];
+         } y ={.v8[0] = 0xff, .v8[1] = 0xff, .v8[2] = 0x00, .v8[3] = 0x00};
+
+union   {
+              uint16_t v32;
+              uint8_t v8[4];
+         } lower ={.v8[0] = 0x00, .v8[1] = 0x00, .v8[2] = 0x00, .v8[3] = 0x00};
+
+union   {
+               uint16_t v32;
+               uint8_t v8[4];
+         } upper ={.v8[0] = 0x00, .v8[1] = 0x00, .v8[2] = 0x00, .v8[3] = 0x00};
+ //ut    y ={.v8[0] = 0xff, .v8[1] = 0xff, .v8[2] = 0x00, .v8[3] = 0x00};
+
 void parallelWriteDC0(uint8_t eightbit){
-//	printf("GPIO_pin: com  ");
-//	HAL_GPIO_WritePin(LCD_CS_GPIO_Port, LCD_CS_Pin, GPIO_PIN_RESET);
-//HAL_GPIO_WritePin(LCD_WR_GPIO_Port, LCD_WR_Pin, GPIO_PIN_SET); // idle = high
-//HAL_GPIO_WritePin(LCD_RD_GPIO_Port, LCD_RD_Pin, GPIO_PIN_SET); // idle = high
-//HAL_GPIO_WritePin(LCD_DC_GPIO_Port, LCD_DC_Pin, GPIO_PIN_RESET); // low = command
-//GPIOA->BSRR &=	0xFFFFF7FF;
+
 GPIOA->BSRR |= 0x08000000;
-
-//HAL_GPIO_WritePin(LCD_D0_GPIO_Port, LCD_D0_Pin, (eightbit & 1) == 0 ? GPIO_PIN_RESET : GPIO_PIN_SET);
-//HAL_GPIO_WritePin(LCD_D1_GPIO_Port, LCD_D1_Pin, (eightbit & 2) == 0 ? GPIO_PIN_RESET : GPIO_PIN_SET);
-//HAL_GPIO_WritePin(LCD_D2_GPIO_Port, LCD_D2_Pin, (eightbit & 4) == 0 ? GPIO_PIN_RESET : GPIO_PIN_SET);
-//HAL_GPIO_WritePin(LCD_D3_GPIO_Port, LCD_D3_Pin, (eightbit & 8) == 0 ? GPIO_PIN_RESET : GPIO_PIN_SET);
-//HAL_GPIO_WritePin(LCD_D4_GPIO_Port, LCD_D4_Pin, (eightbit & 16) == 0 ? GPIO_PIN_RESET : GPIO_PIN_SET);
-//HAL_GPIO_WritePin(LCD_D5_GPIO_Port, LCD_D5_Pin, (eightbit & 32) == 0 ? GPIO_PIN_RESET : GPIO_PIN_SET);
-//HAL_GPIO_WritePin(LCD_D6_GPIO_Port, LCD_D6_Pin, (eightbit & 64) == 0 ? GPIO_PIN_RESET : GPIO_PIN_SET);
-//HAL_GPIO_WritePin(LCD_D7_GPIO_Port, LCD_D7_Pin, (eightbit & 128) == 0 ? GPIO_PIN_RESET : GPIO_PIN_SET);
-
  ivert_eightbit = ~(eightbit);
-
 GPIOB->BSRR = (uint32_t)ivert_eightbit << 24u;
 GPIOB->BSRR =(uint32_t)eightbit << 8u;
-
-
-//GPIOA->BSRR &=	0xFFFFFEFF;
 GPIOA->BSRR |= 0x01000000;
-//GPIOA->BSRR &=	0xFEFFFFFF;
 GPIOA->BSRR |= 0x00000100;
-//HAL_GPIO_WritePin(LCD_WR_GPIO_Port, LCD_WR_Pin, GPIO_PIN_RESET);
-//HAL_Delay(1);
-//opt_delay(1);
-//HAL_GPIO_WritePin(LCD_WR_GPIO_Port, LCD_WR_Pin, GPIO_PIN_SET); // raising edge
-//HAL_GPIO_WritePin(LCD_CS_GPIO_Port, LCD_CS_Pin, GPIO_PIN_SET);
 }
 void opt_delay(uint16_t i)
 {
 	while(i--);
 }
 void parallelWriteDC1(uint8_t eightbit){
-//	printf("GPIO_pin: data  ");
-//	HAL_GPIO_WritePin(LCD_CS_GPIO_Port, LCD_CS_Pin, GPIO_PIN_RESET);
-//HAL_GPIO_WritePin(LCD_WR_GPIO_Port, LCD_WR_Pin, GPIO_PIN_SET); // idle = high
-//HAL_GPIO_WritePin(LCD_RD_GPIO_Port, LCD_RD_Pin, GPIO_PIN_SET); // idle = high
-//HAL_GPIO_WritePin(LCD_DC_GPIO_Port, LCD_DC_Pin, GPIO_PIN_SET); // high = data
-	GPIOA->BSRR |= 0x00000800;
-//HAL_GPIO_WritePin(LCD_D0_GPIO_Port, LCD_D0_Pin, (eightbit & 1) == 0 ? GPIO_PIN_RESET : GPIO_PIN_SET);
-//HAL_GPIO_WritePin(LCD_D1_GPIO_Port, LCD_D1_Pin, (eightbit & 2) == 0 ? GPIO_PIN_RESET : GPIO_PIN_SET);
-//HAL_GPIO_WritePin(LCD_D2_GPIO_Port, LCD_D2_Pin, (eightbit & 4) == 0 ? GPIO_PIN_RESET : GPIO_PIN_SET);
-//HAL_GPIO_WritePin(LCD_D3_GPIO_Port, LCD_D3_Pin, (eightbit & 8) == 0 ? GPIO_PIN_RESET : GPIO_PIN_SET);
-//HAL_GPIO_WritePin(LCD_D4_GPIO_Port, LCD_D4_Pin, (eightbit & 16) == 0 ? GPIO_PIN_RESET : GPIO_PIN_SET);
-//HAL_GPIO_WritePin(LCD_D5_GPIO_Port, LCD_D5_Pin, (eightbit & 32) == 0 ? GPIO_PIN_RESET : GPIO_PIN_SET);
-//HAL_GPIO_WritePin(LCD_D6_GPIO_Port, LCD_D6_Pin, (eightbit & 64) == 0 ? GPIO_PIN_RESET : GPIO_PIN_SET);
-//HAL_GPIO_WritePin(LCD_D7_GPIO_Port, LCD_D7_Pin, (eightbit & 128) == 0 ? GPIO_PIN_RESET : GPIO_PIN_SET);
-//     printf ("eightbit: %X\n",eightbit);
 
- ivert_eightbit = ~(eightbit);
-
-GPIOB->BSRR = (uint32_t)ivert_eightbit << 24u;
-GPIOB->BSRR =(uint32_t)eightbit << 8u;
-
+GPIOA->BSRR |= 0x00000800;
+y.v8[1]=eightbit;
+GPIOB->ODR &=0x000000ff;
+GPIOB->ODR |=(y.v32);
 GPIOA->BSRR |= 0x01000000;
-//GPIOA->BSRR &=	0xFEFFFFFF;
 GPIOA->BSRR |= 0x00000100;
-
-//HAL_GPIO_WritePin(LCD_WR_GPIO_Port, LCD_WR_Pin, GPIO_PIN_RESET);
-//HAL_Delay(1);
-//opt_delay(1);
-//HAL_GPIO_WritePin(LCD_WR_GPIO_Port, LCD_WR_Pin, GPIO_PIN_SET); // raising edge
-//HAL_GPIO_WritePin(LCD_CS_GPIO_Port, LCD_CS_Pin, GPIO_PIN_SET);
 }
+
+
+
+
+
+
 
 void parallelMultiWriteDC1(uint8_t *p_eightbit, int numItems) {
 
@@ -108,7 +95,10 @@ void parallelMultiWriteDC1(uint8_t *p_eightbit, int numItems) {
  void Display_WriteMultiData(uint8_t *data, uint16_t size)
 {
 //	printf ("data: %X, %X, %X, %X\n",data[0],data[1],data[2],data[3]);
-    parallelMultiWriteDC1(data, size);
+   parallelMultiWriteDC1(data, size);
+
+
+
 }
 
  void Display_Reset()
@@ -124,43 +114,17 @@ void Display_Init()
 //	HAL_GPIO_WritePin(LCD_RST_GPIO_Port, LCD_RST_Pin, GPIO_PIN_RESET);
 //	HAL_Delay(15);
 //	HAL_GPIO_WritePin(LCD_RST_GPIO_Port, LCD_RST_Pin, GPIO_PIN_SET);
-	HAL_Delay(15);
 
 	HAL_GPIO_WritePin(LCD_CS_GPIO_Port, LCD_CS_Pin, GPIO_PIN_RESET);
 	HAL_GPIO_WritePin(LCD_RD_GPIO_Port, LCD_RD_Pin, GPIO_PIN_SET);
 
 
     parallelWriteDC0(0x01);   //Software Reset
-    HAL_Delay(500);
-//   // parallelWriteDC0(0x11);   //sleep off
-//  //      HAL_Delay(200);
-//    parallelWriteDC0(0x28);   // Display off
-//
-//    parallelWriteDC0(0x3A);   // Pixel Format
-//    parallelWriteDC1(0x55);   // 565, 16-bit
-//
-//    parallelWriteDC0(0xBB);   // VCOMS
-//    parallelWriteDC1(0x2B);   //  1,175
-//
-//    parallelWriteDC0(0xC3);   // VRHS
-//    parallelWriteDC1(0x11);   //   4,4V
-//
-//    parallelWriteDC0(0xD0);   // PWCTRL
-//    parallelWriteDC1(0xA4);   //
-//    parallelWriteDC1(0xA1);   // VDD=2,3V; AVCL=4,8V; AVDD=6,8V
-//
-//    parallelWriteDC0(0x11);   // Exit Sleep
-//    HAL_Delay(120);
-//
-//    parallelWriteDC0(0x29);   // Display on
-//
-//    parallelWriteDC0(0x2c);   // Memory Write
-//
-//    HAL_Delay(50);
+    HAL_Delay(100);
 
     //--------------display and color format setting ----------//
     parallelWriteDC0(0x11);
-    HAL_Delay(150);
+    HAL_Delay(100);
     parallelWriteDC0(0x36);
     parallelWriteDC1(0x60);  // rotate 90
     parallelWriteDC0(0x3a);
@@ -193,39 +157,38 @@ void Display_Init()
     parallelWriteDC1(0xa1);
     //-------------st7789 gamma setting
     parallelWriteDC0(0xe0);
-    	parallelWriteDC1(0xd0);
-    	parallelWriteDC1(0x01);
-    	parallelWriteDC1(0x08);
-    	parallelWriteDC1(0x0f);
-    	parallelWriteDC1(0x11);
-    	parallelWriteDC1(0x2a);
-    	parallelWriteDC1(0x36);
-    	parallelWriteDC1(0x55);
-    	parallelWriteDC1(0x44);
-    	parallelWriteDC1(0x3a);
-    	parallelWriteDC1(0x0b);
-    	parallelWriteDC1(0x06);
-    	parallelWriteDC1(0x11);
-    	parallelWriteDC1(0x20);
-    	parallelWriteDC0(0xe1);
-    	parallelWriteDC1(0xd0);
-    	parallelWriteDC1(0x02);
-    	parallelWriteDC1(0x07);
-    	parallelWriteDC1(0x0a);
-    	parallelWriteDC1(0x0b);
-    	parallelWriteDC1(0x18);
-    	parallelWriteDC1(0x34);
-    	parallelWriteDC1(0x43);
-    	parallelWriteDC1(0x4a);
-    	parallelWriteDC1(0x2b);
-    	parallelWriteDC1(0x1b);
-    	parallelWriteDC1(0x1c);
-    	parallelWriteDC1(0x22);
-    	parallelWriteDC1(0x1f);
-    	parallelWriteDC0(0x29);
-    	parallelWriteDC0(0x2c);
-
-    	HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_SET);
+    parallelWriteDC1(0xd0);
+    parallelWriteDC1(0x01);
+    parallelWriteDC1(0x08);
+    parallelWriteDC1(0x0f);
+    parallelWriteDC1(0x11);
+    parallelWriteDC1(0x2a);
+    parallelWriteDC1(0x36);
+    parallelWriteDC1(0x55);
+    parallelWriteDC1(0x44);
+    parallelWriteDC1(0x3a);
+    parallelWriteDC1(0x0b);
+    parallelWriteDC1(0x06);
+    parallelWriteDC1(0x11);
+    parallelWriteDC1(0x20);
+    parallelWriteDC1(0xe1);
+    parallelWriteDC1(0xd0);
+    parallelWriteDC1(0x02);
+    parallelWriteDC1(0x07);
+    parallelWriteDC1(0x0a);
+    parallelWriteDC1(0x0b);
+    parallelWriteDC1(0x18);
+    parallelWriteDC1(0x34);
+    parallelWriteDC1(0x43);
+    parallelWriteDC1(0x4a);
+    parallelWriteDC1(0x2b);
+    parallelWriteDC1(0x1b);
+    parallelWriteDC1(0x1c);
+    parallelWriteDC1(0x22);
+    parallelWriteDC1(0x1f);
+    parallelWriteDC0(0x29);
+    parallelWriteDC0(0x2c);
+    HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_SET);
 
     // Initialize global structure and set PSET to this.PSET.
     UG_Init(&guiST7735, Display_PSet, DISPLAY_WIDTH, DISPLAY_HEIGHT);
@@ -291,40 +254,37 @@ void Display_PSet(UG_S16 x, UG_S16 y, UG_COLOR c)
 
 UG_RESULT HW_FillFrame(UG_S16 x1, UG_S16 y1, UG_S16 x2, UG_S16 y2, UG_COLOR c)
 {
-    uint16_t loopx, loopy;
+   // uint16_t loopx, loopy;
+
 
     if((x1 < 0) ||(x1 >= DISPLAY_WIDTH) || (y1 < 0) || (y1 >= DISPLAY_HEIGHT)) return UG_RESULT_FAIL;
     if((x2 < 0) ||(x2 >= DISPLAY_WIDTH) || (y2 < 0) || (y2 >= DISPLAY_HEIGHT)) return UG_RESULT_FAIL;
-
     Display_WindowSet(x1,x2,y1,y2);
-
     Display_WriteCommand(0x2c);
-    uint8_t data[2];
+    uint32_t  do_loop = (x1-(x2+1))*(y1-(y2+1));
 
-                              data[0] = (c >> 8);
-                              data[1] = (c);
+    //#ifdef USE_COLOR_RGB565 // 16-bit colour 5*Red-6*Green-5*Blue
+       lower.v8[1]= (c >> 8);
+       lower.v8[3] = ~(lower.v8[1]);
+       upper.v8[1]= (c);
+       upper.v8[3]= ~(upper.v8[1]);
+	//#endif
 
-    for (loopx = x1; loopx < x2 + 1; loopx++)
-    {
-        for (loopy = y1; loopy < y2 + 1; loopy++)
-        {
-#ifdef USE_COLOR_RGB888 // 24-bit colour 8*Red-8*Green-8*Blue
-
-        	uint8_t data[3];
-
-            data[0] = (c >> 16);
-            data[1] = (c >> 8);
-            data[2] = (c);
-
-            Display_WriteMultiData(data, 3);
-#endif
-#ifdef USE_COLOR_RGB565 // 16-bit colour 5*Red-6*Green-5*Blue
-
-
-            Display_WriteMultiData(data, 2);
-#endif
-        }
-    }
+       GPIOA->BSRR |= 0x00000800;
+       do{
+    //	GPIOB->ODR &=0x000000ff;
+    //	GPIOB->ODR |=(y.v32);
+    	   GPIOB->BSRR = lower.v8[3]<<24;
+    	   GPIOB->BSRR = lower.v8[1]<<8;
+    	GPIOA->BSRR |= 0x01000000;
+    	GPIOA->BSRR |= 0x00000100;
+//    	GPIOB->ODR &=0x000000ff;
+//    	GPIOB->ODR |=(x.v32);
+    	GPIOB->BSRR = upper.v8[3]<<24;
+    	GPIOB->BSRR = upper.v8[1]<<8;
+        GPIOA->BSRR |= 0x01000000;
+        GPIOA->BSRR |= 0x00000100;
+       }while(--(do_loop)!=0);
 
     return UG_RESULT_OK;
 }
