@@ -65,12 +65,27 @@ void convert_ADC(float* current1, float* current2, float* voltagein, float* volt
 		HAL_I2C_Mem_Read(&hi2c1, SW3516_address, PWR_STATUS, I2C_MEMADD_SIZE_8BIT, &reg_value, 1, 10000);
 		sw3516_current.status_USBC = reg_value & 0x01;
 		sw3516_current.status_USBA = reg_value & 0x02;
-		sw3516_current.time_in_secs++;
+		HAL_I2C_Mem_Read(&hi2c1, SW3516_address, FCX_STATUS, I2C_MEMADD_SIZE_8BIT, &reg_value, 1, 10000);
+		sw3516_current.charging_protocol = reg_value & 0xF;
+
+		if(sw3516_current.status_USBA && sw3516_current.currentA>0 ){
+
+			sw3516_current.time_in_secs_A++;
+
+		}
+		else{	sw3516_current.time_in_secs_A=0;}
+
+		if(sw3516_current.status_USBC && sw3516_current.currentC>0 ){
+
+					sw3516_current.time_in_secs_C++;
+
+				}
+				else{	sw3516_current.time_in_secs_C=0;}
 }
 
 
 void sw3516_read(){
-
+	//sw3516_previous= sw3516_current;
 	convert_ADC(&sw3516_current.currentA, &sw3516_current.currentC, &sw3516_current.voltagein, &sw3516_current.voltageout, &sw3516_current.temperature);
 
 }

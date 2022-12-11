@@ -32,6 +32,7 @@
 //
 //}msg_id_page_3;
 
-void usb_charging_page_msg(void );
+void usb_charging_page_msg(void);
+void usb_charging_page_msg(void);
 
 #endif /* INC_LCD_CALLBACK_H_ */

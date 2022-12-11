@@ -55,8 +55,9 @@ struct SW3516_converted_values {
 			float temperature;
 			bool status_USBA;
 			bool status_USBC;
-			unsigned long time_in_secs;
-
+			unsigned long time_in_secs_A;
+			unsigned long time_in_secs_C;
+			uint8_t charging_protocol;
 };
 
 extern  struct SW3516_ADC_data sw3516_current_ADC;
