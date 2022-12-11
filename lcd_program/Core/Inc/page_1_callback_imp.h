@@ -18,3 +18,4 @@
 void window_page_1_callback(UG_MESSAGE *msg);
 
 #endif /* INC_PAGE_1_CALLBACK_IMP_H_ */
+
