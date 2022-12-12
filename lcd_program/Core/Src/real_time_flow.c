@@ -62,9 +62,10 @@ void event_base_prog_flow(){
 
 	if(key_update_._flag==1){
 
-
-
+		menu_flow(button_press_state);
+		button_press_state=0;
 		key_update_._flag=0;
+		start_external_interupt_button();
 	}
 
 

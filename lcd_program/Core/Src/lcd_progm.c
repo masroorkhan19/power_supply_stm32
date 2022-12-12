@@ -9,6 +9,13 @@
 #include "stm32f1xx_hal.h"
 #include "stdio.h"
 #include "buck_convertor.h"
+#include "menu.h"
+
+
+
+
+
+
  uint8_t current_page=0;
 UG_COLOR color[3]= {C_RED, C_GREEN, C_BLUE};
 char bufferOut[BuffOUT];
@@ -225,11 +232,11 @@ void Page_logo(void){
 
  		 	    UG_WindowShow(&window_page_4);
  		 	  UG_Update();
-	 	 	 	UG_WindowShow(&window_page_4_tab_1);
+
 	 	 	 //	UG_WindowShow(&window_page_4_tab_2);
 	 	 	 	//UG_WindowShow(&window_page_4_tab_3);
 
-	 	 	 	UG_Update();
+
 
  		 	    UG_DrawLine(104, 23, 104, 239, C_WHITE);
  		 	    UG_DrawLine(0, 95, 104, 95, C_WHITE);
@@ -238,6 +245,22 @@ void Page_logo(void){
 
  }
 
+ void page_4_tab1(void){
+	UG_WindowShow(&window_page_4_tab_1);
+	 UG_Update();
+
+ }
+
+ void page_4_tab2(void){
+	UG_WindowShow(&window_page_4_tab_2);
+	 UG_Update();
+
+ }
+ void page_4_tab3(void){
+	UG_WindowShow(&window_page_4_tab_3);
+	 UG_Update();
+
+ }
 
 
 
@@ -265,6 +288,29 @@ void begin(void){
 				UG_TextboxSetForeColor(&LOGO, TXB_ID_1, C_BLACK);
 				UG_TextboxSetText(&LOGO, TXB_ID_1, "WD-02");
 				UG_TextboxShow(&LOGO, TXB_ID_1);
+
+//				configuring key menu structure for logo page
+
+				menu_window[0].window_page = &LOGO;
+				menu_window[0].window_sub_tab_state = sub_tabe_not_avialable;
+				menu_window[0].main_window_number_of_settable_id=0;
+				menu_window[0].number_of_sub_window=0;
+				for(int i=0;i<3;i++){
+				menu_window[0].sub_window_pages_address[i]=NULL;
+				menu_window[0].sub_window[i]._number_of_settable_id=0;
+				for(int j=0;j<10;j++){
+
+					menu_window[0].sub_window[i]._id_location[j]=no_id_avialable;
+				}
+				}
+				for(int z=0;z<10;z++){
+
+					menu_window[0].window_settable_location_id[z]=no_id_avialable;
+				}
+
+
+
+
 	//Page 1
 				UG_WindowCreate(&window_page_1, obj_buff_window_page_1, MAX_OBJECTS_WIN_PAGE_1, window_page_1_callback);
 		 	    UG_WindowSetStyle(&window_page_1, WND_STYLE_2D | WND_STYLE_HIDE_TITLE);
@@ -346,6 +392,24 @@ void begin(void){
 		 	    UG_TextboxSetForeColor(&window_page_1, TXB_ID_8, C_BLACK);
 		 	    UG_TextboxSetText(&window_page_1, TXB_ID_8, "0.000A");
 		 	    UG_TextboxShow(&window_page_1, TXB_ID_8);
+//				configuring key menu structure for logo page
+
+			menu_window[1].window_page = &window_page_1;
+			menu_window[1].window_sub_tab_state = sub_tabe_not_avialable;
+			menu_window[1].main_window_number_of_settable_id=0;
+			menu_window[1].number_of_sub_window=0;
+			for(int i=0;i<3;i++){
+			menu_window[1].sub_window_pages_address[i]=NULL;
+			menu_window[1].sub_window[i]._number_of_settable_id=0;
+			for(int j=0;j<10;j++){
+
+				menu_window[1].sub_window[i]._id_location[j]=no_id_avialable;
+			}
+			}
+			for(int z=0;z<10;z++){
+
+				menu_window[1].window_settable_location_id[z]=no_id_avialable;
+			}
 	//Page 2
 	 	 	 	UG_WindowCreate(&window_page_2, obj_buff_window_page_2, MAX_OBJECTS_WIN_PAGE_2, window_page_2_callback);
 		 	    UG_WindowSetStyle(&window_page_2, WND_STYLE_2D | WND_STYLE_HIDE_TITLE);
@@ -524,6 +588,23 @@ void begin(void){
 		 	    UG_TextboxSetForeColor(&window_page_2, TXB_ID_23, C_BLACK);
 		 	    UG_TextboxSetText(&window_page_2, TXB_ID_23, "OK");
 		 	  	UG_TextboxShow(&window_page_2, TXB_ID_23);
+//				configuring key menu structure for  page 2
+
+			menu_window[2].window_page = &window_page_2;
+			menu_window[2].window_sub_tab_state = sub_tabe_not_avialable;
+			menu_window[2].main_window_number_of_settable_id=3;
+			menu_window[2].number_of_sub_window=0;
+			for(int i=0;i<3;i++){
+			menu_window[2].sub_window_pages_address[i]=NULL;
+			menu_window[2].sub_window[i]._number_of_settable_id=0;
+			for(int j=0;j<10;j++){
+
+				menu_window[2].sub_window[i]._id_location[j]=no_id_avialable;
+			}
+			}
+				menu_window[2].window_settable_location_id[0]=TXB_ID_16;
+				menu_window[2].window_settable_location_id[1]=TXB_ID_19;
+				menu_window[2].window_settable_location_id[2]=TXB_ID_23;
 
 	 //page 3
 				UG_WindowCreate(&window_page_3, obj_buff_window_page_3, MAX_OBJECTS_WIN_PAGE_3, window_page_3_callback);
@@ -778,6 +859,21 @@ void begin(void){
 				UG_TextboxSetBackColor(&window_page_3, TXB_ID_26, C_LIGHT_SLATE_GRAY);
 				UG_TextboxSetForeColor(&window_page_3, TXB_ID_26, C_WHITE_SMOKE);
 				UG_TextboxShow(&window_page_3, TXB_ID_26);
+//				configuring key menu structure for  page 2
+
+				menu_window[3].window_page = &window_page_3;
+				menu_window[3].window_sub_tab_state = sub_tabe_not_avialable;
+				menu_window[3].main_window_number_of_settable_id=1;
+				menu_window[3].number_of_sub_window=0;
+				for(int i=0;i<3;i++){
+				menu_window[3].sub_window_pages_address[i]=NULL;
+				menu_window[3].sub_window[i]._number_of_settable_id=0;
+				for(int j=0;j<10;j++){
+
+					menu_window[3].sub_window[i]._id_location[j]=no_id_avialable;
+				}
+				}
+					menu_window[3].window_settable_location_id[0]=TXB_ID_18;
 
 //Page 4
 				UG_WindowCreate(&window_page_4, obj_buff_window_page_4, MAX_OBJECTS_WIN_PAGE_4, window_page_4_callback);
@@ -1067,6 +1163,36 @@ void begin(void){
 //				UG_TextboxSetForeColor(&window_page_4, TXB_ID_2, C_WHITE);
 //				UG_TextboxSetText(&window_page_4, TXB_ID_2, "Version: V-1.01");
 //				UG_TextboxShow(&window_page_4, TXB_ID_2);
+
+
+//				configuring key menu structure for  page 2
+
+				menu_window[4].window_page = &window_page_4;
+				menu_window[4].window_sub_tab_state = sub_tab_avialable;
+				menu_window[4].main_window_number_of_settable_id=3;
+				menu_window[4].number_of_sub_window=3;
+
+				menu_window[4].sub_window_pages_address[0]=&window_page_4_tab_1;
+				menu_window[4].sub_window_pages_address[1]=&window_page_4_tab_2;
+				menu_window[4].sub_window_pages_address[2]=&window_page_4_tab_3;
+				menu_window[4].sub_window[0]._number_of_settable_id=4;
+				menu_window[4].sub_window[0]._id_location[0]=TXB_ID_3;
+				menu_window[4].sub_window[0]._id_location[1]=TXB_ID_5;
+				menu_window[4].sub_window[0]._id_location[2]=TXB_ID_9;
+				menu_window[4].sub_window[0]._id_location[3]=TXB_ID_11;
+
+				for(int i=1;i<3;i++){
+				menu_window[4].sub_window[i]._number_of_settable_id=0;
+				for(int j=0;j<10;j++){
+
+					menu_window[4].sub_window[i]._id_location[j]=no_id_avialable;
+				}
+				}
+
+					menu_window[4].window_settable_location_id[0]=TXB_ID_0;
+					menu_window[4].window_settable_location_id[1]=TXB_ID_1;
+					menu_window[4].window_settable_location_id[2]=TXB_ID_2;
+
 }
 
 
@@ -1079,7 +1205,72 @@ void window_page_4_tab_2_callback(UG_MESSAGE *msg){}
 void window_page_4_tab_3_callback(UG_MESSAGE *msg){}
 
 
+void main_window_load(uint8_t page_no){
 
+	switch(page_no){
+
+	case 0:
+	{
+		Page_logo();
+		break;}
+	case 1:
+	{
+		Page_1();
+		break;
+	}
+	case 2:
+	{
+		Page_2();
+		break;
+	}
+	case 3:
+	{
+		Page_3();
+		break;
+	}
+	case 4:
+	{
+		Page_4();
+		break;
+	}
+	default:
+	{
+
+	}
+
+	}
+
+
+}
+
+void sub_menu_window_load(uint8_t sub_page_no){
+
+
+	switch(sub_page_no){
+
+	case 0:
+	{
+		page_4_tab1();
+		break;}
+	case 1:
+	{
+		page_4_tab2();
+	}
+	case 2:
+	{
+		page_4_tab3();
+	}
+	default:
+	{
+
+	}
+
+	}
+
+
+
+
+}
 
 
 

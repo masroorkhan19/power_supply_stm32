@@ -24,7 +24,7 @@ usb_status_ usb_status_C={false};
 void usb_charging_page_msg( ){
 	UG_MESSAGE page_msg={2,2,0,0,&obj_buff_window_page_3};
 
-if(guiST7735.active_window == &window_page_3){
+if(guiST7735.active_window == menu_.current_window.window_page){
 
 	if(sw3516_current.charging_protocol != sw3516_previous.charging_protocol){
 			page_msg.event =2;

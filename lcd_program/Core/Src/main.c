@@ -135,7 +135,7 @@ pid_intialize();
   Display_Init();
   begin();
 
-
+  menu_initialization();
 
 
  //Page_logo();
@@ -143,7 +143,7 @@ pid_intialize();
 //Page_1();
 //Page_2();
 //Page_3();
-  Page_4();
+//Page_4();
 
  HAL_TIM_Base_Start_IT(&htim2);
   HAL_TIM_Base_Start_IT(&htim1);
