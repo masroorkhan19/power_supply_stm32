@@ -13,11 +13,12 @@
 #include "ugui.h"
 #include "page_3_callback_imp.h"
 #include "SW3516.h"
+#include "menu.h"
 
 #define MAX_OBJECTS 					10
 #define MAX_OBJECTS_WIN_PAGE_LOGO 		10
 #define MAX_OBJECTS_WIN_PAGE_1 			20
-#define MAX_OBJECTS_WIN_PAGE_2 			20
+#define MAX_OBJECTS_WIN_PAGE_2 			24
 #define MAX_OBJECTS_WIN_PAGE_3 			27
 #define MAX_OBJECTS_WIN_PAGE_4 			37
 #define MAX_OBJECTS_WIN_PAGE_4_TAB_1 	20
@@ -180,6 +181,19 @@ extern const uint16_t Sound_Image [512];
 extern const UG_BMP logo_USBB;
 extern const uint16_t USBB_Image [760];
 
+//key window structure
+
+
+
+
+
+
+
+
+
+
+
+
 
 extern UG_COLOR color[3];
 void begin(void);
@@ -196,5 +210,6 @@ void window_page_4_callback(UG_MESSAGE *msg);
 void window_page_4_tab_1_callback(UG_MESSAGE *msg);
 void window_page_4_tab_2_callback(UG_MESSAGE *msg);
 void window_page_4_tab_3_callback(UG_MESSAGE *msg);
-
+void main_window_load(uint8_t page_no);
+void sub_menu_window_load(uint8_t sub_page_no);
 #endif /* INC_LCD_PROGM_H_ */

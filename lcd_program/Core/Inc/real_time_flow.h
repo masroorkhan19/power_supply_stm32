@@ -10,6 +10,7 @@
 #include "stdbool.h"
 #include "main.h"
 #include "KEYS.h"
+#include "menu.h"
 extern TIM_HandleTypeDef htim1;
 #define lcd_update_timer_value  500 // timer 1 is set at 0.002 sec setting 500 will make 1 sec update rate
 #define sw3516_update_timer_value 500

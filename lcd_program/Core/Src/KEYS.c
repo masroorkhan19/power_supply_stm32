@@ -11,6 +11,7 @@
 TIM_HandleTypeDef htim4;
 uint8_t state=1;
 uint8_t counter=0;
+uint8_t button_press_state;
 
 
 void start_external_interupt_button(){
@@ -47,28 +48,29 @@ void button_debouncing_delay(){
 	if((HAL_GPIO_ReadPin(KEY1_GPIO_Port, KEY1_Pin) == GPIO_PIN_RESET) || (HAL_GPIO_ReadPin(KEY2_GPIO_Port, KEY2_Pin) == GPIO_PIN_RESET) || (HAL_GPIO_ReadPin(KEY3_GPIO_Port, KEY3_Pin) == GPIO_PIN_RESET) ||  (HAL_GPIO_ReadPin(KEY4_GPIO_Port, KEY4_Pin) == GPIO_PIN_RESET) || (HAL_GPIO_ReadPin(KEY5_GPIO_Port, KEY5_Pin) == GPIO_PIN_RESET) ||  (HAL_GPIO_ReadPin(KEY6_GPIO_Port, KEY6_Pin) == GPIO_PIN_RESET)){
 	if (HAL_GPIO_ReadPin(KEY1_GPIO_Port, KEY1_Pin) == GPIO_PIN_RESET){
 
-
+		button_press_state=key1_press;
 	}
 	if (HAL_GPIO_ReadPin(KEY2_GPIO_Port, KEY2_Pin) == GPIO_PIN_RESET){
 
 
-
+		button_press_state=key2_press;
 	}
 	if (HAL_GPIO_ReadPin(KEY3_GPIO_Port, KEY3_Pin) == GPIO_PIN_RESET){
 
 
-
+		button_press_state=key3_press;
 	}
 	if (HAL_GPIO_ReadPin(KEY4_GPIO_Port, KEY4_Pin) == GPIO_PIN_RESET){
 
 
-
+		button_press_state=key4_press;
 	}
 	if (HAL_GPIO_ReadPin(KEY5_GPIO_Port, KEY5_Pin) == GPIO_PIN_RESET){
 
-
+		button_press_state=key5_press;
 	}
 	if (HAL_GPIO_ReadPin(KEY6_GPIO_Port, KEY6_Pin) == GPIO_PIN_RESET){
+//		button_press_state=key6_press;
 //		HAL_TIM_Base_Stop_IT(&htim4);
 //		state = 1;
 //		counter++;
