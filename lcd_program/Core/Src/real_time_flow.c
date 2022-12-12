@@ -8,9 +8,11 @@
 #include "pid_with_adc_read.h"
 #include "SW3516.h"
 #include "pid.h"
-struct _update_real   lcd_update_,sw3516_update_,adc_update_={0,0};
+#include "lcd_progm.h"
+struct _update_real   lcd_update_,sw3516_update_,adc_update_,key_update_={0,0};
 
 TIM_HandleTypeDef htim1;
+
 
 void program_flow(){
 
@@ -30,13 +32,41 @@ void program_flow(){
 	}
 	if(lcd_update_._flag==1){
 
+		switch(current_page){
+		case 1:
 		usb_charging_page_msg();
+		break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		default :
+		{}
+
+		}
 		lcd_update_._flag=0;
 
 
 	}
 	HAL_TIM_Base_Start_IT(&htim1);
     }
+
+}
+
+
+void event_base_prog_flow(){
+
+	if(key_update_._flag==1){
+
+
+
+		key_update_._flag=0;
+	}
+
 
 }
 

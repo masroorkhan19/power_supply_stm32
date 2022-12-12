@@ -21,10 +21,10 @@ struct _update_real{
 
 };
 
-extern struct _update_real   lcd_update_,sw3516_update_,adc_update_;
+extern struct _update_real   lcd_update_,sw3516_update_,adc_update_,key_update_;
 
 
 
 void program_flow();
-
+ void event_base_prog_flow();
 #endif /* INC_REAL_TIME_FLOW_H_ */

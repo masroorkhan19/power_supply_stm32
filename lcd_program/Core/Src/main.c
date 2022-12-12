@@ -139,11 +139,11 @@ pid_intialize();
 
 
  //Page_logo();
-//  Page_0();
-  //Page_1();
-//  Page_2();
-  Page_3();
-
+// Page_0();
+//Page_1();
+//Page_2();
+//Page_3();
+  Page_4();
 
  HAL_TIM_Base_Start_IT(&htim2);
   HAL_TIM_Base_Start_IT(&htim1);
@@ -156,6 +156,11 @@ HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
 
  // HAL_TIM_Base_Start_IT(&htim2);
 HAL_TIM_Encoder_Start(&htim2, TIM_CHANNEL_ALL);
+
+// code
+start_external_interupt_button();
+
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -174,15 +179,15 @@ HAL_TIM_Encoder_Start(&htim2, TIM_CHANNEL_ALL);
 //		  usb_charging_page_msg();
 //		  read_sw3516_flag=0;
 //	  }
-	  Encoder_Ticks();
+//	  Encoder_Ticks();
 
 
 
 //	  if(read_sw3516_flag){
 
 
-	  program_flow();
-
+	  	program_flow();
+		event_base_prog_flow();
     //
 //	  Page_logo();
 //
@@ -634,16 +639,16 @@ static void MX_GPIO_Init(void)
 
   /* EXTI interrupt init*/
   HAL_NVIC_SetPriority(EXTI3_IRQn, 0, 0);
-  HAL_NVIC_EnableIRQ(EXTI3_IRQn);
+ // HAL_NVIC_EnableIRQ(EXTI3_IRQn);
 
   HAL_NVIC_SetPriority(EXTI4_IRQn, 0, 0);
-  HAL_NVIC_EnableIRQ(EXTI4_IRQn);
+ // HAL_NVIC_EnableIRQ(EXTI4_IRQn);
 
   HAL_NVIC_SetPriority(EXTI9_5_IRQn, 0, 0);
-  HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
+ // HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
 
   HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 0);
-  HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
+ // HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
 
 }
 
