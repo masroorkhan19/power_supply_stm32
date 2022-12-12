@@ -28,7 +28,7 @@
 #define XSIZE_PHYS  320 // To be adapted to x-screen size
 #define YSIZE_PHYS  240 // To be adapted to y-screen size
 extern char char_buffer[16];
-
+extern uint8_t current_page;
 //
 //typedef struct
 //{

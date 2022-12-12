@@ -9,7 +9,7 @@
 #include "stm32f1xx_hal.h"
 #include "stdio.h"
 #include "buck_convertor.h"
-
+ uint8_t current_page=0;
 UG_COLOR color[3]= {C_RED, C_GREEN, C_BLUE};
 char bufferOut[BuffOUT];
 char char_buffer[16];
@@ -155,6 +155,7 @@ void Page_logo(void){
 		 	    UG_WindowShow(&LOGO);
 		 	    UG_Update();
 		 	    UG_DrawLine(105, 79, 221, 79, C_AQUA);
+		 	    current_page=0;
 }
 
  void Page_1(void){
@@ -193,6 +194,7 @@ void Page_logo(void){
 	 	 	    for(int i=0;i<4;i++){
 	 	 	   	 	 UG_DrawLine(5, 180+i, 315, 180+i, C_GREEN);
 	 	 	   	}
+	 	 	  current_page=1;
  }
 
  void Page_2(){
@@ -203,6 +205,7 @@ void Page_logo(void){
 	 	        UG_DrawLine(205, 0, 205, 239, C_WHITE);
 	 	   	  	UG_DrawLine(205, 35, 319, 35, C_WHITE);
 	 	   	  	UG_DrawLine(205, 140, 319, 140, C_WHITE);
+	 	   	 current_page=2;
  }
 
 
@@ -215,14 +218,15 @@ void Page_logo(void){
 	 	 	   	UG_DrawLine(0, 32, 319, 32, C_WHITE);
 	  	 	 	UG_DrawLine(160, 32, 160, 196, C_WHITE);
 	  	 	   	UG_DrawLine(0, 196, 319, 196, C_WHITE);
-
+	  	 	 current_page=3;
  }
 
  void Page_4(void){
 
  		 	    UG_WindowShow(&window_page_4);
+ 		 	  UG_Update();
 	 	 	 	UG_WindowShow(&window_page_4_tab_1);
-	 	 	 	//UG_WindowShow(&window_page_4_tab_2);
+	 	 	 //	UG_WindowShow(&window_page_4_tab_2);
 	 	 	 	//UG_WindowShow(&window_page_4_tab_3);
 
 	 	 	 	UG_Update();
@@ -230,7 +234,7 @@ void Page_logo(void){
  		 	    UG_DrawLine(104, 23, 104, 239, C_WHITE);
  		 	    UG_DrawLine(0, 95, 104, 95, C_WHITE);
  		 	    UG_DrawLine(0, 167, 104, 167, C_WHITE);
-
+ 		 	  current_page=4;
 
  }
 
@@ -778,6 +782,7 @@ void begin(void){
 //Page 4
 				UG_WindowCreate(&window_page_4, obj_buff_window_page_4, MAX_OBJECTS_WIN_PAGE_4, window_page_4_callback);
 				UG_WindowSetStyle(&window_page_4, WND_STYLE_2D | WND_STYLE_SHOW_TITLE);
+				UG_WindowResize(&window_page_4, 0, 0, 319, 239);
 				UG_WindowSetBackColor(&window_page_4, C_BLACK);
 
 				UG_WindowSetTitleColor(&window_page_4, C_BLACK); //title ending line is 22 pixel in height
@@ -786,7 +791,7 @@ void begin(void){
 				UG_WindowSetTitleText(&window_page_4,"Settings");
 				UG_WindowSetTitleTextFont(&window_page_4,&FONT_12X20);
 
-				UG_TextboxCreate(&window_page_4, &textbox_page4_tab_1_heading, TXB_ID_0, 1,1,102,70);
+				UG_TextboxCreate(&window_page_4, &textbox_page4_tab_1_heading, TXB_ID_0, 0,0,102,70);
 				UG_TextboxSetFont(&window_page_4, TXB_ID_0, &FONT_12X20);
 				UG_TextboxSetAlignment(&window_page_4, TXB_ID_0, ALIGN_CENTER_LEFT);
 				UG_TextboxSetBackColor(&window_page_4, TXB_ID_0, 	C_YELLOW);
@@ -794,7 +799,7 @@ void begin(void){
 				UG_TextboxSetText(&window_page_4, TXB_ID_0, "Power\nSupply\nConfig");
 				UG_TextboxShow(&window_page_4, TXB_ID_0);
 
-				UG_TextboxCreate(&window_page_4, &textbox_page4_tab_2_heading, TXB_ID_1, 1,73,102,142);
+				UG_TextboxCreate(&window_page_4, &textbox_page4_tab_2_heading, TXB_ID_1, 0,73,102,142);
 				UG_TextboxSetFont(&window_page_4, TXB_ID_1, &FONT_12X20);
 				UG_TextboxSetAlignment(&window_page_4, TXB_ID_1, ALIGN_CENTER_LEFT);
 				UG_TextboxSetBackColor(&window_page_4, TXB_ID_1, 	C_BLACK);
@@ -802,7 +807,7 @@ void begin(void){
 				UG_TextboxSetText(&window_page_4, TXB_ID_1, "System\nConfig");
 				UG_TextboxShow(&window_page_4, TXB_ID_1);
 
-				UG_TextboxCreate(&window_page_4, &textbox_page4_tab_3_heading, TXB_ID_2, 1,146,102,215);
+				UG_TextboxCreate(&window_page_4, &textbox_page4_tab_3_heading, TXB_ID_2, 0,146,102,215);
 				UG_TextboxSetFont(&window_page_4, TXB_ID_2, &FONT_12X20);
 				UG_TextboxSetAlignment(&window_page_4, TXB_ID_2, ALIGN_CENTER_LEFT);
 				UG_TextboxSetBackColor(&window_page_4, TXB_ID_2, 	C_BLACK);
@@ -815,7 +820,7 @@ void begin(void){
 				UG_WindowResize(&window_page_4_tab_1, 106, 23, 319, 239);
 				UG_WindowSetBackColor(&window_page_4_tab_1, C_BLACK);
 
-				UG_TextboxCreate(&window_page_4_tab_1, &textbox_page4_tab_1_v_heading, TXB_ID_1, 120,34,210,50);
+				UG_TextboxCreate(&window_page_4_tab_1, &textbox_page4_tab_1_v_heading, TXB_ID_1, 10,34,80,50);
 				UG_TextboxSetFont(&window_page_4_tab_1, TXB_ID_1, &FONT_10X16);
 				UG_TextboxSetAlignment(&window_page_4_tab_1, TXB_ID_1, ALIGN_CENTER_LEFT);
 				UG_TextboxSetBackColor(&window_page_4_tab_1, TXB_ID_1, 	C_BLACK);
@@ -823,7 +828,7 @@ void begin(void){
 				UG_TextboxSetText(&window_page_4_tab_1, TXB_ID_1, "Voltage");
 				UG_TextboxShow(&window_page_4_tab_1, TXB_ID_1);
 
-				UG_TextboxCreate(&window_page_4_tab_1, &textbox_page4_tab_1_i_heading, TXB_ID_2, 220,34,310,50);
+				UG_TextboxCreate(&window_page_4_tab_1, &textbox_page4_tab_1_i_heading, TXB_ID_2, 130,34,210,50);
 				UG_TextboxSetFont(&window_page_4_tab_1, TXB_ID_2, &FONT_10X16);
 				UG_TextboxSetAlignment(&window_page_4_tab_1, TXB_ID_2, ALIGN_CENTER_LEFT);
 				UG_TextboxSetBackColor(&window_page_4_tab_1, TXB_ID_2, 	C_BLACK);
@@ -831,7 +836,7 @@ void begin(void){
 				UG_TextboxSetText(&window_page_4_tab_1, TXB_ID_2, "Ampere");
 				UG_TextboxShow(&window_page_4_tab_1, TXB_ID_2);
 
-				UG_TextboxCreate(&window_page_4_tab_1, &textbox_page4_tab_1_v_value, TXB_ID_3, 115,55,200,85);
+				UG_TextboxCreate(&window_page_4_tab_1, &textbox_page4_tab_1_v_value, TXB_ID_3, 15,55,80,85);
 				UG_TextboxSetFont(&window_page_4_tab_1, TXB_ID_3, &FONT_12X20);
 				UG_TextboxSetAlignment(&window_page_4_tab_1, TXB_ID_3, ALIGN_CENTER);
 				UG_TextboxSetBackColor(&window_page_4_tab_1, TXB_ID_3, 	C_YELLOW);
@@ -839,7 +844,7 @@ void begin(void){
 				UG_TextboxSetText(&window_page_4_tab_1, TXB_ID_3, "00.00");
 				UG_TextboxShow(&window_page_4_tab_1, TXB_ID_3);
 
-				UG_TextboxCreate(&window_page_4_tab_1, &textbox_page4_tab_1_v_symbol, TXB_ID_4, 201,55,211,85);
+				UG_TextboxCreate(&window_page_4_tab_1, &textbox_page4_tab_1_v_symbol, TXB_ID_4, 80,55,90,85);
 				UG_TextboxSetFont(&window_page_4_tab_1, TXB_ID_4, &FONT_10X16);
 				UG_TextboxSetAlignment(&window_page_4_tab_1, TXB_ID_4, ALIGN_BOTTOM_RIGHT);
 				UG_TextboxSetBackColor(&window_page_4_tab_1, TXB_ID_4, 	C_YELLOW);
@@ -847,15 +852,15 @@ void begin(void){
 				UG_TextboxSetText(&window_page_4_tab_1, TXB_ID_4, "V");
 				UG_TextboxShow(&window_page_4_tab_1, TXB_ID_4);
 
-				UG_TextboxCreate(&window_page_4_tab_1, &textbox_page4_tab_1_i_value, TXB_ID_5, 216,55,301,85);
+				UG_TextboxCreate(&window_page_4_tab_1, &textbox_page4_tab_1_i_value, TXB_ID_5, 135,55,200,85);
 				UG_TextboxSetFont(&window_page_4_tab_1, TXB_ID_5, &FONT_12X20);
 				UG_TextboxSetAlignment(&window_page_4_tab_1, TXB_ID_5, ALIGN_CENTER);
 				UG_TextboxSetBackColor(&window_page_4_tab_1, TXB_ID_5, 	C_YELLOW);
 				UG_TextboxSetForeColor(&window_page_4_tab_1, TXB_ID_5, C_BLACK);
-				UG_TextboxSetText(&window_page_4_tab_1, TXB_ID_5, "0.000");
+				UG_TextboxSetText(&window_page_4_tab_1, TXB_ID_5, "00.00");
 				UG_TextboxShow(&window_page_4_tab_1, TXB_ID_5);
 
-				UG_TextboxCreate(&window_page_4_tab_1, &textbox_page4_tab_1_i_symbol, TXB_ID_6, 302,55,312,85);
+				UG_TextboxCreate(&window_page_4_tab_1, &textbox_page4_tab_1_i_symbol, TXB_ID_6, 200,55,210,85);
 				UG_TextboxSetFont(&window_page_4_tab_1, TXB_ID_6, &FONT_10X16);
 				UG_TextboxSetAlignment(&window_page_4_tab_1, TXB_ID_6, ALIGN_BOTTOM_RIGHT);
 				UG_TextboxSetBackColor(&window_page_4_tab_1, TXB_ID_6, 	C_YELLOW);
@@ -863,7 +868,7 @@ void begin(void){
 				UG_TextboxSetText(&window_page_4_tab_1, TXB_ID_6, "A");
 				UG_TextboxShow(&window_page_4_tab_1, TXB_ID_6);
 
-				UG_TextboxCreate(&window_page_4_tab_1, &textbox_page4_tab_1_w_heading, TXB_ID_7, 120,120,210,140);
+				UG_TextboxCreate(&window_page_4_tab_1, &textbox_page4_tab_1_w_heading, TXB_ID_7, 10,120,70,140);
 				UG_TextboxSetFont(&window_page_4_tab_1, TXB_ID_7, &FONT_10X16);
 				UG_TextboxSetAlignment(&window_page_4_tab_1, TXB_ID_7, ALIGN_CENTER_LEFT);
 				UG_TextboxSetBackColor(&window_page_4_tab_1, TXB_ID_7, 	C_BLACK);
@@ -871,7 +876,7 @@ void begin(void){
 				UG_TextboxSetText(&window_page_4_tab_1, TXB_ID_7, "Watts");
 				UG_TextboxShow(&window_page_4_tab_1, TXB_ID_7);
 
-				UG_TextboxCreate(&window_page_4_tab_1, &textbox_page4_tab_1_t_heading, TXB_ID_8, 220,120,310,140);
+				UG_TextboxCreate(&window_page_4_tab_1, &textbox_page4_tab_1_t_heading, TXB_ID_8, 130,120,180,140);
 				UG_TextboxSetFont(&window_page_4_tab_1, TXB_ID_8, &FONT_10X16);
 				UG_TextboxSetAlignment(&window_page_4_tab_1, TXB_ID_8, ALIGN_CENTER_LEFT);
 				UG_TextboxSetBackColor(&window_page_4_tab_1, TXB_ID_8, 	C_BLACK);
@@ -879,7 +884,7 @@ void begin(void){
 				UG_TextboxSetText(&window_page_4_tab_1, TXB_ID_8, "Temp");
 				UG_TextboxShow(&window_page_4_tab_1, TXB_ID_8);
 
-				UG_TextboxCreate(&window_page_4_tab_1, &textbox_page4_tab_1_w_value, TXB_ID_9, 115,145,195,175);
+				UG_TextboxCreate(&window_page_4_tab_1, &textbox_page4_tab_1_w_value, TXB_ID_9, 15,145,80,175);
 				UG_TextboxSetFont(&window_page_4_tab_1, TXB_ID_9, &FONT_12X20);
 				UG_TextboxSetAlignment(&window_page_4_tab_1, TXB_ID_9, ALIGN_CENTER);
 				UG_TextboxSetBackColor(&window_page_4_tab_1, TXB_ID_9, 	C_YELLOW);
@@ -887,7 +892,7 @@ void begin(void){
 				UG_TextboxSetText(&window_page_4_tab_1, TXB_ID_9, "000.0");
 				UG_TextboxShow(&window_page_4_tab_1, TXB_ID_9);
 
-				UG_TextboxCreate(&window_page_4_tab_1, &textbox_page4_tab_1_w_symbol, TXB_ID_10, 196,145,210,175);
+				UG_TextboxCreate(&window_page_4_tab_1, &textbox_page4_tab_1_w_symbol, TXB_ID_10, 80,145,90,175);
 				UG_TextboxSetFont(&window_page_4_tab_1, TXB_ID_10, &FONT_10X16);
 				UG_TextboxSetAlignment(&window_page_4_tab_1, TXB_ID_10, ALIGN_BOTTOM_RIGHT);
 				UG_TextboxSetBackColor(&window_page_4_tab_1, TXB_ID_10, 	C_YELLOW);
@@ -895,7 +900,7 @@ void begin(void){
 				UG_TextboxSetText(&window_page_4_tab_1, TXB_ID_10, "W");
 				UG_TextboxShow(&window_page_4_tab_1, TXB_ID_10);
 
-				UG_TextboxCreate(&window_page_4_tab_1, &textbox_page4_tab_1_t_value, TXB_ID_11, 215,145,305,175);
+				UG_TextboxCreate(&window_page_4_tab_1, &textbox_page4_tab_1_t_value, TXB_ID_11, 135,145,195,175);
 				UG_TextboxSetFont(&window_page_4_tab_1, TXB_ID_11, &FONT_12X20);
 				UG_TextboxSetAlignment(&window_page_4_tab_1, TXB_ID_11, ALIGN_CENTER);
 				UG_TextboxSetBackColor(&window_page_4_tab_1, TXB_ID_11, 	C_YELLOW);
@@ -903,7 +908,7 @@ void begin(void){
 				UG_TextboxSetText(&window_page_4_tab_1, TXB_ID_11, "50.0");
 				UG_TextboxShow(&window_page_4_tab_1, TXB_ID_11);
 
-				UG_TextboxCreate(&window_page_4_tab_1, &textbox_page4_tab_1_t_symbol, TXB_ID_12, 306,145,318,175);
+				UG_TextboxCreate(&window_page_4_tab_1, &textbox_page4_tab_1_t_symbol, TXB_ID_12, 195,145,205,175);
 				UG_TextboxSetFont(&window_page_4_tab_1, TXB_ID_12, &FONT_10X16);
 				UG_TextboxSetAlignment(&window_page_4_tab_1, TXB_ID_12, ALIGN_BOTTOM_RIGHT);
 				UG_TextboxSetBackColor(&window_page_4_tab_1, TXB_ID_12, 	C_YELLOW);
@@ -913,8 +918,11 @@ void begin(void){
 			//tab 2
 				UG_WindowCreate(&window_page_4_tab_2, obj_buff_window_page_4_tab_2, MAX_OBJECTS_WIN_PAGE_4_TAB_2, window_page_4_tab_2_callback);
 				UG_WindowSetStyle(&window_page_4_tab_2, WND_STYLE_2D | WND_STYLE_HIDE_TITLE);
+				UG_WindowResize(&window_page_4_tab_2, 106, 23, 319, 239);
 				UG_WindowSetBackColor(&window_page_4_tab_2, C_BLACK);
-//
+
+
+				//
 //				UG_TextboxCreate(&window_page_4, &dummy_text_2, TXB_ID_2, 1,73,102,142);
 //				UG_TextboxSetFont(&window_page_4, TXB_ID_2, &FONT_12X20);
 //				UG_TextboxSetAlignment(&window_page_4, TXB_ID_2, ALIGN_CENTER);
@@ -1013,6 +1021,7 @@ void begin(void){
 			//tab 3
 				UG_WindowCreate(&window_page_4_tab_3, obj_buff_window_page_4_tab_3, MAX_OBJECTS_WIN_PAGE_4_TAB_3, window_page_4_tab_3_callback);
 				UG_WindowSetStyle(&window_page_4_tab_3, WND_STYLE_2D | WND_STYLE_HIDE_TITLE);
+				UG_WindowResize(&window_page_4_tab_1, 106, 23, 319, 239);
 				UG_WindowSetBackColor(&window_page_4_tab_3, C_BLACK);
 
 				//logo image

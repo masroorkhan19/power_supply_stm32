@@ -132,7 +132,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc){
 
 void pid_intialize(){
 
-	 PID(&TPID, &(calibrated_buck_para_value.calibrated_buck_voltage_output), &(buck_convertor_current.pwm_out), &(buck_convertor_current.voltageout_set), 2, 5, 1, _PID_P_ON_E, _PID_CD_DIRECT);
+	 PID(&TPID, &calibrated_buck_para_value.calibrated_buck_voltage_output, &buck_convertor_current.pwm_out, &(buck_convertor_current.voltageout_set), 2, 5, 1, _PID_P_ON_E, _PID_CD_DIRECT);
 
 	  PID_SetMode(&TPID, _PID_MODE_AUTOMATIC);
 	  //PID_SetSampleTime(&TPID, 2);
