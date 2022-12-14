@@ -12,8 +12,10 @@
 #include "ugui_ST7789.h"
 #include "ugui.h"
 #include "page_3_callback_imp.h"
+#include "page_2_callback_imp.h"
 #include "SW3516.h"
 #include "menu.h"
+
 
 #define MAX_OBJECTS 					10
 #define MAX_OBJECTS_WIN_PAGE_LOGO 		10
@@ -205,7 +207,7 @@ void Page_4(void);
 
 void window_page_logo_callback(UG_MESSAGE *msg);
 void window_page_1_callback(UG_MESSAGE *msg);
-void window_page_2_callback(UG_MESSAGE *msg);
+
 void window_page_4_callback(UG_MESSAGE *msg);
 void window_page_4_tab_1_callback(UG_MESSAGE *msg);
 void window_page_4_tab_2_callback(UG_MESSAGE *msg);

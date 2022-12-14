@@ -20,7 +20,7 @@ void program_flow(){
 	if(adc_update_._flag==1){
 
 		read_adc_value();
-		PID_Compute(&TPID);
+		//PID_Compute(&TPID);
 		adc_update_._flag=0;
 	}
 
@@ -32,17 +32,17 @@ void program_flow(){
 	}
 	if(lcd_update_._flag==1){
 
-		switch(current_page){
+		switch( menu_.current_page_no){
 		case 1:
-		usb_charging_page_msg();
+
 		break;
 		case 2:
+			buck_page_msg();
 			break;
 		case 3:
+			usb_charging_page_msg();
 			break;
 		case 4:
-			break;
-		case 5:
 			break;
 		default :
 		{}
