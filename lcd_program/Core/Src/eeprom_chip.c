@@ -10,10 +10,12 @@
  eeprom_data max_eeprom_data;
  set_eeprom set_eeprom_data;
 
+ eeprom_data default_eeprom_data = {15, 5, 75, 50, 100};
+ set_eeprom default_set_eeprom_data = {0, 0};
+
  void eeprom_i2c_write(uint8_t data,uint16_t location){
 
 	HAL_I2C_Mem_Write(&hi2c1, eeprom_address, location, I2C_MEMADD_SIZE_8BIT, &data, 1, 10000);
-
 
  }
 
@@ -26,8 +28,8 @@
  void write_eeprom(uint16_t data,parameter_type type ){
 
 	 uint8_t upper_byte,lower_byte;
-	 upper_byte =(uint8_t) data>>8;
-	 lower_byte = data;
+	 upper_byte =(data>>8) & 0xFF;
+	 lower_byte = data & 0xFF;
 		switch(type){
 		case 1:
 		{
@@ -67,6 +69,10 @@
 			eeprom_i2c_write(lower_byte,11);
 			break;
 		}
+		case 7:
+		{
+			eeprom_i2c_write(lower_byte,12);
+		}
 		default:
 		{}
 
@@ -78,7 +84,7 @@
 
 void read_eeprom(parameter_type type){
 
-	uint16_t temperory_value;
+	uint8_t byte_value;
 	uint8_t upper_byte_read,lower_byte_read;
 
 	switch(type){
@@ -124,8 +130,36 @@ void read_eeprom(parameter_type type){
 		set_eeprom_data.current_set_voltage = (uint16_t)upper_byte_read<<8 | lower_byte_read;
 		break;
 	}
+	case 7:
+	{
+		eeprom_i2c_read(&byte_value,12);
+		max_eeprom_data.first_time_initialize_byte = byte_value;
+	}
 	default:
 	{}
 	}
 
+}
+
+void first_time_eeprom_initialize(){
+
+	read_eeprom(7);
+
+	if(max_eeprom_data.first_time_initialize_byte == default_eeprom_data.first_time_initialize_byte){
+		for (int n=1; n<7; n++){
+			read_eeprom(n);
+		}
+	}
+	else{
+
+			write_eeprom(default_eeprom_data.max_voltage,1);
+			write_eeprom(default_eeprom_data.max_current,2);
+			write_eeprom(default_eeprom_data.max_power,3);
+			write_eeprom(default_eeprom_data.max_temp,4);
+			write_eeprom(default_set_eeprom_data.current_set_voltage,5);
+			write_eeprom(default_set_eeprom_data.current_set_current,6);
+			write_eeprom(default_eeprom_data.first_time_initialize_byte,7);
+
+
+	}
 }
