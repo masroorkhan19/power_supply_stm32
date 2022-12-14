@@ -58,6 +58,7 @@ typedef struct {
 	uint8_t current_sub_window_id_no;
 	uint8_t	sub_menu_exit;
 	uint8_t enable_key_state;
+	uint8_t lcd_first_time_load_flage;
 }menu_struct;
 
 extern menu_struct menu_;

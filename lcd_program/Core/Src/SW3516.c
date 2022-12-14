@@ -7,7 +7,7 @@
 
 
 #include "SW3516.h"
-
+#include "KEYS.h"
 
 uint8_t vin_buffer_enable = 1;
 uint8_t vout_buffer_enable = 2;
@@ -23,6 +23,14 @@ uint8_t reg_value;
 struct SW3516_ADC_data sw3516_current_ADC;
 struct SW3516_converted_values sw3516_previous, sw3516_current;
 
+
+void sw3516_status(){
+
+	  if (HAL_I2C_Init(&hi2c1) != HAL_OK)
+	  {
+	    Error_Handler();
+	  }
+}
 
 void write_to_reg(uint8_t reg_address, uint8_t value_to_write){
 
@@ -86,6 +94,11 @@ void convert_ADC(float* current1, float* current2, float* voltagein, float* volt
 
 void sw3516_read(){
 	//sw3516_previous= sw3516_current;
-	convert_ADC(&sw3516_current.currentA, &sw3516_current.currentC, &sw3516_current.voltagein, &sw3516_current.voltageout, &sw3516_current.temperature);
+	if(HAL_I2C_IsDeviceReady(&hi2c1, SW3516_address, 1, 100)!=0){
 
+		sw3516_status();
+			}
+	 stop_external_interupt_button();
+	convert_ADC(&sw3516_current.currentA, &sw3516_current.currentC, &sw3516_current.voltagein, &sw3516_current.voltageout, &sw3516_current.temperature);
+	 start_external_interupt_button();
 }

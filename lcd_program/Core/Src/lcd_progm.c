@@ -160,7 +160,7 @@ UG_OBJECT obj_buff_window_page_4_tab_3[MAX_OBJECTS_WIN_PAGE_4_TAB_3];
 void Page_logo(void){
 
 		 	    UG_WindowShow(&LOGO);
-		 	    UG_Update();
+		 	   UG_Update();
 		 	    UG_DrawLine(105, 79, 221, 79, C_AQUA);
 		 	    current_page=0;
 }
@@ -168,7 +168,7 @@ void Page_logo(void){
  void Page_1(void){
 
 	 	    UG_WindowShow(&window_page_1);
-	 	    UG_Update();
+	 	   UG_Update();
 
 	 	        UG_FillCircle(297,23, 12, C_GREEN);
 
@@ -207,7 +207,8 @@ void Page_logo(void){
  void Page_2(){
 
 		 	    UG_WindowShow(&window_page_2);
-		 		UG_Update();
+		 	   buck_page_msg();
+		 	   UG_Update();
 
 	 	        UG_DrawLine(205, 0, 205, 239, C_WHITE);
 	 	   	  	UG_DrawLine(205, 35, 319, 35, C_WHITE);
@@ -221,7 +222,8 @@ void Page_logo(void){
  void Page_3(){
 
 	 	 	 	UG_WindowShow(&window_page_3);
-	 		 	UG_Update();
+	 	 	  usb_charging_page_msg( );
+	 	 	 UG_Update();
 	 	 	   	UG_DrawLine(0, 32, 319, 32, C_WHITE);
 	  	 	 	UG_DrawLine(160, 32, 160, 196, C_WHITE);
 	  	 	   	UG_DrawLine(0, 196, 319, 196, C_WHITE);
@@ -247,19 +249,19 @@ void Page_logo(void){
 
  void page_4_tab1(void){
 	UG_WindowShow(&window_page_4_tab_1);
-	 UG_Update();
 
+	UG_Update();
  }
 
  void page_4_tab2(void){
 	UG_WindowShow(&window_page_4_tab_2);
-	 UG_Update();
 
+	UG_Update();
  }
  void page_4_tab3(void){
 	UG_WindowShow(&window_page_4_tab_3);
-	 UG_Update();
 
+	UG_Update();
  }
 
 
@@ -438,7 +440,7 @@ void begin(void){
 		  	    UG_TextboxSetAlignment(&window_page_2, TXB_ID_2, ALIGN_CENTER);
 		  	    UG_TextboxSetBackColor(&window_page_2, TXB_ID_2, C_BLACK);
 		  	    UG_TextboxSetForeColor(&window_page_2, TXB_ID_2, C_YELLOW);
-		   	    UG_TextboxSetText(&window_page_2, TXB_ID_2, "24");
+
 		   	    UG_TextboxShow(&window_page_2, TXB_ID_2);
 
 		 	    UG_TextboxCreate(&window_page_2, &textbox_page2_buck_current_t_symbol, TXB_ID_3, 272, 5, 285, 30);
@@ -454,7 +456,7 @@ void begin(void){
 	  	 	    UG_TextboxSetAlignment(&window_page_2, TXB_ID_4, ALIGN_CENTER);
 		 	    UG_TextboxSetBackColor(&window_page_2, TXB_ID_4, C_BLACK);
 		 	    UG_TextboxSetForeColor(&window_page_2, TXB_ID_4, C_WHITE);
-		  	    UG_TextboxSetText(&window_page_2, TXB_ID_4, "00.00");
+
 		  	    UG_TextboxShow(&window_page_2, TXB_ID_4);
 
 		 	    UG_TextboxCreate(&window_page_2, &textbox_page2_buck_current_v_symbol, TXB_ID_5, 182, 31, 200, 71);
@@ -479,7 +481,7 @@ void begin(void){
 		 	    UG_TextboxSetAlignment(&window_page_2, TXB_ID_7, ALIGN_CENTER);
 		 	    UG_TextboxSetBackColor(&window_page_2, TXB_ID_7, C_BLACK);
 		 	    UG_TextboxSetForeColor(&window_page_2, TXB_ID_7, C_WHITE);
-		 	    UG_TextboxSetText(&window_page_2, TXB_ID_7, "0.000");
+
 		 	    UG_TextboxShow(&window_page_2, TXB_ID_7);
 
 		 	    UG_TextboxCreate(&window_page_2, &textbox_page2_buck_current_i_symbol, TXB_ID_8, 182, 112, 200, 152);
@@ -504,7 +506,7 @@ void begin(void){
 		 	    UG_TextboxSetAlignment(&window_page_2, TXB_ID_10, ALIGN_CENTER);
 		 	    UG_TextboxSetBackColor(&window_page_2, TXB_ID_10, C_BLACK);
 		 	    UG_TextboxSetForeColor(&window_page_2, TXB_ID_10, C_WHITE);
-		 	    UG_TextboxSetText(&window_page_2, TXB_ID_10, "200.0");
+
 		 	    UG_TextboxShow(&window_page_2, TXB_ID_10);
 
 		 	    UG_TextboxCreate(&window_page_2, &textbox_page2_buck_current_w_symbol, TXB_ID_11, 182, 193, 200, 233);
@@ -528,7 +530,7 @@ void begin(void){
 		 	  	UG_TextboxSetAlignment(&window_page_2, TXB_ID_16, ALIGN_CENTER);
 		 	  	UG_TextboxSetBackColor(&window_page_2, TXB_ID_16, 	C_YELLOW);
 		 	    UG_TextboxSetForeColor(&window_page_2, TXB_ID_16, C_BLACK);
-		 	    UG_TextboxSetText(&window_page_2, TXB_ID_16, "00.00");
+
 		 	  	UG_TextboxShow(&window_page_2, TXB_ID_16);
 
 		 	    UG_TextboxCreate(&window_page_2, &textbox_page2_buck_set_v_symbol, TXB_ID_17, 291, 60, 314, 80);
@@ -553,7 +555,7 @@ void begin(void){
 		 	  	UG_TextboxSetAlignment(&window_page_2, TXB_ID_19, ALIGN_CENTER);
 		 	  	UG_TextboxSetBackColor(&window_page_2, TXB_ID_19, 	C_YELLOW);
 		 	    UG_TextboxSetForeColor(&window_page_2, TXB_ID_19, C_BLACK);
-		 	    UG_TextboxSetText(&window_page_2, TXB_ID_19, "0.000");
+
 		 	  	UG_TextboxShow(&window_page_2, TXB_ID_19);
 
 		 	    UG_TextboxCreate(&window_page_2, &textbox_page2_buck_set_i_symbol, TXB_ID_20, 291, 110, 314, 130);
@@ -567,7 +569,7 @@ void begin(void){
 		 	    UG_TextboxCreate(&window_page_2, &textbox_page2_buck_cv_status, TXB_ID_21, 210, 145, 259, 188);
 		 	  	UG_TextboxSetFont(&window_page_2, TXB_ID_21, &FONT_12X20);
 		 	  	UG_TextboxSetAlignment(&window_page_2, TXB_ID_21, ALIGN_CENTER);
-		 	  	UG_TextboxSetBackColor(&window_page_2, TXB_ID_21, 	C_YELLOW);
+
 		 	    UG_TextboxSetForeColor(&window_page_2, TXB_ID_21, C_BLACK);
 		 	    UG_TextboxSetText(&window_page_2, TXB_ID_21, "CV");
 		 	  	UG_TextboxShow(&window_page_2, TXB_ID_21);
@@ -584,9 +586,9 @@ void begin(void){
 		 	  	UG_TextboxCreate(&window_page_2, &textbox_page2_buck_ok_status, TXB_ID_23, 210, 193, 314, 233);
 		 	  	UG_TextboxSetFont(&window_page_2, TXB_ID_23, &FONT_24X40);
 		 	  	UG_TextboxSetAlignment(&window_page_2, TXB_ID_23, ALIGN_CENTER);
-		 	  	UG_TextboxSetBackColor(&window_page_2, TXB_ID_23, 	C_GREEN);
+
 		 	    UG_TextboxSetForeColor(&window_page_2, TXB_ID_23, C_BLACK);
-		 	    UG_TextboxSetText(&window_page_2, TXB_ID_23, "OK");
+
 		 	  	UG_TextboxShow(&window_page_2, TXB_ID_23);
 //				configuring key menu structure for  page 2
 
@@ -788,7 +790,7 @@ void begin(void){
 				UG_TextboxSetFont(&window_page_3, TXB_ID_18, &FONT_10X16);
 				UG_TextboxSetAlignment(&window_page_3, TXB_ID_18, ALIGN_CENTER);
 				UG_TextboxSetForeColor(&window_page_3, TXB_ID_18, C_BLACK);
-				UG_TextboxSetText(&window_page_3, TXB_ID_18, "OK");
+
 				UG_TextboxShow(&window_page_3, TXB_ID_18);
 
 				// cv
@@ -1198,7 +1200,7 @@ void begin(void){
 
 
 void window_page_logo_callback(UG_MESSAGE *msg){}
-void window_page_2_callback(UG_MESSAGE *msg){}
+
 void window_page_4_callback(UG_MESSAGE *msg){}
 void window_page_4_tab_1_callback(UG_MESSAGE *msg){}
 void window_page_4_tab_2_callback(UG_MESSAGE *msg){}
@@ -1212,6 +1214,7 @@ void main_window_load(uint8_t page_no){
 	case 0:
 	{
 		Page_logo();
+
 		break;}
 	case 1:
 	{
@@ -1225,6 +1228,7 @@ void main_window_load(uint8_t page_no){
 	}
 	case 3:
 	{
+
 		Page_3();
 		break;
 	}

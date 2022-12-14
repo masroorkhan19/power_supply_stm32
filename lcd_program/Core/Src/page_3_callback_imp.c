@@ -178,12 +178,14 @@ void window_page_3_callback(UG_MESSAGE *msg){
 
 		case 18:   // OK status
 		{
-			if(buck_convertor_current.status_ok ==1){
+			if(buck_convertor_current.buck_on_off ==1){
 				UG_TextboxSetBackColor(&window_page_3, TXB_ID_18, C_GREEN);
+				UG_TextboxSetText(&window_page_3, TXB_ID_18, "ON");
 			}
 			else
 			{
 				UG_TextboxSetBackColor(&window_page_3, TXB_ID_18, C_RED);
+				UG_TextboxSetText(&window_page_3, TXB_ID_18, "OFF");
 			}
 			break;
 		}
@@ -212,7 +214,7 @@ void window_page_3_callback(UG_MESSAGE *msg){
 		case 21:   // buck voltage value
 				{
 					if(buck_convertor_current.buck_on_off){
-						sprintf(char_buffer,"%.02f",(buck_convertor_current.voltageout_output/1000));
+						sprintf(char_buffer,"%.02f",(buck_convertor_current.voltageout_output));
 						UG_TextboxSetText(&window_page_3, TXB_ID_21, char_buffer);
 					}
 					else
@@ -224,7 +226,7 @@ void window_page_3_callback(UG_MESSAGE *msg){
 		case 23:  // buck current value
 				{
 					if(buck_convertor_current.buck_on_off){
-						sprintf(char_buffer,"%.02f",(buck_convertor_current.current_output/1000));
+						sprintf(char_buffer,"%.02f",(buck_convertor_current.current_output));
 						UG_TextboxSetText(&window_page_3, TXB_ID_23, char_buffer);
 					}
 					else
@@ -261,21 +263,6 @@ void window_page_3_callback(UG_MESSAGE *msg){
 
 
 
-//	if((msg->cid[0][0])&0x01) {
-//
-//    HAL_Delay(500);
-//
-//   }
 
-   //   if(msg->cid[1][0]) {
-   //
-   //
-   //
-   //    }
-   //   if(msg->cid[2][0]) {
-   //
-   //
-   //
-   //     }
 
    }

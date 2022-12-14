@@ -54,8 +54,8 @@ ADC_HandleTypeDef hadc1;
 I2C_HandleTypeDef hi2c1;
 
 //TIM_HandleTypeDef htim1;
+
 TIM_HandleTypeDef htim2;
-TIM_HandleTypeDef htim3;
 //TIM_HandleTypeDef htim4;
 
 /* USER CODE BEGIN PV */
@@ -124,7 +124,7 @@ int main(void)
   MX_TIM4_Init();
   /* USER CODE BEGIN 2 */
 
-pid_intialize();
+//pid_intialize();
   SW3516_init();
 
 
@@ -148,11 +148,9 @@ pid_intialize();
  HAL_TIM_Base_Start_IT(&htim2);
   HAL_TIM_Base_Start_IT(&htim1);
 
-  TIM3->CCR1=115;
-  TIM3->CCR2=500;
 
-HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);
-HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);
+
+
 
  // HAL_TIM_Base_Start_IT(&htim2);
 HAL_TIM_Encoder_Start(&htim2, TIM_CHANNEL_ALL);
@@ -188,6 +186,10 @@ start_external_interupt_button();
 
 	  	program_flow();
 		event_base_prog_flow();
+//		if(HAL_I2C_IsDeviceReady(&hi2c1, SW3516_address, 1, 100)!=0){
+//
+//			 MX_I2C1_Init();
+//		}
     //
 //	  Page_logo();
 //
@@ -304,39 +306,39 @@ static void MX_ADC1_Init(void)
   hadc1.Init.DiscontinuousConvMode = DISABLE;
   hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
   hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
-  hadc1.Init.NbrOfConversion = 3;
+  hadc1.Init.NbrOfConversion = 1;
   if (HAL_ADC_Init(&hadc1) != HAL_OK)
   {
     Error_Handler();
   }
 
-  /** Configure Regular Channel
-  */
-  sConfig.Channel = ADC_CHANNEL_2;
-  sConfig.Rank = ADC_REGULAR_RANK_1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
-  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  /** Configure Regular Channel
-  */
-  sConfig.Channel = ADC_CHANNEL_3;
-  sConfig.Rank = ADC_REGULAR_RANK_2;
-  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  /** Configure Regular Channel
-  */
-  sConfig.Channel = ADC_CHANNEL_4;
-  sConfig.Rank = ADC_REGULAR_RANK_3;
-  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
+//  /** Configure Regular Channel
+//  */
+//  sConfig.Channel = ADC_CHANNEL_2;
+//  sConfig.Rank = ADC_REGULAR_RANK_1;
+//  sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
+//  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+//  {
+//    Error_Handler();
+//  }
+//
+//  /** Configure Regular Channel
+//  */
+//  sConfig.Channel = ADC_CHANNEL_3;
+//  sConfig.Rank = ADC_REGULAR_RANK_2;
+//  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+//  {
+//    Error_Handler();
+//  }
+//
+//  /** Configure Regular Channel
+//  */
+//  sConfig.Channel = ADC_CHANNEL_4;
+//  sConfig.Rank = ADC_REGULAR_RANK_3;
+//  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+//  {
+//    Error_Handler();
+//  }
   /* USER CODE BEGIN ADC1_Init 2 */
 
   /* USER CODE END ADC1_Init 2 */
