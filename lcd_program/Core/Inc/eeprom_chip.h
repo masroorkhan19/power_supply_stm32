@@ -11,7 +11,7 @@
 #include "SW3516.h"
 
 
-#define eeprom_address 0xA0
+#define eeprom_address 0x50 << 1
 
 typedef enum {
 
@@ -20,7 +20,8 @@ typedef enum {
 	max_power,
 	max_temp,
 	set_voltage,
-	set_current
+	set_current,
+	first_time_initialize_byte
 
 }parameter_type;
 
@@ -31,7 +32,10 @@ typedef struct {
 	uint16_t max_current;
 	uint16_t max_power;
 	uint16_t max_temp;
+	uint16_t  first_time_initialize_byte;
+
 }eeprom_data;
+
 
 
 typedef struct {
@@ -41,11 +45,10 @@ typedef struct {
 
 }set_eeprom;
 
-
-extern  eeprom_data max_eeprom_data;
+extern  eeprom_data max_eeprom_data, default_eeprom_data;
 extern  set_eeprom set_eeprom_data;
 
-
+void first_time_eeprom_initialize();
 void write_eeprom(uint16_t data,parameter_type type);
 void read_eeprom(parameter_type type);
 
