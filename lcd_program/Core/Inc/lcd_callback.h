@@ -7,7 +7,7 @@
 
 #ifndef INC_LCD_CALLBACK_H_
 #define INC_LCD_CALLBACK_H_
-
+#include "main.h"
 #include "stdbool.h"
 
 #define page_3_charge_type_id 1
@@ -34,5 +34,5 @@
 
 void usb_charging_page_msg(void);
 void buck_page_msg(void);
-
+void setting_page_subwindow_first(uint8_t sub);
 #endif /* INC_LCD_CALLBACK_H_ */

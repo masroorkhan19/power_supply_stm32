@@ -9,19 +9,32 @@
 #include "SW3516.h"
 #include "pid.h"
 #include "lcd_progm.h"
-struct _update_real   lcd_update_,sw3516_update_,adc_update_,key_update_={0,0};
+#include "Encoder.h"
+#include "menu.h"
+struct _update_real   lcd_update_,sw3516_update_,adc_update_,key_update_,encoder_update_={0,0};
 
 TIM_HandleTypeDef htim1;
 
 
 void program_flow(){
 
-    if(adc_update_._flag || sw3516_update_._flag || lcd_update_._flag){
+    if(adc_update_._flag || sw3516_update_._flag || lcd_update_._flag || encoder_update_._flag){
 	if(adc_update_._flag==1){
 
 		read_adc_value();
 		//PID_Compute(&TPID);
 		adc_update_._flag=0;
+	}
+	if(encoder_update_._flag==1){
+		if(encoder_change()){
+		if(menu_.sub_menu_exit || menu_.item_selected_flage || menu_.sub_window_select){
+
+			menu_flow(64);
+
+		}
+		}
+
+		encoder_update_._flag=0;
 	}
 
 	if(sw3516_update_._flag==1){
@@ -43,6 +56,7 @@ void program_flow(){
 			usb_charging_page_msg();
 			break;
 		case 4:
+			//setting_page_msg();
 			break;
 		default :
 		{}
@@ -86,7 +100,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 
 	sw3516_update_._update_timer_counter++;
 	adc_update_._update_timer_counter++;
-
+	encoder_update_._update_timer_counter++;
 	if(lcd_update_._update_timer_counter==lcd_update_timer_value){
 
 		lcd_update_._update_timer_counter=0;
@@ -103,6 +117,13 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 		adc_update_._update_timer_counter=0;
 		adc_update_._flag=1;
 		}
+
+	if(encoder_update_._update_timer_counter== encoder_update_timer_value){
+
+		encoder_update_._update_timer_counter=0;
+		encoder_update_._flag =1;
+	}
+
 	HAL_TIM_Base_Stop_IT(&htim1);
  }
 

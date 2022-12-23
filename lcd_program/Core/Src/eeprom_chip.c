@@ -10,13 +10,18 @@
  eeprom_data max_eeprom_data;
  set_eeprom set_eeprom_data;
 
- eeprom_data default_eeprom_data = {15, 5, 75, 50, 100};
+ eeprom_data default_eeprom_data = {1500, 500, 7500, 5000, 100};
  set_eeprom default_set_eeprom_data = {0, 0};
 
  void eeprom_i2c_write(uint8_t data,uint16_t location){
 
-	HAL_I2C_Mem_Write(&hi2c1, eeprom_address, location, I2C_MEMADD_SIZE_8BIT, &data, 1, 10000);
+	 uint8_t temp;
 
+//	 do{
+	HAL_I2C_Mem_Write(&hi2c1, eeprom_address, location, I2C_MEMADD_SIZE_8BIT, &data, 1, 10000);
+	HAL_Delay(10);
+//	eeprom_i2c_read(&temp, location);
+//	 }while(temp!=data);
  }
 
  void eeprom_i2c_read(uint8_t *rdata,uint16_t location){
@@ -127,7 +132,7 @@ void read_eeprom(parameter_type type){
 	{
 		eeprom_i2c_read(&upper_byte_read,10);
 		eeprom_i2c_read(&lower_byte_read,11);
-		set_eeprom_data.current_set_voltage = (uint16_t)upper_byte_read<<8 | lower_byte_read;
+		set_eeprom_data.current_set_current = (uint16_t)upper_byte_read<<8 | lower_byte_read;
 		break;
 	}
 	case 7:
@@ -143,12 +148,13 @@ void read_eeprom(parameter_type type){
 
 void first_time_eeprom_initialize(){
 
-	read_eeprom(7);
+	read_eeprom(first_time_initialize_byte);
 
 	if(max_eeprom_data.first_time_initialize_byte == default_eeprom_data.first_time_initialize_byte){
 		for (int n=1; n<7; n++){
 			read_eeprom(n);
 		}
+
 	}
 	else{
 
@@ -159,7 +165,38 @@ void first_time_eeprom_initialize(){
 			write_eeprom(default_set_eeprom_data.current_set_voltage,5);
 			write_eeprom(default_set_eeprom_data.current_set_current,6);
 			write_eeprom(default_eeprom_data.first_time_initialize_byte,7);
-
+			for (int n=1; n<7; n++){
+					read_eeprom(n);
+				}
 
 	}
+
+	 read_buck_set_voltage();
+	 read_buck_set_current();
+
+}
+
+
+void read_buck_set_voltage(){
+
+	read_eeprom(5);
+	buck_convertor_current.voltageout_set = (double)set_eeprom_data.current_set_voltage/100;
+}
+
+void write_buck_set_voltage(){
+
+	write_eeprom((uint16_t)((buck_convertor_current.voltageout_set)*100),5);
+
+}
+
+void read_buck_set_current(){
+	read_eeprom(6);
+	buck_convertor_current.current_set =(double) set_eeprom_data.current_set_current/100;
+
+}
+
+void write_buck_set_current(){
+
+	write_eeprom((uint16_t)((buck_convertor_current.current_set)*100),6);
+
 }

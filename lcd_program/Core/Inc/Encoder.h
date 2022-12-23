@@ -18,6 +18,6 @@ extern int32_t difference;
 
 extern int32_t Encoder_Counter;
 
-void Encoder_Ticks();
-
+int8_t Encoder_Ticks_update();
+int8_t encoder_change();
 #endif /* INC_ENCODER_H_ */

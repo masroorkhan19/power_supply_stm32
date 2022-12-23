@@ -248,17 +248,21 @@ void Page_logo(void){
  }
 
  void page_4_tab1(void){
+	 setting_page_subwindow_first(0);
 	UG_WindowShow(&window_page_4_tab_1);
+
 
 	UG_Update();
  }
 
  void page_4_tab2(void){
+	 setting_page_subwindow_first(1);
 	UG_WindowShow(&window_page_4_tab_2);
 
 	UG_Update();
  }
  void page_4_tab3(void){
+	 setting_page_subwindow_first(2);
 	UG_WindowShow(&window_page_4_tab_3);
 
 	UG_Update();
@@ -392,7 +396,7 @@ void begin(void){
 		 	    UG_TextboxSetAlignment(&window_page_1, TXB_ID_8, ALIGN_CENTER);
 		 	    UG_TextboxSetBackColor(&window_page_1, TXB_ID_8, 	C_YELLOW);
 		 	    UG_TextboxSetForeColor(&window_page_1, TXB_ID_8, C_BLACK);
-		 	    UG_TextboxSetText(&window_page_1, TXB_ID_8, "0.000A");
+		 	   UG_TextboxSetText(&window_page_1, TXB_ID_8, "0.000A");
 		 	    UG_TextboxShow(&window_page_1, TXB_ID_8);
 //				configuring key menu structure for logo page
 
@@ -594,7 +598,7 @@ void begin(void){
 
 			menu_window[2].window_page = &window_page_2;
 			menu_window[2].window_sub_tab_state = sub_tabe_not_avialable;
-			menu_window[2].main_window_number_of_settable_id=3;
+			menu_window[2].main_window_number_of_settable_id=2;
 			menu_window[2].number_of_sub_window=0;
 			for(int i=0;i<3;i++){
 			menu_window[2].sub_window_pages_address[i]=NULL;
@@ -606,7 +610,7 @@ void begin(void){
 			}
 				menu_window[2].window_settable_location_id[0]=TXB_ID_16;
 				menu_window[2].window_settable_location_id[1]=TXB_ID_19;
-				menu_window[2].window_settable_location_id[2]=TXB_ID_23;
+				//menu_window[2].window_settable_location_id[2]=TXB_ID_23;
 
 	 //page 3
 				UG_WindowCreate(&window_page_3, obj_buff_window_page_3, MAX_OBJECTS_WIN_PAGE_3, window_page_3_callback);
@@ -939,7 +943,6 @@ void begin(void){
 				UG_TextboxSetAlignment(&window_page_4_tab_1, TXB_ID_3, ALIGN_CENTER);
 				UG_TextboxSetBackColor(&window_page_4_tab_1, TXB_ID_3, 	C_YELLOW);
 				UG_TextboxSetForeColor(&window_page_4_tab_1, TXB_ID_3, C_BLACK);
-				UG_TextboxSetText(&window_page_4_tab_1, TXB_ID_3, "00.00");
 				UG_TextboxShow(&window_page_4_tab_1, TXB_ID_3);
 
 				UG_TextboxCreate(&window_page_4_tab_1, &textbox_page4_tab_1_v_symbol, TXB_ID_4, 80,55,90,85);
@@ -955,7 +958,6 @@ void begin(void){
 				UG_TextboxSetAlignment(&window_page_4_tab_1, TXB_ID_5, ALIGN_CENTER);
 				UG_TextboxSetBackColor(&window_page_4_tab_1, TXB_ID_5, 	C_YELLOW);
 				UG_TextboxSetForeColor(&window_page_4_tab_1, TXB_ID_5, C_BLACK);
-				UG_TextboxSetText(&window_page_4_tab_1, TXB_ID_5, "00.00");
 				UG_TextboxShow(&window_page_4_tab_1, TXB_ID_5);
 
 				UG_TextboxCreate(&window_page_4_tab_1, &textbox_page4_tab_1_i_symbol, TXB_ID_6, 200,55,210,85);
@@ -987,7 +989,6 @@ void begin(void){
 				UG_TextboxSetAlignment(&window_page_4_tab_1, TXB_ID_9, ALIGN_CENTER);
 				UG_TextboxSetBackColor(&window_page_4_tab_1, TXB_ID_9, 	C_YELLOW);
 				UG_TextboxSetForeColor(&window_page_4_tab_1, TXB_ID_9, C_BLACK);
-				UG_TextboxSetText(&window_page_4_tab_1, TXB_ID_9, "000.0");
 				UG_TextboxShow(&window_page_4_tab_1, TXB_ID_9);
 
 				UG_TextboxCreate(&window_page_4_tab_1, &textbox_page4_tab_1_w_symbol, TXB_ID_10, 80,145,90,175);
@@ -1003,7 +1004,6 @@ void begin(void){
 				UG_TextboxSetAlignment(&window_page_4_tab_1, TXB_ID_11, ALIGN_CENTER);
 				UG_TextboxSetBackColor(&window_page_4_tab_1, TXB_ID_11, 	C_YELLOW);
 				UG_TextboxSetForeColor(&window_page_4_tab_1, TXB_ID_11, C_BLACK);
-				UG_TextboxSetText(&window_page_4_tab_1, TXB_ID_11, "50.0");
 				UG_TextboxShow(&window_page_4_tab_1, TXB_ID_11);
 
 				UG_TextboxCreate(&window_page_4_tab_1, &textbox_page4_tab_1_t_symbol, TXB_ID_12, 195,145,205,175);
@@ -1119,7 +1119,7 @@ void begin(void){
 			//tab 3
 				UG_WindowCreate(&window_page_4_tab_3, obj_buff_window_page_4_tab_3, MAX_OBJECTS_WIN_PAGE_4_TAB_3, window_page_4_tab_3_callback);
 				UG_WindowSetStyle(&window_page_4_tab_3, WND_STYLE_2D | WND_STYLE_HIDE_TITLE);
-				UG_WindowResize(&window_page_4_tab_1, 106, 23, 319, 239);
+				UG_WindowResize(&window_page_4_tab_3, 106, 23, 319, 239);
 				UG_WindowSetBackColor(&window_page_4_tab_3, C_BLACK);
 
 				//logo image
@@ -1201,10 +1201,7 @@ void begin(void){
 
 void window_page_logo_callback(UG_MESSAGE *msg){}
 
-void window_page_4_callback(UG_MESSAGE *msg){}
-void window_page_4_tab_1_callback(UG_MESSAGE *msg){}
-void window_page_4_tab_2_callback(UG_MESSAGE *msg){}
-void window_page_4_tab_3_callback(UG_MESSAGE *msg){}
+
 
 
 void main_window_load(uint8_t page_no){
@@ -1259,10 +1256,12 @@ void sub_menu_window_load(uint8_t sub_page_no){
 	case 1:
 	{
 		page_4_tab2();
+		break;
 	}
 	case 2:
 	{
 		page_4_tab3();
+		break;
 	}
 	default:
 	{
