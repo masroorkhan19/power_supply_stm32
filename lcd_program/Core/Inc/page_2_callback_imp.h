@@ -12,5 +12,5 @@
 #include "lcd_progm.h"
 
 void window_page_2_callback(UG_MESSAGE *msg);
-
+void window_page_2_color(uint8_t   , UG_COLOR );
 #endif /* INC_PAGE_2_CALLBACK_IMP_H_ */

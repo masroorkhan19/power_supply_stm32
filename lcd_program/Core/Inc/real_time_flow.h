@@ -14,6 +14,8 @@
 extern TIM_HandleTypeDef htim1;
 #define lcd_update_timer_value  500 // timer 1 is set at 0.002 sec setting 500 will make 1 sec update rate
 #define sw3516_update_timer_value 500
+#define sw3516_update_timer_value 500
+#define encoder_update_timer_value 10
 #define adc_update_timer_value 1
 struct _update_real{
 
@@ -22,7 +24,7 @@ struct _update_real{
 
 };
 
-extern struct _update_real   lcd_update_,sw3516_update_,adc_update_,key_update_;
+extern struct _update_real   lcd_update_,sw3516_update_,adc_update_,key_update_,encoder_update_;
 
 
 

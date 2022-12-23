@@ -11,8 +11,9 @@
 #include "main.h"
 #include "ugui_ST7789.h"
 #include "ugui.h"
-#include "page_3_callback_imp.h"
 #include "page_2_callback_imp.h"
+#include "page_3_callback_imp.h"
+#include "page_4_callback_imp.h"
 #include "SW3516.h"
 #include "menu.h"
 
@@ -208,10 +209,7 @@ void Page_4(void);
 void window_page_logo_callback(UG_MESSAGE *msg);
 void window_page_1_callback(UG_MESSAGE *msg);
 
-void window_page_4_callback(UG_MESSAGE *msg);
-void window_page_4_tab_1_callback(UG_MESSAGE *msg);
-void window_page_4_tab_2_callback(UG_MESSAGE *msg);
-void window_page_4_tab_3_callback(UG_MESSAGE *msg);
+
 void main_window_load(uint8_t page_no);
 void sub_menu_window_load(uint8_t sub_page_no);
 #endif /* INC_LCD_PROGM_H_ */

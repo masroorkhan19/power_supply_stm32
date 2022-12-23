@@ -32,6 +32,7 @@
 #include "pid_with_adc_read.h"
 #include "Encoder.h"
 #include "KEYS.h"
+#include "eeprom_chip.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -129,7 +130,7 @@ int main(void)
 
 
   sw3516_read();
-
+  first_time_eeprom_initialize();
 
 
   Display_Init();

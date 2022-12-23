@@ -275,6 +275,76 @@ if(guiST7735.active_window == &window_page_2  && menu_.lcd_first_time_load_flage
 
 
 
+void setting_page_msg(){
+
+
+//	UG_MESSAGE page_msg={2,2,0,0,&obj_buff_window_page_4};
+//if(menu_.lcd_first_time_load_flage){
+//	uint8_t id_update[17]={0,2,4,25,5,26,6,8,10,12,14,16,18,19,20,21,23};
+//
+//	for(uint8_t i=0;i<17;i++){
+//		page_msg.event =2;
+//				page_msg.sub_id= id_update[i];
+//				 window_page_3_callback(&page_msg);
+//	}
+//
+//}
+if(guiST7735.active_window == &window_page_4_tab_1  ){
+
+
+
+}
+else if(guiST7735.active_window == &window_page_4_tab_2  ){
+
+	menu_.lcd_sub_first_time_load_flage=0;
+
+}
+else if(guiST7735.active_window == &window_page_4_tab_3  ){
+
+	menu_.lcd_sub_first_time_load_flage=0;
+}
+
+}
+
+
+
+
+void setting_page_subwindow_first(uint8_t sub_page){
+
+
+	switch (sub_page){
+	case 0:
+	{
+
+		UG_MESSAGE page_msg={2,2,0,0,&obj_buff_window_page_4_tab_1};
+			if(menu_.lcd_sub_first_time_load_flage){
+				uint8_t id_update[4]={3,5,9,11};
+
+				for(uint8_t i=0;i<4;i++){
+					page_msg.event =2;
+							page_msg.sub_id= id_update[i];
+							window_page_4_tab_1_callback(&page_msg);
+				}
+				menu_.lcd_sub_first_time_load_flage=0;
+			}
+
+	}
+	case 1:
+	{}
+	case 2:
+	{}
+	default:
+	{}
+
+
+	}
+
+
+
+}
+
+
+
 
 
 

@@ -9,7 +9,7 @@
 #define INC_EEPROM_CHIP_H_
 #include "main.h"
 #include "SW3516.h"
-
+#include "buck_convertor.h"
 
 #define eeprom_address 0x50 << 1
 
@@ -51,5 +51,13 @@ extern  set_eeprom set_eeprom_data;
 void first_time_eeprom_initialize();
 void write_eeprom(uint16_t data,parameter_type type);
 void read_eeprom(parameter_type type);
+
+
+void read_buck_set_voltage(void);
+void write_buck_set_voltage(void);
+void read_buck_set_current(void );
+void write_buck_set_current(void );
+
+
 
 #endif /* INC_EEPROM_CHIP_H_ */

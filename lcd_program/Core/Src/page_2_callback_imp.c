@@ -41,13 +41,15 @@ void window_page_2_callback(UG_MESSAGE *msg){
 		}
 		case 16:
 		{
-			sprintf(char_buffer,"%.02f",buck_convertor_current.voltageout_set);
+			if(menu_.item_selected_flage){sprintf(char_buffer,"%.02f",(double)(temperory_content_data)/(double)100);}
+			else{sprintf(char_buffer,"%.02f",(double)(buck_convertor_current.voltageout_set)/(double)100);}
 	 	    UG_TextboxSetText(&window_page_2, TXB_ID_16, char_buffer);
 			break;
 		}
 		case 19:
 		{
-			sprintf(char_buffer,"%.02f",buck_convertor_current.current_set);
+			if(menu_.item_selected_flage){sprintf(char_buffer,"%.02f",(double)(temperory_content_data)/(double)100);}
+			else{sprintf(char_buffer,"%.02f",(double)buck_convertor_current.current_set/(double)100);}
 	 	    UG_TextboxSetText(&window_page_2, TXB_ID_19, char_buffer);
 
 			break;
@@ -95,4 +97,12 @@ void window_page_2_callback(UG_MESSAGE *msg){
 		}
 		}}
 		}
+
+
+void window_page_2_color(uint8_t txb_id  , UG_COLOR color_flag){
+
+	UG_TextboxSetBackColor(&window_page_2, menu_.current_window.window_settable_location_id[txb_id], 	color_flag);
+
+
+}
 
