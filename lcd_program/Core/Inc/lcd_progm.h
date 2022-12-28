@@ -167,7 +167,9 @@ extern UG_TEXTBOX textbox_page4_tab_1_t_symbol;
 //////////////////////Page 4 tab 2 Definitions//////////////////////
 extern UG_WINDOW window_page_4_tab_2;
 extern UG_OBJECT obj_buff_window_page_4_tab_2[MAX_OBJECTS_WIN_PAGE_4_TAB_2];
-
+extern UG_TEXTBOX textbox_page4_tab_2_language_heading;
+extern UG_TEXTBOX textbox_page4_tab_2_language_english_heading;
+extern UG_TEXTBOX textbox_page4_tab_2_language_chinese_heading;
 
 //////////////////////Page 4 tab 3 Definitions//////////////////////
 extern UG_WINDOW window_page_4_tab_3;
