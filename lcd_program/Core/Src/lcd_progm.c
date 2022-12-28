@@ -145,15 +145,25 @@ UG_TEXTBOX textbox_page4_tab_1_t_symbol;
 //////////////////////Page 4 tab 2 Definitions//////////////////////
 UG_WINDOW window_page_4_tab_2;
 UG_OBJECT obj_buff_window_page_4_tab_2[MAX_OBJECTS_WIN_PAGE_4_TAB_2];
-
+UG_TEXTBOX textbox_page4_tab_2_language_heading;
+UG_TEXTBOX textbox_page4_tab_2_language_english_heading;
+UG_TEXTBOX textbox_page4_tab_2_language_chinese_heading;
+UG_TEXTBOX textbox_page4_tab_2_temperature_unit_heading;
+UG_TEXTBOX textbox_page4_tab_2_degree_celsius_heading;
+UG_TEXTBOX textbox_page4_tab_2_degree_fahrenheit_heading;
+UG_TEXTBOX textbox_page4_tab_2_brightness_heading;
+UG_TEXTBOX textbox_page4_tab_2_brightness_bar;
+UG_TEXTBOX textbox_page4_tab_2_volume_heading;
+UG_TEXTBOX textbox_page4_tab_2_volume_bar;
 
 //////////////////////Page 4 tab 3 Definitions//////////////////////
 UG_WINDOW window_page_4_tab_3;
 UG_OBJECT obj_buff_window_page_4_tab_3[MAX_OBJECTS_WIN_PAGE_4_TAB_3];
 
-
-
-
+UG_TEXTBOX textbox_page4_tab_3_website;
+UG_TEXTBOX textbox_page4_tab_3_model;
+UG_TEXTBOX textbox_page4_tab_3_serial;
+UG_TEXTBOX textbox_page4_tab_3_version;
 
 
 
@@ -260,9 +270,13 @@ void Page_logo(void){
 	UG_WindowShow(&window_page_4_tab_2);
 
 	UG_Update();
+
+	UG_DrawFrame(120, 167, 287, 184, C_WHITE);
+	UG_DrawFrame(120, 212, 287, 229, C_WHITE);
+
  }
  void page_4_tab3(void){
-	 setting_page_subwindow_first(2);
+//	 setting_page_subwindow_first(2);
 	UG_WindowShow(&window_page_4_tab_3);
 
 	UG_Update();
@@ -274,7 +288,7 @@ void begin(void){
 	//Logo
 		 		UG_WindowCreate(&LOGO, obj_buff_window_page_logo, MAX_OBJECTS_WIN_PAGE_LOGO, window_page_logo_callback);
 				UG_WindowSetStyle(&LOGO, WND_STYLE_2D | WND_STYLE_HIDE_TITLE);
-				UG_WindowSetBackColor(&LOGO, C_WHITE);
+				UG_WindowSetBackColor(&LOGO, C_BLACK);
 
 				UG_ImageCreate(&LOGO, &image_1, IMG_ID_1,105, 50, 245,74);
 				UG_ImageSetBMP(&LOGO, IMG_ID_1, &logo_FNIRSI);
@@ -1019,153 +1033,127 @@ void begin(void){
 				UG_WindowResize(&window_page_4_tab_2, 106, 23, 319, 239);
 				UG_WindowSetBackColor(&window_page_4_tab_2, C_BLACK);
 
+				UG_TextboxCreate(&window_page_4_tab_2, &textbox_page4_tab_2_language_heading, TXB_ID_0, 10,10,180,30);
+				UG_TextboxSetFont(&window_page_4_tab_2, TXB_ID_0, &FONT_10X16);
+				UG_TextboxSetAlignment(&window_page_4_tab_2, TXB_ID_0, ALIGN_CENTER_LEFT);
+				UG_TextboxSetBackColor(&window_page_4_tab_2, TXB_ID_0,  C_BLACK);
+				UG_TextboxSetForeColor(&window_page_4_tab_2, TXB_ID_0, C_WHITE);
+				UG_TextboxSetText(&window_page_4_tab_2, TXB_ID_0, "Language:");
+				UG_TextboxShow(&window_page_4_tab_2, TXB_ID_0);
 
-				//
-//				UG_TextboxCreate(&window_page_4, &dummy_text_2, TXB_ID_2, 1,73,102,142);
-//				UG_TextboxSetFont(&window_page_4, TXB_ID_2, &FONT_12X20);
-//				UG_TextboxSetAlignment(&window_page_4, TXB_ID_2, ALIGN_CENTER);
-//				UG_TextboxSetBackColor(&window_page_4, TXB_ID_2, 	C_BLACK);
-//				UG_TextboxSetForeColor(&window_page_4, TXB_ID_2, C_WHITE);
-//				UG_TextboxSetText(&window_page_4, TXB_ID_2, "Language");
-//				UG_TextboxShow(&window_page_4, TXB_ID_2);
-//
-//				UG_TextboxCreate(&window_page_4, &dummy_text_2, TXB_ID_2, 1,73,102,142);
-//				UG_TextboxSetFont(&window_page_4, TXB_ID_2, &FONT_12X20);
-//				UG_TextboxSetAlignment(&window_page_4, TXB_ID_2, ALIGN_CENTER);
-//				UG_TextboxSetBackColor(&window_page_4, TXB_ID_2, 	C_BLACK);
-//				UG_TextboxSetForeColor(&window_page_4, TXB_ID_2, C_WHITE);
-//				UG_TextboxSetText(&window_page_4, TXB_ID_2, "CN");
-//				UG_TextboxShow(&window_page_4, TXB_ID_2);
-//
-//				UG_TextboxCreate(&window_page_4, &dummy_text_2, TXB_ID_2, 1,73,102,142);
-//				UG_TextboxSetFont(&window_page_4, TXB_ID_2, &FONT_12X20);
-//				UG_TextboxSetAlignment(&window_page_4, TXB_ID_2, ALIGN_CENTER);
-//				UG_TextboxSetBackColor(&window_page_4, TXB_ID_2, 	C_BLACK);
-//				UG_TextboxSetForeColor(&window_page_4, TXB_ID_2, C_WHITE);
-//				UG_TextboxSetText(&window_page_4, TXB_ID_2, "EN");
-//				UG_TextboxShow(&window_page_4, TXB_ID_2);
-//
-//				UG_TextboxCreate(&window_page_4, &dummy_text_2, TXB_ID_2, 1,73,102,142);
-//				UG_TextboxSetFont(&window_page_4, TXB_ID_2, &FONT_12X20);
-//				UG_TextboxSetAlignment(&window_page_4, TXB_ID_2, ALIGN_CENTER);
-//				UG_TextboxSetBackColor(&window_page_4, TXB_ID_2, 	C_BLACK);
-//				UG_TextboxSetForeColor(&window_page_4, TXB_ID_2, C_WHITE);
-//				UG_TextboxSetText(&window_page_4, TXB_ID_2, "Temperature Unit");
-//				UG_TextboxShow(&window_page_4, TXB_ID_2);
-//
-//				UG_TextboxCreate(&window_page_4, &dummy_text_2, TXB_ID_2, 1,73,102,142);
-//				UG_TextboxSetFont(&window_page_4, TXB_ID_2, &FONT_12X20);
-//				UG_TextboxSetAlignment(&window_page_4, TXB_ID_2, ALIGN_CENTER);
-//				UG_TextboxSetBackColor(&window_page_4, TXB_ID_2, 	C_BLACK);
-//				UG_TextboxSetForeColor(&window_page_4, TXB_ID_2, C_WHITE);
-//				UG_TextboxSetText(&window_page_4, TXB_ID_2, "C");
-//				UG_TextboxShow(&window_page_4, TXB_ID_2);
-//
-//				UG_TextboxCreate(&window_page_4, &dummy_text_2, TXB_ID_2, 1,73,102,142);
-//				UG_TextboxSetFont(&window_page_4, TXB_ID_2, &FONT_12X20);
-//				UG_TextboxSetAlignment(&window_page_4, TXB_ID_2, ALIGN_CENTER);
-//				UG_TextboxSetBackColor(&window_page_4, TXB_ID_2, 	C_BLACK);
-//				UG_TextboxSetForeColor(&window_page_4, TXB_ID_2, C_WHITE);
-//				UG_TextboxSetText(&window_page_4, TXB_ID_2, "F");
-//				UG_TextboxShow(&window_page_4, TXB_ID_2);
-//
-//				UG_TextboxCreate(&window_page_4, &dummy_text_2, TXB_ID_2, 1,73,102,142);
-//				UG_TextboxSetFont(&window_page_4, TXB_ID_2, &FONT_12X20);
-//				UG_TextboxSetAlignment(&window_page_4, TXB_ID_2, ALIGN_CENTER);
-//				UG_TextboxSetBackColor(&window_page_4, TXB_ID_2, 	C_BLACK);
-//				UG_TextboxSetForeColor(&window_page_4, TXB_ID_2, C_WHITE);
-//				UG_TextboxSetText(&window_page_4, TXB_ID_2, "Brightness");
-//				UG_TextboxShow(&window_page_4, TXB_ID_2);
-//
-//				UG_TextboxCreate(&window_page_4, &dummy_text_2, TXB_ID_2, 1,73,102,142);
-//				UG_TextboxSetFont(&window_page_4, TXB_ID_2, &FONT_12X20);
-//				UG_TextboxSetAlignment(&window_page_4, TXB_ID_2, ALIGN_CENTER);
-//				UG_TextboxSetBackColor(&window_page_4, TXB_ID_2, 	C_BLACK);
-//				UG_TextboxSetForeColor(&window_page_4, TXB_ID_2, C_WHITE);
-//				UG_TextboxSetText(&window_page_4, TXB_ID_2, "Brightness Bar");
-//				UG_TextboxShow(&window_page_4, TXB_ID_2);
-//
-//				UG_TextboxCreate(&window_page_4, &dummy_text_2, TXB_ID_2, 1,73,102,142);
-//				UG_TextboxSetFont(&window_page_4, TXB_ID_2, &FONT_12X20);
-//				UG_TextboxSetAlignment(&window_page_4, TXB_ID_2, ALIGN_CENTER);
-//				UG_TextboxSetBackColor(&window_page_4, TXB_ID_2, 	C_BLACK);
-//				UG_TextboxSetForeColor(&window_page_4, TXB_ID_2, C_WHITE);
-//				UG_TextboxSetText(&window_page_4, TXB_ID_2, "Brightness image");
-//				UG_TextboxShow(&window_page_4, TXB_ID_2);
-//
-//				UG_TextboxCreate(&window_page_4, &dummy_text_2, TXB_ID_2, 1,73,102,142);
-//				UG_TextboxSetFont(&window_page_4, TXB_ID_2, &FONT_12X20);
-//				UG_TextboxSetAlignment(&window_page_4, TXB_ID_2, ALIGN_CENTER);
-//				UG_TextboxSetBackColor(&window_page_4, TXB_ID_2, 	C_BLACK);
-//				UG_TextboxSetForeColor(&window_page_4, TXB_ID_2, C_WHITE);
-//				UG_TextboxSetText(&window_page_4, TXB_ID_2, "Volume");
-//				UG_TextboxShow(&window_page_4, TXB_ID_2);
-//
-//				UG_TextboxCreate(&window_page_4, &dummy_text_2, TXB_ID_2, 1,73,102,142);
-//				UG_TextboxSetFont(&window_page_4, TXB_ID_2, &FONT_12X20);
-//				UG_TextboxSetAlignment(&window_page_4, TXB_ID_2, ALIGN_CENTER);
-//				UG_TextboxSetBackColor(&window_page_4, TXB_ID_2, 	C_BLACK);
-//				UG_TextboxSetForeColor(&window_page_4, TXB_ID_2, C_WHITE);
-//				UG_TextboxSetText(&window_page_4, TXB_ID_2, "Volume image");
-//				UG_TextboxShow(&window_page_4, TXB_ID_2);
-//
-//				UG_TextboxCreate(&window_page_4, &dummy_text_2, TXB_ID_2, 1,73,102,142);
-//				UG_TextboxSetFont(&window_page_4, TXB_ID_2, &FONT_12X20);
-//				UG_TextboxSetAlignment(&window_page_4, TXB_ID_2, ALIGN_CENTER);
-//				UG_TextboxSetBackColor(&window_page_4, TXB_ID_2, 	C_BLACK);
-//				UG_TextboxSetForeColor(&window_page_4, TXB_ID_2, C_WHITE);
-//				UG_TextboxSetText(&window_page_4, TXB_ID_2, "Volume bar");
-//				UG_TextboxShow(&window_page_4, TXB_ID_2);
+				UG_TextboxCreate(&window_page_4_tab_2, &textbox_page4_tab_2_language_chinese_heading, TXB_ID_1, 15,35,65,60);
+				UG_TextboxSetFont(&window_page_4_tab_2, TXB_ID_1, &FONT_12X20);
+				UG_TextboxSetAlignment(&window_page_4_tab_2, TXB_ID_1, ALIGN_CENTER);
+				UG_TextboxSetBackColor(&window_page_4_tab_2, TXB_ID_1, 	C_DIM_GRAY);
+				UG_TextboxSetForeColor(&window_page_4_tab_2, TXB_ID_1, C_BLACK);
+				UG_TextboxSetText(&window_page_4_tab_2, TXB_ID_1, "CN");
+				UG_TextboxShow(&window_page_4_tab_2, TXB_ID_1);
+
+				UG_TextboxCreate(&window_page_4_tab_2, &textbox_page4_tab_2_language_english_heading, TXB_ID_2, 110,35,160,60);
+				UG_TextboxSetFont(&window_page_4_tab_2, TXB_ID_2, &FONT_12X20);
+				UG_TextboxSetAlignment(&window_page_4_tab_2, TXB_ID_2, ALIGN_CENTER);
+				UG_TextboxSetBackColor(&window_page_4_tab_2, TXB_ID_2, 	C_YELLOW);
+				UG_TextboxSetForeColor(&window_page_4_tab_2, TXB_ID_2, C_BLACK);
+				UG_TextboxSetText(&window_page_4_tab_2, TXB_ID_2, "EN");
+				UG_TextboxShow(&window_page_4_tab_2, TXB_ID_2);
+
+				UG_TextboxCreate(&window_page_4_tab_2, &textbox_page4_tab_2_temperature_unit_heading, TXB_ID_3, 10,65,180,85);
+				UG_TextboxSetFont(&window_page_4_tab_2, TXB_ID_3, &FONT_10X16);
+				UG_TextboxSetAlignment(&window_page_4_tab_2, TXB_ID_3, ALIGN_CENTER_LEFT);
+				UG_TextboxSetBackColor(&window_page_4_tab_2, TXB_ID_3, 	C_BLACK);
+				UG_TextboxSetForeColor(&window_page_4_tab_2, TXB_ID_3, C_WHITE);
+				UG_TextboxSetText(&window_page_4_tab_2, TXB_ID_3, "Temperature Unit:");
+				UG_TextboxShow(&window_page_4_tab_2, TXB_ID_3);
+
+				UG_TextboxCreate(&window_page_4_tab_2, &textbox_page4_tab_2_degree_celsius_heading, TXB_ID_4, 15,90,65,115);
+				UG_TextboxSetFont(&window_page_4_tab_2, TXB_ID_4, &FONT_12X20);
+				UG_TextboxSetAlignment(&window_page_4_tab_2, TXB_ID_4, ALIGN_CENTER);
+				UG_TextboxSetBackColor(&window_page_4_tab_2, TXB_ID_4, 	C_YELLOW);
+				UG_TextboxSetForeColor(&window_page_4_tab_2, TXB_ID_4, C_BLACK);
+				UG_TextboxSetText(&window_page_4_tab_2, TXB_ID_4, "C");
+				UG_TextboxShow(&window_page_4_tab_2, TXB_ID_4);
+
+				UG_TextboxCreate(&window_page_4_tab_2, &textbox_page4_tab_2_degree_fahrenheit_heading, TXB_ID_5, 110,90,160,115);
+				UG_TextboxSetFont(&window_page_4_tab_2, TXB_ID_5, &FONT_12X20);
+				UG_TextboxSetAlignment(&window_page_4_tab_2, TXB_ID_5, ALIGN_CENTER);
+				UG_TextboxSetBackColor(&window_page_4_tab_2, TXB_ID_5, 	C_DIM_GRAY);
+				UG_TextboxSetForeColor(&window_page_4_tab_2, TXB_ID_5, C_BLACK);
+				UG_TextboxSetText(&window_page_4_tab_2, TXB_ID_5, "F");
+				UG_TextboxShow(&window_page_4_tab_2, TXB_ID_5);
+
+				UG_TextboxCreate(&window_page_4_tab_2, &textbox_page4_tab_2_brightness_heading, TXB_ID_6, 10,120,180,140);
+				UG_TextboxSetFont(&window_page_4_tab_2, TXB_ID_6, &FONT_10X16);
+				UG_TextboxSetAlignment(&window_page_4_tab_2, TXB_ID_6, ALIGN_CENTER_LEFT);
+				UG_TextboxSetBackColor(&window_page_4_tab_2, TXB_ID_6, 	C_BLACK);
+				UG_TextboxSetForeColor(&window_page_4_tab_2, TXB_ID_6, C_WHITE);
+				UG_TextboxSetText(&window_page_4_tab_2, TXB_ID_6, "Brightness:");
+				UG_TextboxShow(&window_page_4_tab_2, TXB_ID_6);
+
+				UG_TextboxCreate(&window_page_4_tab_2, &textbox_page4_tab_2_brightness_bar, TXB_ID_7, 15,145,83,160);
+				UG_TextboxSetFont(&window_page_4_tab_2, TXB_ID_7, &FONT_10X16);
+				UG_TextboxSetAlignment(&window_page_4_tab_2, TXB_ID_7, ALIGN_CENTER);
+				UG_TextboxSetBackColor(&window_page_4_tab_2, TXB_ID_7, 	C_YELLOW);
+				UG_TextboxSetForeColor(&window_page_4_tab_2, TXB_ID_7, C_BLACK);
+				UG_TextboxSetText(&window_page_4_tab_2, TXB_ID_7, "");
+				UG_TextboxShow(&window_page_4_tab_2, TXB_ID_7);
+
+				UG_TextboxCreate(&window_page_4_tab_2, &textbox_page4_tab_2_volume_heading, TXB_ID_8, 10,165,180,185);
+				UG_TextboxSetFont(&window_page_4_tab_2, TXB_ID_8, &FONT_10X16);
+				UG_TextboxSetAlignment(&window_page_4_tab_2, TXB_ID_8, ALIGN_CENTER_LEFT);
+				UG_TextboxSetBackColor(&window_page_4_tab_2, TXB_ID_8, 	C_BLACK);
+				UG_TextboxSetForeColor(&window_page_4_tab_2, TXB_ID_8, C_WHITE);
+				UG_TextboxSetText(&window_page_4_tab_2, TXB_ID_8, "Volume:");
+				UG_TextboxShow(&window_page_4_tab_2, TXB_ID_8);
+
+				UG_TextboxCreate(&window_page_4_tab_2, &textbox_page4_tab_2_volume_bar, TXB_ID_9, 15,190,83,205);
+				UG_TextboxSetFont(&window_page_4_tab_2, TXB_ID_9, &FONT_10X16);
+				UG_TextboxSetAlignment(&window_page_4_tab_2, TXB_ID_9, ALIGN_CENTER);
+				UG_TextboxSetBackColor(&window_page_4_tab_2, TXB_ID_9, 	C_YELLOW);
+				UG_TextboxSetForeColor(&window_page_4_tab_2, TXB_ID_9, C_WHITE);
+				UG_TextboxSetText(&window_page_4_tab_2, TXB_ID_9, "");
+				UG_TextboxShow(&window_page_4_tab_2, TXB_ID_9);
+
 			//tab 3
 				UG_WindowCreate(&window_page_4_tab_3, obj_buff_window_page_4_tab_3, MAX_OBJECTS_WIN_PAGE_4_TAB_3, window_page_4_tab_3_callback);
 				UG_WindowSetStyle(&window_page_4_tab_3, WND_STYLE_2D | WND_STYLE_HIDE_TITLE);
 				UG_WindowResize(&window_page_4_tab_3, 106, 23, 319, 239);
 				UG_WindowSetBackColor(&window_page_4_tab_3, C_BLACK);
 
-				//logo image
 
-				//
+				UG_ImageCreate(&window_page_4_tab_3, &image_1, IMG_ID_0,50, 30, 190,54);
+				UG_ImageSetBMP(&window_page_4_tab_3, IMG_ID_0, &logo_FNIRSI);
 
-//				UG_TextboxCreate(&window_page_4, &textbox_page4_tab_3_model, TXB_ID_2, 120,162,318,182);
-//				UG_TextboxSetFont(&window_page_4, TXB_ID_2, &FONT_12X20);
-//				UG_TextboxSetAlignment(&window_page_4, TXB_ID_2, ALIGN_CENTER);
-//				UG_TextboxSetBackColor(&window_page_4, TXB_ID_2, 	C_BLACK);
-//				UG_TextboxSetForeColor(&window_page_4, TXB_ID_2, C_WHITE);
-//				UG_TextboxSetText(&window_page_4, TXB_ID_2, "dummy text");
-//				UG_TextboxShow(&window_page_4, TXB_ID_2);
-//
-//				UG_TextboxCreate(&window_page_4, &textbox_page4_tab_3_model, TXB_ID_2, 120,162,318,182);
-//				UG_TextboxSetFont(&window_page_4, TXB_ID_2, &FONT_10X16);
-//				UG_TextboxSetAlignment(&window_page_4, TXB_ID_2, ALIGN_CENTER);
-//				UG_TextboxSetBackColor(&window_page_4, TXB_ID_2, 	C_BLACK);
-//				UG_TextboxSetForeColor(&window_page_4, TXB_ID_2, C_WHITE);
-//				UG_TextboxSetText(&window_page_4, TXB_ID_2, "www.fnirsi.cn");
-//				UG_TextboxShow(&window_page_4, TXB_ID_2);
-//
-//				UG_TextboxCreate(&window_page_4, &textbox_page4_tab_3_model, TXB_ID_2, 120,162,318,182);
-//				UG_TextboxSetFont(&window_page_4, TXB_ID_2, &FONT_12X20);
-//				UG_TextboxSetAlignment(&window_page_4, TXB_ID_2, ALIGN_CENTER);
-//				UG_TextboxSetBackColor(&window_page_4, TXB_ID_2, 	C_BLACK);
-//				UG_TextboxSetForeColor(&window_page_4, TXB_ID_2, C_WHITE);
-//				UG_TextboxSetText(&window_page_4, TXB_ID_2, "Model: XXXX");
-//				UG_TextboxShow(&window_page_4, TXB_ID_2);
-//
-//				UG_TextboxCreate(&window_page_4, &textbox_page4_tab_3_serial, TXB_ID_2, 120,187,318,207);
-//				UG_TextboxSetFont(&window_page_4, TXB_ID_2, &FONT_12X20);
-//				UG_TextboxSetAlignment(&window_page_4, TXB_ID_2, ALIGN_CENTER);
-//				UG_TextboxSetBackColor(&window_page_4, TXB_ID_2, 	C_BLACK);
-//				UG_TextboxSetForeColor(&window_page_4, TXB_ID_2, C_WHITE);
-//				UG_TextboxSetText(&window_page_4, TXB_ID_2, "Serial No: XXXX");
-//				UG_TextboxShow(&window_page_4, TXB_ID_2);
-//
-//				UG_TextboxCreate(&window_page_4, &textbox_page4_tab_3_version, TXB_ID_2, 120,212,318,232);
-//				UG_TextboxSetFont(&window_page_4, TXB_ID_2, &FONT_12X20);
-//				UG_TextboxSetAlignment(&window_page_4, TXB_ID_2, ALIGN_CENTER);
-//				UG_TextboxSetBackColor(&window_page_4, TXB_ID_2, 	C_BLACK);
-//				UG_TextboxSetForeColor(&window_page_4, TXB_ID_2, C_WHITE);
-//				UG_TextboxSetText(&window_page_4, TXB_ID_2, "Version: V-1.01");
-//				UG_TextboxShow(&window_page_4, TXB_ID_2);
+				UG_TextboxCreate(&window_page_4_tab_3, &textbox_page4_tab_3_website, TXB_ID_0, 30,60,190,80);
+				UG_TextboxSetFont(&window_page_4_tab_3, TXB_ID_0, &FONT_12X20);
+				UG_TextboxSetAlignment(&window_page_4_tab_3, TXB_ID_0, ALIGN_CENTER);
+				UG_TextboxSetBackColor(&window_page_4_tab_3, TXB_ID_0, 	C_BLACK);
+				UG_TextboxSetForeColor(&window_page_4_tab_3, TXB_ID_0, C_WHITE);
+				UG_TextboxSetText(&window_page_4_tab_3, TXB_ID_0, "www.fnirsi.cn");
+				UG_TextboxShow(&window_page_4_tab_3, TXB_ID_0);
 
+				UG_TextboxCreate(&window_page_4_tab_3, &textbox_page4_tab_3_model, TXB_ID_1, 10,120,190,140);
+				UG_TextboxSetFont(&window_page_4_tab_3, TXB_ID_1, &FONT_12X20);
+				UG_TextboxSetAlignment(&window_page_4_tab_3, TXB_ID_1, ALIGN_CENTER_LEFT);
+				UG_TextboxSetBackColor(&window_page_4_tab_3, TXB_ID_1, 	C_BLACK);
+				UG_TextboxSetForeColor(&window_page_4_tab_3, TXB_ID_1, C_WHITE);
+				UG_TextboxSetText(&window_page_4_tab_3, TXB_ID_1, "Model: XXXX");
+				UG_TextboxShow(&window_page_4_tab_3, TXB_ID_1);
+
+				UG_TextboxCreate(&window_page_4_tab_3, &textbox_page4_tab_3_serial, TXB_ID_2, 10,145,190,165);
+				UG_TextboxSetFont(&window_page_4_tab_3, TXB_ID_2, &FONT_12X20);
+				UG_TextboxSetAlignment(&window_page_4_tab_3, TXB_ID_2, ALIGN_CENTER_LEFT);
+				UG_TextboxSetBackColor(&window_page_4_tab_3, TXB_ID_2, 	C_BLACK);
+				UG_TextboxSetForeColor(&window_page_4_tab_3, TXB_ID_2, C_WHITE);
+				UG_TextboxSetText(&window_page_4_tab_3, TXB_ID_2, "Serial No: XXXX");
+				UG_TextboxShow(&window_page_4_tab_3, TXB_ID_2);
+
+				UG_TextboxCreate(&window_page_4_tab_3, &textbox_page4_tab_3_version, TXB_ID_3, 10,170,190,190);
+				UG_TextboxSetFont(&window_page_4_tab_3, TXB_ID_3, &FONT_12X20);
+				UG_TextboxSetAlignment(&window_page_4_tab_3, TXB_ID_3, ALIGN_CENTER_LEFT);
+				UG_TextboxSetBackColor(&window_page_4_tab_3, TXB_ID_3, 	C_BLACK);
+				UG_TextboxSetForeColor(&window_page_4_tab_3, TXB_ID_3, C_WHITE);
+				UG_TextboxSetText(&window_page_4_tab_3, TXB_ID_3, "Version: V-1.01");
+				UG_TextboxShow(&window_page_4_tab_3, TXB_ID_3);
 
 //				configuring key menu structure for  page 2
 
