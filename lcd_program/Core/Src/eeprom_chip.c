@@ -180,23 +180,23 @@ void first_time_eeprom_initialize(){
 void read_buck_set_voltage(){
 
 	read_eeprom(5);
-	buck_convertor_current.voltageout_set = (double)set_eeprom_data.current_set_voltage/100;
+	buck_convertor_current.voltageout_set = (double)set_eeprom_data.current_set_voltage;
 }
 
 void write_buck_set_voltage(){
 
-	write_eeprom((uint16_t)((buck_convertor_current.voltageout_set)*100),5);
+	write_eeprom((uint16_t)((buck_convertor_current.voltageout_set)),5);
 
 }
 
 void read_buck_set_current(){
 	read_eeprom(6);
-	buck_convertor_current.current_set =(double) set_eeprom_data.current_set_current/100;
+	buck_convertor_current.current_set =(double) set_eeprom_data.current_set_current;
 
 }
 
 void write_buck_set_current(){
 
-	write_eeprom((uint16_t)((buck_convertor_current.current_set)*100),6);
+	write_eeprom((uint16_t)((buck_convertor_current.current_set)),6);
 
 }
