@@ -587,7 +587,7 @@ void changing_menu_content(){
 				switch(menu_.main_window_current_id_no){
 				case 0:
 				{
-					temp_show_content(max_eeprom_data.max_voltage,1);
+					temp_show_content(max_eeprom_data.max_voltage,10);
 					UG_MESSAGE page_msg={2,2,0,2,&obj_buff_window_page_2};
 					page_msg.sub_id=16;
 					window_page_2_callback(&page_msg);
