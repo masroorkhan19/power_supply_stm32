@@ -214,7 +214,7 @@ void window_page_3_callback(UG_MESSAGE *msg){
 		case 21:   // buck voltage value
 				{
 					if(buck_convertor_current.buck_on_off){
-						sprintf(char_buffer,"%.02f",(buck_convertor_current.voltageout_output));
+						sprintf(char_buffer,"%.02f",(buck_convertor_current.voltageout_output)/100);
 						UG_TextboxSetText(&window_page_3, TXB_ID_21, char_buffer);
 					}
 					else

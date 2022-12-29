@@ -108,7 +108,7 @@ void menu_flow(uint8_t key){
 	}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	else if((menu_.enable_key_state&key2_press) || (menu_.enable_key_state&key3_press) && ((menu_.current_window.main_window_number_of_settable_id!=-1)  || (menu_.current_window.number_of_sub_window!=0))){
+	else if(((key&key2_press) || (key&key3_press) || (key&0x40))&&((menu_.enable_key_state&key2_press) || (menu_.enable_key_state&key3_press) )&& ((menu_.current_window.main_window_number_of_settable_id!=-1)  || (menu_.current_window.number_of_sub_window!=0))){
 
 
     if((key&key2_press) ){    //select button
@@ -264,7 +264,7 @@ void menu_flow(uint8_t key){
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     else if(key&key1_press){
 
-    	if(buck_convertor_current.buck_on_off){
+    	if(buck_convertor_current.buck_on_off ==0){
 
     		buck_turn_on();
     	}
@@ -782,8 +782,9 @@ void set_menu_content(){
 				break;}
 			case 1:
 			{
-				write_buck_set_current();
 				buck_convertor_current.current_set=temperory_content_data;
+				write_buck_set_current();
+
 				break;}
 			default:{}
 			}
