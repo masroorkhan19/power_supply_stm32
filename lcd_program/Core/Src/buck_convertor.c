@@ -50,7 +50,7 @@ void buck_turn_on()
 void set_voltage_pwm(){
 
 
-	buck_convertor_current.voltage_pwm_out = (uint32_t)((buck_convertor_current.voltageout_set/100))*(htim3.Init.Period)/(3.3*31);
+	buck_convertor_current.voltage_pwm_out = (uint32_t)(buck_convertor_current.voltageout_set*htim3.Init.Period)/((double)10230);
 
 
 }
